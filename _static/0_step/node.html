@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link type="text/css" rel="stylesheet" href="../css/m/h_reset.css" />
+<link type="text/css" rel="stylesheet" href="../css/m/h_global.css" />
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/m/h_base.js"></script>
+<script type="text/javascript" src="../js/m/h_dialog.js"></script>
+</head>
+<body style="padding:30px;">
+
+
+<xmp style="font-family:微软雅黑; font-size:13px; line-height:24px;">
+node.js说明：
+------------------------------------------------------------------
+--测试环境：win7系统 / 本机DOS根目录：C:\Users\alex
+--参考：jingyan.baidu.com/article/b0b63dbfca599a4a483070a5.html
+------------------------------------------------------------------
+--安装
+nodejs的官网：https://nodejs.org/en/download/  -> 下载 Windows Installer ;
+双击安装程序安装;
+打开安装后的nodejs文件夹点击npm文件来安装此环境
+------------------------------------------------------------------
+--使用
+->开始->输入cmd(回车调出DOS窗口);
+输入“node”回车即可进入node.js交互模式
+输入".exit"可以退出node
+------------------------------------------------------------------
+--测试
+进入node.js交互模式后输入console.log("Hello World!");
+回车下一行就会显示Hello World!字样
+----------------
+根目录建test.js：
+console.log("Hello World 2!");
+dos输入node test.js
+回车下一行就会显示Hello World 2!字样
+------------------------------------------------------------------
+--less编译测试
+安装less : Dos里直接输入 npm install -g less -> 回车后提示一堆东西（带各种颜色的英文）
+如此less安装到了C:\Users\alex\AppData\Roaming\npm中;
+把Bootstrap/less/media.less放C:\Users\alex中;
+Dos里输入lessc media.less > ccc.css 回车；
+这样就把less 编译成了css 在C:\Users\alex生成了一个ccc.css文件。
+卸载less： npm uninstall -g less
+------------------------------------------------------------------
+--css压缩测试 [参考：http://www.oschina.net/p/clean-css/]
+安装clean-css : Dos里直接输入 npm install clean-css -g 回车；
+Dos里输入cleancss -o eee_min.css ccc.css 回车 -> 生成的压缩文件把原文件的注释和空格全删掉了；
+------------------------------------------------------------------
+--js压缩测试
+安装uglifyjs : Dos里直接输入 npm install uglify-js -g 回车；
+把一脚本文件h_base.js放C:\Users\alex中;
+Dos里输入uglifyjs h_base.js -o h_base-min.js 回车 -> 生成的压缩文件把原文件的注释和空格全删掉了；
+Dos里输入uglifyjs h_base.js -o h_base-min2.js 回车 -> 生成的压缩文件把原文件的注释和空格全删掉+都加密了；
+------------------------------------------------------------------
+多个模块安装：
+输入:npm gulp-a gulp-b gulpc 回车；
+
+</xmp>
+
+</body>
+</html>

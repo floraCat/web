@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>冒泡 & 默认事件</title>
+</head>
+<body>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+
+事件冒泡 & 事件捕获：
+https://zhidao.baidu.com/question/553280058444562492.html
+
+
+	防止冒泡：（停止事件传播）
+	------------------------------------
+	event.stopPropagation();
+	event.cancelBubble=true; //兼容Ie
+
+	//冒泡：事件从事件目标(target)开始，往上传播事件到页面的最上一级标签
+	//当前页面有事件时防止冒泡代码才有效，即无事件防止冒泡后event.cancelBubble还是默认的false;
+
+
+	禁止默认事件：
+	------------------------------------
+	event.preventDefault(); //[1]
+	event.returnValue=false; //[2]
+
+	//IE中当event.cancelable=true时用[1]就能全兼容(对应上已防冒泡的事件)
+	//IE中当event.cancelable=false时没有默认事件，此情况需要用[2]来兼容IE
+
+
+	function stopDefault(ev){
+		if(ev && ev.preventDefault){
+			ev.preventDefault();
+		}else{
+			window.ev.returnValue=false;
+		}
+		return false;
+	}
+	$(function(){
+		$(document).on("click",function(){
+			stopDefault();
+		});
+	});
+
+
+	//firefox中不识别window.event，需要把当前的事件通过参数传递过来
+
+
+
+	实例：下拉后点其他地方隐藏
+	------------------------------------
+	$(function(){
+		if('ontouchstart' in document.documentElement){
+			var eventName='touchstart'; //移动端事件
+		}else{
+			var eventName='click'; //PC端事件
+		}
+		$(".tab").on(eventName,function(){
+			$(".show").toggle();
+			//阻止冒泡
+			if (event.stopPropagation) { event.stopPropagation();}
+		    else{ event.cancelBubble = true;} //兼容ie
+		    //点下拉以外隐藏
+			$(document).on(eventName,function(ev){
+				ev=ev || window.event;
+				target=ev.target || ev.srcElement;
+				if($(target).attr("class")=="show" || $(target).parents(".show").length>0){ //下拉除外
+				}else{
+					ev.preventDefault();//禁止默认事件
+					$(".show").hide();
+					$(document).off(eventName);//解除监听以恢复默认事件
+				}
+			});
+		});
+	});
+
+</xmp>
+
+</body>
+</html>

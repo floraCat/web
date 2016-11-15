@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>内页</title>
+<link rel="stylesheet" type="text/css" href="sys_resource/css/base.css" />
+<link rel="stylesheet" type="text/css" href="sys_resource/css/layout.css" />
+<script type="text/javascript" src="sys_resource/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="sys_resource/js/sort.js"></script>
+<script type="text/javascript" src="sys_resource/js/mod.js"></script>
+</head>
+
+<body class="List_body List_ttl">
+<input type="hidden" name="col" value="<{$smarty.get.col}>" />
+
+
+<div class="wrap Ttl">
+	<div class="list Btns">
+	<{section name=list loop=$rsList}>
+		<li>
+        	<a id="<{$rsList[list].id}>" href="javascript:;" data-role="index.php?col=<{$smarty.get.col}>&id=<{$rsList[list].id}>"><{$rsList[list].title}></a>
+        </li>
+	<{/section}>
+	</div><!--list end-->
+</div>
+
+
+<!--分页 start-->
+<div class="pagelist">
+	<div class="page101 pageAH fl">
+	<{$pagehtml}>
+	</div>
+</div><!--pagelist end-->
+<!--分页 end-->
+
+
+</body>
+</html>

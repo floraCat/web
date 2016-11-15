@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body style="padding:0 30px;">
+
+
+<xmp style=" font-family:微软雅黑; font-size:13px;">
+
+
+
+
+1. 拖放
+2. 应用缓存
+3. WEB Workers
+4. SVG
+5. web存储_localStorage
+6. web存储_sessionStorage
+7. 服务器推送事件
+
+
+
+
+
+
+1)_拖放：
+————————————————————————————————————————————————————————————————————————————————————————————
+---html5拖放即可把网页内任意位置的图片拖放到指定容器，也可以把本地目录上的图片拖放到网页指定的容器内；
+
+-----------------------------------------------------------------------------------------
+
+DataTransfer 对象：退拽对象用来传递的媒介，使用一般为Event.dataTransfer。
+draggable    属性：就是标签元素要设置draggable=true，否则不会有效果，例如：
+ondragstart  事件：当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上
+ondragenter  事件：当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上
+ondragover   事件：拖拽元素在目标元素上移动的时候触发的事件，此事件作用在目标元素上
+ondrop       事件：被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上
+ondragend    事件：当拖拽完成后触发的事件，此事件作用在被拖曳元素上
+Event.preventDefault() 方法：阻止默认的些事件方法等执行。在ondragover中一定要执行preventDefault()，否则ondrop事件不会被触发。另外，如果是从其他应用软件或是文件中拖东西进来，尤其是图片的时候，默认的动作是显示这个图片或是相关信息，并不是真的执行drop。此时需要用用document的ondragover事件把它直接干掉。
+Event.effectAllowed 属性：就是拖拽的效果。
+
+-----------------------------------------------------------------------------------------
+
+部分说明：
+---------
+imgItem.ondragstart=function(e){
+	e.dataTransfer.setData("imgData",e.target.innerHTML);
+}
+imgContainer.ondragover=function(e){
+	e.preventDefault();
+}
+imgContainer.ondrop=function(e){
+	e.preventDefault();
+    var img=document.getElementById(e.dataTransfer.getData("imgData"));
+    e.target.appendChild(img);
+    showObj(e);
+    //showObj(e.dataTransfer);
+}
+//输出事件（拖放）的所有信息
+function showObj(obj){
+	var s="";
+    for(var k in obj){
+    	s+=k+":"+obj[k]+"<br/>"
+    }
+    console.log(s);
+}
+
+
+
+
+
+
+
+
+2)_应用缓存：
+————————————————————————————————————————————————————————————————————————————————————————————
+manifest文件：
+1): CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存
+2): NETWORK - 在此标题下列出的文件需要与服务器的链接，且不会被缓存
+3): FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如404页面）
+
+<-html manifest="index.appcache">...</-html>
+
+index.appcache文件内容：
+-------------------------
+CACHE MANIFEST
+
+CACHE:
+index.html
+style.css
+index.js
+
+NETWORK:
+style.css
+-------------------------
+
+
+
+
+
+
+
+
+
+3)_WEB Workers：[看资料]
+————————————————————————————————————————————————————————————————————————————————————————————
+定义：
+-----------
+是运行在后台的 JavaScript，独立于其他脚本，不会影响页面的性能
+（而一般 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成，如用web workers便能提高性能）
+
+方法：
+-----------
+	postMessage() - 它用于向HTML页面传回一段消息
+    terminate() -终止web worker,并释放浏览器/计算机资源
+
+
+实例：
+-----------
+
+index.js: (前端页面)
+-------------------------
+var numDiv,work=null;
+window.onload=function(){
+	numDiv=document.getElementById("numDiv");
+    document.getElementById("start").onclick=startWorker;
+    document.getElementById("stop").onclick=function(){
+    	if(work){
+        	work.terminate();
+            work=null;
+        }
+    };
+}
+function startWorker(){
+	if(work) return;
+    work=new Worker("count.js");
+    work.onmessage=function(e){
+    	numDiv.innerHTML=e.data;
+    }
+}
+-------------------------
+
+count.js:(后台web worker文件)
+-------------------------
+var countNum=0;
+function count(){
+	postMessage(countNum);
+    countNum++;
+    setTimeout(count,1000);
+}
+count();
+-------------------------
+//web worker 通常不用于如此简单的脚本，而是用于更耗费 CPU 资源的任务
+
+
+检测浏览器是否支持web worker
+-------------------------
+if(typeof(w)!=="undefined")
+  {
+  // Yes! Web worker support!
+  w=new Worker("demo_workers.js");
+  // Some code.....
+  }
+else
+  {
+  // Sorry! No Web Worker support..
+  }
+
+
+
+
+
+
+
+4)_SVG：
+————————————————————————————————————————————————————————————————————————————————————————————
+外部引用svg文件
+<iframe src="svg.svg" width="400" height="200" frameborder="no"></iframe>
+svg.svg第一行要加上头文件<?xml version='1.0'?>
+
+
+
+
+
+
+
+
+
+
+5)_web存储_localStorage：
+————————————————————————————————————————————————————————————————————————————————————————————
+localStroage - 没有时间限制的数据存储
+
+实例：
+-----------
+if (localStorage.pagecount){
+  localStorage.pagecount=Number(localStorage.pagecount) +1;
+}else{
+  localStorage.pagecount=1;
+}
+document.write("Visits "+ localStorage.pagecount + " time(s).");
+//用户访问页面的次数进行计数
+
+
+
+
+
+
+
+6)_web存储_sessionStorage：
+————————————————————————————————————————————————————————————————————————————————————————————
+sessionStroage - 针对一个session的数据存储;当用户关闭浏览器窗口后，数据会被删除。
+
+实例：
+-----------
+if (sessionStorage.pagecount){
+  sessionStorage.pagecount=Number(sessionStorage.pagecount) +1;
+}else{
+  sessionStorage.pagecount=1;
+}
+document.write("Visits "+sessionStorage.pagecount+" time(s) this session.");
+//用户在当前 session 中访问页面的次数进行计数：
+
+
+
+
+
+
+
+
+7)_服务器推送事件：
+————————————————————————————————————————————————————————————————————————————————————————————
+[看资料]
+
+
+</xmp>
+
+
+
+</body>
+</html>

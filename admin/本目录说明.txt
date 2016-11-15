@@ -1,0 +1,7 @@
+_img_download.php --》 后台点击图标自动下载到../img_download文件夹内（针对“imgs”数据表）
+ 
+_save_by_file_for_mode.php --》 后台模块的另类保存（针对“mode”数据表）
+
+manage.php --》各栏目col字段/展示模板/对应数据表等基本设置
+
+manage_base.php --》公用“增删改查”

@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js操作iframe</title>
+</head>
+<body>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+	window.onload()=function(){...};
+	$(document).ready(function(){...});
+	---------------------------------------------------------------------
+	window.onload必须等到页面内包括图片的所有元素加载完毕后才能执行。 
+	$(document).ready()是DOM结构绘制完毕后就执行，不必等到加载完毕。 
+	---------------------------------------------------------------------
+	window.onload不能同时编写多个，如果有多个window.onload方法，只会执行一个 
+	$(document).ready()可以同时编写多个，并且都可以得到执行 
+	---------------------------------------------------------------------
+	window.onload没有简化写法，但作用跟<body onload="...">一样
+	$(document).ready(function(){})可以简写成$(function(){});
+	---------------------------------------------------------------------
+	不同$(function(){})内作用域不同
+	window.onload与$(function(){})内作用域也不同
+
+</xmp>
+
+</body>
+</html>

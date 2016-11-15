@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+
+
+<script>
+$(function(){
+	var isIE = !!window.ActiveXObject;   
+	var isIE6 = isIE && !window.XMLHttpRequest;   
+	var isIE7 = isIE && !!document.documentMode && (document.documentMode == 7);   
+	var isIE8 = isIE && !!document.documentMode && (document.documentMode == 8);   
+	var isIE9 = isIE && !!document.documentMode && (document.documentMode == 9);   
+    if(isIE6) {   
+        alert("浏览器为：ie6"); 
+    }else if (isIE7) {   
+        alert("浏览器为：ie7"); 
+    }else if (isIE8) {   
+        alert("浏览器为：ie8"); 
+    }else if (isIE9) {   
+        alert("浏览器为：ie9"); 
+    }else if(isIE){
+        alert("浏览器为：ie但非ie6~9"); 
+	}else{
+        alert("浏览器为：非ie"); 
+	} 	
+});
+</script>
+
+</body>
+</html>

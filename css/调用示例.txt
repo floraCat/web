@@ -1,0 +1,19 @@
+<style type="text/less">
+@import "css/h_varMix.less";
+@import "css/h_modeM.less";
+
+/*------layout------*/
+.sss {
+	...
+}
+</style>
+<script language="javascript" type="text/javascript" src="js/less.js"></script>
+
+
+
+
+-------------------------------------------------------------
+
+说明：
+
+--less需要服务器环境；

@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+
+/*****reset*****/
+body,input,select,textarea,pre{ font:12px/1.5 "Microsoft Yahei",arial,Tahoma,sans-serif; color:#666; }
+body,h1,h2,h3,h4,h5,h6,p,ul,li,ol,dl,dt,dd,input,pre,xmp{ padding:0; margin:0;}
+ul,ol,li{ list-style-type:none;}
+img,input,iframe{ border:none;}
+select,textarea,input,:focus{ outline:none;}
+*,input{ background-repeat:no-repeat;}
+ul,li,ol,dl,dt,dd,p,div,h1,h2,h3,h4,h5,h6,a,form,input{ overflow:hidden;}
+i,b{ display:block; font-style:normal; font-weight:normal;}
+em{ font-style:normal;}
+a,s,label{ text-decoration:none; color:#444;}
+h1,h2,h3,h4,h5{ font-weight:normal; font-size:14px; color:#111;}
+h6{ font-weight:bold; font-size:inherit;}
+img.img100,.img100 img{ width:100%; float:left;}
+/*li a{ float:left;}*/
+
+
+/*****global*****/
+.fl{ float:left;}
+.fr{ float:right;}
+.lt,.lt_,.Lt,.Left{ float:left;}
+.cen,.cen_,.Cen,.Center{ float:left;}
+.rt,.rt_,.Rt,.Right{ float:right;}
+.flLi li,.flDl dl,.flA a{ float:left;}
+.v{ overflow:visible;}
+.block{ display:block!important;}
+.none{ display:none!important;}
+.b{ font-weight:bold;}
+.arrow{ font-family:"宋体";}
+.clear{ clear:both;}
+.wrap{ width:1000px; margin:0 auto;}
+
+
+
+/*zs*/
+a:hover{ color:#cb0101;}
+.zsVar var,.zsMark mark,.zsEm em{ color:#cb0101;}
+.zs{ color:#cb0101;}
+.cd3{ background-color:#FFF9EE!important;}
+.cb2,.cb2A a{ border-color:#F1DCB9!important;}
+
+
+
+
+/*backpic*/
+

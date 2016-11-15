@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js操作iframe</title>
+</head>
+<body>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+	创建 Date 对象的语法：
+	----------------------------------------------
+	var myDate=new Date();
+
+
+	参数形式有以下５种：  
+	----------------------------------------------
+	new Date("month dd,yyyy hh:mm:ss");
+	new Date("month dd,yyyy");
+	new Date(yyyy,mth,dd,hh,mm,ss);
+	new Date(yyyy,mth,dd);
+	new Date(ms); //参数表示的是需要创建的时间和GMT时间1970年1月1日之间相差的毫秒数
+
+
+	对应实例：
+	----------------------------------------------
+	new Date("January 12,2006 22:19:35");
+	new Date("January 12,2006");
+	new Date(2006,0,12,22,19,35);
+	new Date(2006,0,12);
+	new Date(1137075575000);
+
+
+	参数的含义：
+	----------------------------------------------
+	month:用英文表示月份名称，从January到December
+	mth:用整数表示月份，从0-11(1月到12月)
+	dd:表示一个月中的第几天，从1到31
+	yyyy:四位数表示的年份
+	hh:小时数，从0（午夜）到23（晚11点）
+	mm:分钟数，从0到59的整数
+	ss:秒数，从0到59的整数
+	ms:毫秒数，为大于等于0的整数
+
+
+
+	Date对象方法：
+	----------------------------------------------
+	getDate() 从 Date 对象返回一个月中的某一天 (1 ~ 31)。
+	getDay() 从 Date 对象返回一周中的某一天 (0 ~ 6)。
+	getMonth() 从 Date 对象返回月份 (0 ~ 11)。
+	getFullYear() 从 Date 对象以四位数字返回年份。
+	getYear() 请使用 getFullYear() 方法代替。
+	getHours() 返回 Date 对象的小时 (0 ~ 23)。
+	getMinutes() 返回 Date 对象的分钟 (0 ~ 59)。
+	getSeconds() 返回 Date 对象的秒数 (0 ~ 59)。
+	getMilliseconds() 返回 Date 对象的毫秒(0 ~ 999)。
+
+	getTime() 返回 1970 年 1 月 1 日至今的毫秒数。
+	getTimezoneOffset() 返回本地时间与格林威治标准时间 (GMT) 的分钟差。
+
+	getUTCDate() 根据世界时从 Date 对象返回月中的一天 (1 ~ 31)。
+	getUTCDay() 根据世界时从 Date 对象返回周中的一天 (0 ~ 6)。
+	getUTCMonth() 根据世界时从 Date 对象返回月份 (0 ~ 11)。
+	getUTCFullYear() 根据世界时从 Date 对象返回四位数的年份。
+	getUTCHours() 根据世界时返回 Date 对象的小时 (0 ~ 23)。
+	getUTCMinutes() 根据世界时返回 Date 对象的分钟 (0 ~ 59)。
+	getUTCSeconds() 根据世界时返回 Date 对象的秒钟 (0 ~ 59)。
+	getUTCMilliseconds() 根据世界时返回 Date 对象的毫秒(0 ~ 999)。
+
+	Date.parse() 返回1970年1月1日午夜到指定日期（字符串）的毫秒数。//Date.parse("2015-12-26");
+
+	setDate() 设置 Date 对象中月的某一天 (1 ~ 31)。
+	setMonth() 设置 Date 对象中月份 (0 ~ 11)。
+	setFullYear() 设置 Date 对象中的年份（四位数字）。
+	setYear() 请使用 setFullYear() 方法代替。
+	setHours() 设置 Date 对象中的小时 (0 ~ 23)。
+	setMinutes() 设置 Date 对象中的分钟 (0 ~ 59)。
+	setSeconds() 设置 Date 对象中的秒钟 (0 ~ 59)。
+	setMilliseconds() 设置 Date 对象中的毫秒 (0 ~ 999)。
+
+	setTime() 以毫秒设置 Date 对象。
+
+	setUTCDate() 根据世界时设置 Date 对象中月份的一天 (1 ~ 31)。
+	setUTCMonth() 根据世界时设置 Date 对象中的月份 (0 ~ 11)。
+	setUTCFullYear() 根据世界时设置 Date 对象中的年份（四位数字）。
+	setUTCHours() 根据世界时设置 Date 对象中的小时 (0 ~ 23)。
+	setUTCMinutes() 根据世界时设置 Date 对象中的分钟 (0 ~ 59)。
+	setUTCSeconds() 根据世界时设置 Date 对象中的秒钟 (0 ~ 59)。
+	setUTCMilliseconds() 根据世界时设置 Date 对象中的毫秒 (0 ~ 999)。
+
+	toSource() 返回该对象的源代码。//new Date().toSource();此方法可能不会在类IE的所有浏览器上正常工作。
+	toString() 把 Date 对象转换为字符串。//new Date().toString();返回：Sat Dec 26 2015 01:01:01 GMT+0800(中国标准时间);
+	toTimeString() 把 Date 对象的时间部分转换为字符串。
+	toDateString() 把 Date 对象的日期部分转换为字符串。
+	toGMTString() 请使用 toUTCString() 方法代替。
+	toUTCString() 根据世界时，把 Date 对象转换为字符串。
+
+	toLocaleString() 根据本地时间格式，把 Date 对象转换为字符串。
+	toLocaleTimeString() 根据本地时间格式，把 Date 对象的时间部分转换为字符串。
+	toLocaleDateString() 根据本地时间格式，把 Date 对象的日期部分转换为字符串。
+
+	valueOf() 返回 Date 对象的原始值。 //new Date().valueOf();
+
+	toISOString() //将一个Date转为字符串，使用ISO-8601标准来组合日期/时间格式和UTC。
+	toJSON() //将一个Date对象JSON序列化，使用toISOString();
+
+
+
+	静态方法：
+	----------------------------------------------
+	Date.UTC() 根据世界时返回 1997 年 1 月 1 日 到指定日期的毫秒数。//Date.UTC(2015,12,26,01,01,01);
+	Date.now() 返回当前时间，自纪元开始后的毫秒数。
+	Date.parse() 解析一个日期及时间的字符串表示，返回该日期的内部毫秒表示。
+
+
+	其他：
+	----------------------------------------------
+	Date.parse(dateVal)虽然声称是返回日期与 1970 年 1 月 1 日午夜之间所间隔的毫秒数，
+	但是实际上返回的是精确到秒的毫秒数，而并非实际的毫秒。
+	并且这个数字是非四舍五入的，也就是即使是1秒999毫秒，也按照1000毫秒来输出。
+	而getTime()则返回实际毫秒数。
+
+
+	时间戳：
+	----------------------------------------------
+	时间戳是自1970年1月1日（00:00:00 UTC/GMT）以来的秒数。
+	获取方法一：var timestamp = Date.parse(new Date());  //结果：1280977330000
+	获取方法二：var timestamp = (new Date()).valueOf();  //结果：1280977330748
+	获取方法三：var timestamp = new Date().getTime()；  //结果：1280977330748
+	//第一种：获取的时间戳是把毫秒改成000显示，
+	//第二种和第三种是获取了当前毫秒的时间戳。
+
+</xmp>
+
+</body>
+</html>

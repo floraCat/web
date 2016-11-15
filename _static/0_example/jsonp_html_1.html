@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js操作iframe</title>
+</head>
+
+
+
+
+<script>
+function box(json){
+	alert(json.name+"__"+json.time);
+}
+var url='jsonp_php.php?callback=box';
+var script=document.createElement('script');
+script.setAttribute('src',url);
+document.getElementsByTagName('head')[0].appendChild(script);
+</script>
+
+
+
+
+
+</body>
+</html>

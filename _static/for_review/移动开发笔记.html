@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>南铺北店</title>
+    <script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+</head>
+<body style=" padding:30px; height:2000px;">
+
+
+
+<xmp>
+————————————————————————————————————————————————————
+ppi               dpi     mdpi     hdpi     xhdpi
+调整设备宽度       120     180      240      320
+默认缩放比         0.75    1        1.5      2
+————————————————————————————————————————————————————
+</xmp>
+
+<xmp style="font-family:微软雅黑; font-size:14px; line-height:21px;">			  
+dp/pt(物理像素) -> dpr(device Pixel Radio缩放比) -> ppi(每英寸像素数) -> px(逻辑像素)
+-------------------------------------------------------------------------------------
+分辨率说的是物理像素；
+-------------------------------------------------------------------------------------
+1px=(dpr)的平方*dp; //如I5的dpr为2，1px要用2*2dp来显示
+-------------------------------------------------------------------------------------
+i5(Retina屏)分辨率为640*1136，ppi算法：(640平方+1136平方)/4英寸=326ppi；按上表看i5默认缩放比为2；
+-------------------------------------------------------------------------------------
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,user-scalable=no;">
+ios默认viewpoint为980，安卓不确定；一般移动开发viewport视口设置如上，宽高为设备的宽高，缩放比例为1；
+-------------------------------------------------------------------------------------
+
+实例：
+-----------
+图片一比一显示在手机上会模糊，图片宽高应该对应上手机的物理像素，
+如I5缩放比为2，1px要用2*2dp来显示，
+所以要显示50*50的图片，要用实际100px*100px的图片，再样式设置成50px*50px显示；
+-------------------------------------------------------------------------------------
+--1像素边线在手机端显示不够细且有点模糊，样式设置：
+.div{ position:relative;}
+.div:after{ content:''; position:absolute; top:-1px; left:0; width:100%; height:1px; border-top:#333 1px solid; -webkit-transform:scaleY(0.5);}
+-------------------------------------------------------------------------------------
+</xmp>
+
+</body>
+</html>

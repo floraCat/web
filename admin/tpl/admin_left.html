@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理</title>
+<link rel="stylesheet" type="text/css" href="css/base.css" />
+<link rel="stylesheet" type="text/css" href="css/layout.css" />
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+</head> 
+<body class="bg_left">
+
+<div class="ns001a">
+	<h3 class="hd">操作菜单</h3>
+	<div class="con">
+		<ol>
+			<div class="hd_ zd3">
+				<em class="lt zb zs">基础：</em>
+			</div>
+			<ul class="shadowRB_A yjA zd3A">
+				<li><a href="manage.php?act=edit&col=question&id=1" target="right">html</a></li>
+				<li><a href="manage.php?act=edit&col=question&id=2" target="right">css</a></li>
+				<li><a href="manage.php?act=edit&col=question&id=3" target="right">JQ</a></li>
+				<li><a href="manage.php?act=edit&col=question&id=4" target="right">PHP</a></li>
+				<!--<li><a href="manage.php?act=edit&col=base&id=10" target="right">dede</a></li>
+				<li><a href="manage.php?act=edit&col=base&id=11" target="right">ecshop</a></li>
+				<li><a href="manage.php?act=edit&col=base&id=7" target="right">jq Mobile</a></li>
+				<li><a href="manage.php?act=edit&col=base&id=8" target="right">代码规范</a></li>
+				<li><a href="../_static/mode.html" target="right">mode模块</a></li>
+				<li><a href="manage.php?act=edit&col=base&id=9" target="right">其他</a></li>-->
+			</ul>
+		</ol>
+		<ol>
+			<div class="hd_ zd3">
+				<em class="lt zb zs">学习笔记：</em>
+			</div>
+			<ul class="shadowRB_A yjA zd3A">
+				<li><a href="manage.php?act=edit&col=points&id=1" target="right">待处理</a></li>
+				<li><a href="manage.php?act=edit&col=points&id=2" target="right">已处理</a></li>
+				<li><a href="manage.php?act=list&col=question" target="right">知识点目录</a></li>
+				<li><a href="manage.php?act=list&col=points" target="right">知识点</a></li>
+				<li><a href="manage.php?act=list&col=shortquestion" target="right">短问题</a></li>
+				<li><a href="manage.php?act=list&col=term" target="right">专业术语</a></li>
+			</ul>
+		</ol>
+		<ol>
+			<div class="hd_ zd3">
+				<em class="lt zb zs">模块相关：</em>
+			</div>
+			<ul class="shadowRB_A yjA zd3A">
+				<li><a href="manage.php?act=list&col=imgs" target="right">背景图</a></li>
+				<li><a href="manage.php?act=list&col=mode" target="right">模块</a></li>
+				<li><a href="manage.php?act=list&col=bs" target="right">BS模版</a></li>
+				<li><a href="manage.php?act=list&col=refer" target="right">refer模块</a></li>
+				<li><a href="manage.php?act=list&col=automode_cat" target="right">autoMode</a></li>
+			</ul>
+		</ol>
+		
+<!---------------------------------------------------------------------------------------------------------manage2------>		
+		<ol>
+			<div class="hd_ zd3">
+				<em class="lt zb zs">文学类：</em>
+			</div>
+			<ul class="shadowRB_A yjA zd3A">
+				<li><a href="manage.php?act=list&col=wx_chengyu" target="right">成语</a></li>
+				<li><a href="manage.php?act=list&col=wx_suyu" target="right">俗语</a></li>
+				<li><a href="manage.php?act=list&col=wx_liuxingyu" target="right">流行语</a></li>
+				<li><a href="manage.php?act=list&col=wx_duanyu" target="right">短语</a></li>
+				<li><a href="manage.php?act=list&col=wx_juzi" target="right">句子</a></li>
+				<li><a href="manage.php?act=list&col=wx_duanluo" target="right">情感段落</a></li>
+			</ul>
+		</ol>
+		<ol>
+			<div class="hd_ zd3">
+				<em class="lt zb zs">资源管理：</em>
+			</div>
+			<ul class="shadowRB_A yjA zd3A">
+				<li><a href="manage.php?act=list&col=zy_picture" target="right">图片</a></li>
+				<li><a href="manage.php?act=list&col=zy_renwu" target="right">人物</a></li>
+			</ul>
+		</ol>
+
+		<ol>
+			<div class="hd_ zd3">
+				<em class="lt zb zs">其他：</em>
+			</div>
+			<ul class="shadowRB_A yjA zd3A">
+				<li><a href="manage.php?act=list&col=company" target="right">企业</a></li>
+				<li><a href="manage.php?act=list&col=china" target="right">地理</a></li>
+				<li><a href="manage.php?act=list&col=food" target="right">食物</a></li>
+			</ul>
+		</ol>
+<!---------------------------------------------------------------------------------------------------------manage2------>
+		
+	</div>
+</div><!--ns001a end-->
+
+<script>
+$(document).ready(function(){
+	$(".ns001a li a").click(function(){
+		$(this).parents(".ns001a").find("li a").removeClass("shadowRB_A2 cd3 cs bold");
+		$(this).addClass("shadowRB_A2 cd3 cs bold");
+	});
+});
+</script>
+
+</body>
+</html>

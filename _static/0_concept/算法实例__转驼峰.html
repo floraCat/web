@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>转驼峰</title>
+</head>
+<body>
+
+
+margin-padding-left
+
+<script>
+function turnToHump(str){
+	var obj=str.split("-");
+	for(var i=1;i < obj.length;i++){
+		obj[i]=obj[i].charAt(0).toUpperCase()+obj[i].substr(1);
+	}
+	return obj.join('');
+}
+//alert( turnToHump('margin-padding-left') );
+</script>
+
+
+
+<!--正则方法-->
+<script>
+function turnToHump2(str){
+	var reg=/-(\w)/g;
+	return str.replace(reg,function($0,$1){
+		return $1.toUpperCase();
+	});
+}
+alert( turnToHump2('margin-padding-left') );
+</script>
+
+
+
+
+<script>
+
+</script>
+
+
+</body>
+</html>

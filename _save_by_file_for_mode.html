@@ -1,0 +1,74 @@
+
+ <!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>shop</title>
+        <link type="text/css" rel="stylesheet" href="css/m/h_reset.css" />
+        <script type="text/javascript" src="js/jquery-2.2.0.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/m/h_base.js"></script>
+        </head>
+<style>.HTest{ padding:60px 0;}</style>
+<body style=" background-color:#f6f6f6; min-height:800px;">
+<div class="mMain">
+
+<style>
+/*css*/
+/*幻灯片*/
+.mFocus{ position:relative; background:#eee;}
+.mFocus .ol li{ float:left;}
+.mFocus .os{ position:absolute; bottom:0; left:0; width:100%; height:20px; line-height:20px; text-align:center;}
+.mFocus .os li{ display:inline-block; width:8px; height:8px; margin:0 4px; text-indent:-9999px; background-color:#999; 
+border-radius:5px; -o-border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; 
+opacity:.8; -o-opacity:.8; -moz-opacity:.8; -webkit-opacity:.8;}
+.mFocus .os li.on{ background-color:#e50083;}
+.mFocus .prev{ position:absolute; left:10px; top:50%; margin-top:-20px; width:40px; height:40px; background:#333;}
+.mFocus .next{ position:absolute; right:10px; top:50%; margin-top:-20px; width:40px; height:40px; background:#333;}
+/*css_*/
+</style>
+
+<div class="HTest">
+<!--html-->
+<!--幻灯片-->
+<div class="mFocus" id="mFocus">
+	<div class="ol over">
+		<li><a><img src="upload/refer/focus_1.jpg" /></a></li>
+		<li><a><img src="upload/refer/focus_1.jpg" /></a></li>
+	</div>
+	<div class="os"></div>
+    <a class="prev"></a>
+    <a class="next"></a>
+</div><!--mFocus-->
+
+<script type="text/javascript" src="_demo/TouchSlide/TouchSlide.1.1.source.js"></script>
+<script>TouchSlide({slideCell:"#mFocus", mainCell:".ol", titCell:".os", effect:"left", autoPlay:true, autoPage:true,delayTime:400,interTime:4500});</script>
+<!--html_-->
+</div><!--HTest end-->
+
+<script>
+/*script*/
+
+/*script_*/
+</script>
+
+
+<!--新一页获取当页源代码 start-->
+<a onClick="getHtml();" href="javascript:;" style=" display:block; position:fixed; right:0; top:5px; padding:10px 20px; background-color:#ddd;">源代码</a>
+<script>
+function getHtml(){
+	 var html=document.getElementsByTagName('html')[0].innerHTML; 
+	 var a=window.open("about:blank");
+	 var d=a.document;
+	 d.write("<xmp>"+html+"</xmp>");
+}
+</script>
+<!--新一页获取当页源代码 end-->
+
+</div><!--mMain end-->
+</body>
+</html>

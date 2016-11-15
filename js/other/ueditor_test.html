@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ueditor</title>
+<!--以下为引入ueditor资源部分-->
+<script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="ueditor/themes/default/css/ueditor.css" />
+<!--以上为引入ueditor资源部分-->
+</head>
+<body>
+<form action="test.php" method="post" name="myForm">
+<!--以下引入ueditor编辑器界面-->
+<script type="text/plain" id="myEditor" name="myContent">这是一个测试还是一个测试</script>
+<input type="submit" name="submit" value="upload"/>
+</form>
+<script type="text/plain" id="myEditor1"><p>这里我可以写一些输入提示</p></script>
+<script type="text/javascript">
+    var editor_a = new baidu.editor.ui.Editor();
+    editor_a.render( 'myEditor' ); //此处的参数值为编辑器的id值
+    
+    var editor_a1 = new baidu.editor.ui.Editor({
+    //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+    toolbars:[['FullScreen', 'Source', 'Undo', 'Redo','Bold']],
+    //focus时自动清空初始化时的内容
+    autoClearinitialContent:true,
+    //更多其他参数，请参考editor_config.js中的配置项
+});
+    editor_a1.render( 'myEditor1' );
+</script>
+</body>
+</html>

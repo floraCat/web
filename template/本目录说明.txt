@@ -1,0 +1,15 @@
+content.html --》 详情页
+
+list.html --》 公用列表页 
+
+list_body_img.html --》 列表页主体_图片排序
+
+list_body_mode.html --》 列表页主体（“模块”专业）
+
+list_body_mode_m.html --》 列表页主体（“模块”专业）手机端
+
+list_body_mode_pc.html --》 列表页主体（“模块”专业）pc端
+
+list_body_ttl.html --》 列表页主体_标题排序
+
+shop.html --》 商城模板？

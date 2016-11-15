@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>南铺北店</title>
+</head>
+<body>
+
+
+
+
+
+
+
+<xmp style=" font-family:微软雅黑; padding:30px; font-size:14px; line-height:24px;">
+test:
+
+//IE5和IE6中模拟XMLHttpRequest()构造函数：
+if(window.XMLHttpRequest===undefined){
+  window.XMLHttpRequest=function(){
+  try{
+    //如果可用，则用ActiveX对象的最新版本
+    return new ActiveXObject('Msxml2.XMLHTTP.6.0');  
+  }catch(e1){
+    try{
+      //否则，回退到较旧的版本
+      return new ActiveXObject('Msxml2.XMLHTTP.3.0'); 
+    }catch(e2){
+      throw new Error('XMLHttpRequest is not supported');
+    }
+  }
+}
+</xmp>
+
+
+
+
+
+
+
+
+
+<xmp style=" font-family:微软雅黑; padding:30px; font-size:14px; line-height:24px;"|||>>>实例一：
+-----------
+var xhr=null;
+if(window.XMLHttpRequest){
+	xhr=new XMLHttpRequest();	
+}else if(window.ActiveXObject){
+	try{
+		xhr=new ActiveXObject('Msxml2.XMLHTTP');	
+	}catch(e){
+		try{
+			xhr=new ActiveXObject('Microsoft.XMLHTTP');	
+		}catch(e){}
+	}
+}
+xhr.onreadystatechange=function(){
+    if (xhr.readyState==4 && xhr.status==200){
+		alert(xhr.responseText);
+    }
+}
+xhr.open("GET","ajax_test.php",true);
+xhr.send();
+
+----------------------------------------------------------
+
+|||>>各浏览器实例化：
+-----------
+new XMLHttpRequest();  __//for IE7+, Firefox, Chrome, Opera, Safari
+new ActiveXObject('Msxml2.XMLHTTP'); __//for IE6+
+new ActiveXObject("Microsoft.XMLHTTP");  __// code for < IE6
+
+----------------------------------------------------------
+
+|||>>XMLHttpRequest对象的方法和属性：
+-----------
+--open()：建立到服务器的新请求，初始化基本信息。 
+--setRequestHeader(): 请求的头部。 
+--send()：向服务器发送请求。
+--abort()：退出当前请求。 
+--readyState：提供当前 HTML 的就绪状态。 
+--responseText：服务器返回的请求响应文本。
+-------------------------------------
+**//open() 方法的五个参数：[例：xhr.open("GET","ajax_test.php",true);]
+-----------
+--request-type：发送请求的类型。典型的值是 GET 或 POST，但也可以发送 HEAD 请求。 
+--url：要（请求）连接的 URL。 
+--asynch：如果希望使用异步连接则为 true，否则为 false。该参数是可选的，默认为 true。 
+--username：如果需要身份验证，则可以在此指定用户名。该可选参数没有默认值。 
+--password：如果需要身份验证，则可以在此指定口令。该可选参数没有默认值。 
+-------------------------------------
+**//setRequestHeader()请求的头部：
+-----------
+--可多次调用
+--如：xhr.setRequestHeader("Content-Type","application/json"); //指定数据类型
+--如：xhr.setRequestHeader("name","vale"); //自定义请求头的名称
+-------------------------------------
+**//send()发送请求:
+-----------
+--如果用POST请求类型，可把传输的数据放send内
+--如: xhr.send("kw=a&pass=b");
+--如果是json格式：(如不知道发送json数据的浏览器需要另外加载'json.js')
+  xhr.sen(JSON.stringify({
+  	kw:'a',
+    pass:'b'
+  }));
+-------------------------------------
+**//HTTP五种就绪状态_[request.readyState]：
+-----------
+--0：未初始化————[请求没有发出（在调用 open() 之前）] 
+--1：连接建立，请求发送————[请求已经建立但还没有发出（调用 send() 之前）]  
+--2：服务器返回响应————[请求已经发出正在处理之中（这里通常可以从响应得到内容头部）]  
+--3：处理响应数据————[请求已经处理，响应中通常有部分数据可用，但是服务器还没有完成响应]  
+--4：完成，数据可交付客户端使用————[响应已完成，可以访问服务器响应并使用它] 
+-------------------------------------
+**//几种状态代码_[request.status]：（还有更多）
+-----------
+--500：服务器后台程序处理错误
+--401：未经授权
+--403：禁止
+--404：没找到
+--200：一切正常
+
+----------------------------------------------------------
+
+|||>>就绪后的几种状态测试：
+-----------
+function updatePage() {
+    if (request.readyState == 4) {
+        if (request.status == 200) {
+            alert("服务器已完成！");
+        } else if (request.status == 404) {
+            alert ("请求URL不存在！");
+        } else if (request.status == 403) {
+            alert("禁止访问！");
+        } else
+            alert("状态代码： " + request.status);
+    }
+}
+
+-------------------------------------
+
+|||>>xhr.onload
+-----------
+如果支持level2时，可用xhr.onload代替.xhr.readyState===4,代码如下：
+xhr.onload=function(){
+	if(xhr.status==200){
+    	...
+    }
+}
+
+-------------------------------------
+
+**//返回数据的属性：
+-----------
+--xhr.responseText  //转换成json对象：JSON.parse(xhr.responseText) or eval(xhr.responseText);
+--xhr.responseXML
+--xhr.getAllResponseHeaders();
+--xhr.getResponseHeader("Content-Type");
+--xhr.status
+--xhr.statusText
+
+-------------------------------------
+
+|||>>readyState & status & responseText 测试
+-----------
+function updatePage() {
+    alert("updatePage() called with ready state of " + request.readyState +
+    " and a response text of '" + request.responseText + "'");
+}
+
+-------------------------------------
+
+|||>>就绪状态实例：
+-----------
+可以在就绪状态发生变化时更新表单或页面中的域。
+例如，对于就绪状态 1 来说要将进度指示器的宽度设置为 25%，
+对于就绪状态 2 来说要将进度指示器的宽度设置为 50%，
+对于就绪状态 3 来说要将进度指示器的宽度设置为 75%，
+当就绪状态为 4 时将进度指示器的宽度设置为 100%（完成）。
+
+-------------------------------------
+
+**//重定向（300 系列的状态代码）：
+-----------
+--301：永久移动
+--302：找到（请求被重新定向到另外一个 URL/URI 上）
+--305：使用代理（请求必须使用一个代理来访问所请求的资源）
+结果是您的请求无法重定向到其他服务器上，而不会产生安全性错误。
+在这些情况中，您根本就不会得到状态代码。
+通常在调试控制台中都会产生一个 JavaScript 错误。
+因此，在对状态代码进行充分的考虑之后，您就可以完全忽略重定向代码的问题了。
+一旦接收到状态代码 200 并且意识到可以很大程度上忽略 300 系列的状态代码之后，
+所需要担心的唯一一组代码就是 400 系列的代码了
+
+----------------------------------------------------------
+
+|||>>Async = false：
+-----------
+Async = false时，不要编写 onreadystatechange 函数 - 把代码放到 send() 语句后面即可：
+xmlhttp.open("GET","test.txt",false);
+xmlhttp.send();
+document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+
+----------------------------------------------------------
+
+|||>>XML:
+-----------
+如果来自服务器的响应是 XML，而且需要作为 XML 对象进行解析，请使用 responseXML 属性：
+
+    |||>>例1:
+    -----------
+        xmlDoc=xmlhttp.responseXML;
+        x=xmlDoc.getElementsByTagName("ARTIST");
+        txt="";
+        for (i = 0; i < x.length; i++){
+          txt=txt + x[i].childNodes[0].nodeValue + "<br />";
+        }
+        document.getElementById("myDiv").innerHTML=txt;
+        
+    |||>>例2:
+    -----------
+        var response = request.responseText.split("|");
+        document.getElementById("aaa").value = response[0];
+        document.getElementById("bbb").innerHTML = response[1].replace(/\n/g, "<br />");
+    
+----------------------------------------------------------
+
+|||>>HEAD 请求:
+-----------
+function getSalesData() {
+     createRequest();
+     var url = "/boards/servlet/UpdateBoardSales";
+     request.open("HEAD", url, true);
+     request.onreadystatechange = updatePage();
+     request.send(null);
+}
+function updatePage() {
+    if (request.readyState == 4) {
+        alert(request.getAllResponseHeaders());
+    }
+}
+要获取响应的长度，只需要调用 request.getResponseHeader("Content-Length");。
+要获取内容类型，请使用 request.getResponseHeader("Content-Type");
+
+----------------------------------------------------------
+
+**//timeout:
+-----------
+level2才支持：
+xhr.timeout=5000;
+xhr.ontimeout=function(){
+	console.log('timeout!');
+}
+
+----------------------------------------------------------
+
+|||>>实例二：
+--------------------------
+var xmlHttp = false;
+try {
+  xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+} catch (e) {
+  try {
+    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+  } catch (e2) {
+    xmlHttp = false;
+  }
+}
+if (!xmlHttp & typeof XMLHttpRequest != 'undefined') {
+  xmlHttp = new XMLHttpRequest();
+}
+function callServer() {
+  var city = document.getElementById("city").value;
+  var state = document.getElementById("state").value;
+  if ((city == null) || (city == "")) return;
+  if ((state == null) || (state == "")) return;
+  var url = "/scripts/getZipCode.php?city=" + escape(city) + "&state=" + escape(state);
+  xmlHttp.open("POST", url, true);
+  xmlHttp.onreadystatechange = updatePage;
+  xmlHttp.send('kw=a&pass=b');
+}
+function updatePage() {
+  if (xmlHttp.readyState == 4) {
+    var response = xmlHttp.responseText;
+    document.getElementById("zipCode").value = response;
+  }
+}
+
+
+---------------------------------------
+
+</xmp>
+
+
+<br><br>
+
+
+
+</body>
+</html>

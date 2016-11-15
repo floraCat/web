@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>bootstrap</title>
+    <link type="text/css" rel="stylesheet" href="../../css/m/h_reset.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/m/h_global.css" />
+<script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+
+
+
+<xmp>
+栅格系统：
+
+<768 [手机]       >=768 [平板]       >=992 [pc小屏]       >=1200 [pc大屏]
+                  750                970                  1170
+col-xs-           col-xs-            col-xs-              col-xs-
+</xmp>
+_____________________________________________________________________________________
+<xmp style=" font-family:微软雅黑; font-size:14px; line-height:24px;">
+!--一般情况：--
+------------------------------------
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-8">col-xs-12 col-md-8</div>
+      <div class="col-xs-6 col-md-4">col-xs-6 col-md-4</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-4">col-xs-6 col-md-4</div>
+      <div class="col-xs-6 col-md-4">col-xs-6 col-md-4</div>
+      <div class="col-xs-6 col-md-4 hidden-xs">col-xs-6 col-md-4 hidden-xs</div>
+    </div>
+    <div class="row">
+    	<p class="visible-xs-block" style="display:none;">visible-xs-block</p>
+    </div>
+</div>
+
+
+!--100%宽度：--
+------------------------------------
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-8">.col-xs-8</div>
+      <div class="col-xs-4">.col-xs-4</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">.col-xs-4</div>
+      <div class="col-xs-4">.col-xs-4</div>
+      <div class="col-xs-4">.col-xs-4</div>
+    </div>
+</div>
+
+
+!--固定宽度：--
+    (1)移除meta name="viewport" content="width=device-width, initial-scale=1.0”;
+    (2).container加固定宽度值；
+    (3)倘若你采用了导航栏，那么就要注意删掉菜单在移动端的折叠样展开式（主要通过button的navbar-toggle来实现）;
+    (4)用col-xs-*替代col-md-*或col-lg-*
+------------------------------------
+<div class="container" style="width:970px;">
+    <div class="row">
+      <div class="col-xs-8">.col-xs-8</div>
+      <div class="col-xs-4">.col-xs-4</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4">.col-xs-4</div>
+      <div class="col-xs-4">.col-xs-4</div>
+      <div class="col-xs-4">.col-xs-4</div>
+    </div>
+</div>
+
+
+！--其他：--
+------------------------------------
+--要布局不变只用col-xs-*就好
+
+
+Bootstrap CDN地址：
+------------------------------------
+<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" ref="stylesheet">
+<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css" ref="stylesheet">
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+aria-label
+
+aria-haspopup
+
+aria-expanded
+
+aria-hidden
+
+aria-labelledby
+
+aria-multiselectable
+
+aria-controls
+
+aria-pressed
+
+aria-describedby
+
+
+aria-valuenow
+
+aria-valuemin
+
+aria-valuemax
+
+
+
+----------------------------------------
+
+data-api
+
+data-dismiss
+
+data-toggle
+
+data-target
+
+data-whatever
+
+data-backdrop
+
+data-spy
+
+data-offset
+
+data-attributes
+
+data-animation
+
+data-content
+
+data-container
+
+data-placement
+
+data-loading-text
+
+data-complete-text
+
+data-parent
+
+data-ride
+
+data-slide-to
+
+data-slide
+
+data-interval
+
+data-offset-bottom
+
+data-offset-top
+
+
+----------------------------------------
+
+
+role
+
+
+
+</xmp>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

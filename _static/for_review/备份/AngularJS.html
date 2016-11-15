@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body style="padding:0 30px;">
+
+
+<xmp style=" font-family:微软雅黑; font-size:13px;">
+
+教程：
+
+http://www.runoob.com/angularjs/angularjs-tutorial.html
+
+http://www.ituring.com.cn/minibook/303
+
+http://www.360doc.com/content/14/0414/15/14416931_368816305.shtml
+
+http://each.sinaapp.com/angular/
+
+
+
+
+
+指令：
+----------------
+
+ng-app  -- 应用
+
+ng-controller  -- 控制器
+
+ng-bind
+
+ng-model  -- 模型 -把元素值（比如输入域的值）绑定到应用程序
+
+ng-view
+
+ng-repeat  -- 重复一个 HTML 元素
+
+ng-click  -- 定义了 AngularJS 点击事件
+
+ng-init
+
+ng-show  -- 隐藏或显示一个 HTML 元素
+
+ng-hide  -- 隐藏或显示 HTML 元素
+
+ng-if
+
+ng-disabled  -- 直接绑定应用程序数据到 HTML 的 disabled 属性
+
+ng-include  -- 包含 HTML 文件
+
+ng-grid
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+ng-model: 
+----------------
+可以为应用数据提供状态值(invalid, dirty, touched, error):
+----------------
+<form ng-app="" name="myForm" ng-init="myText = 'test@runoob.com'">
+Email:<input type="email" name="myAddress" ng-model="myText" required>
+<p>编辑邮箱地址，查看状态的改变。</p>
+<h1>状态</h1>
+<p>Valid: {{myForm.myAddress.$valid}} (如果输入的值是合法的则为 true)。</p>
+<p>Dirty: {{myForm.myAddress.$dirty}} (如果值改变则为 true)。</p>
+<p>Touched: {{myForm.myAddress.$touched}} (如果通过触屏点击则为 true)。</p>
+</form>
+----------------------------------------------------------------
+ng-model 指令根据表单域的状态添加/移除以下类：
+----------------
+ng-empty
+ng-not-empty
+ng-touched
+ng-untouched
+ng-valid
+ng-invalid
+ng-dirty
+ng-pending
+ng-pristine
+----------------------------------------------------------------
+<style>
+	input.ng-invalid { background-color: lightblue;}
+</style>
+<form ng-app="" name="myForm">
+    输入你的名字:<input name="myAddress" ng-model="text" required>
+</form>
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+ng-bind: //与{{...}}异曲同工
+----------------
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+ng-repeat:
+----------------
+<div ng-app="" ng-init="names=[
+{name:'Jani',country:'Norway'},
+{name:'Hege',country:'Sweden'},
+{name:'Kai',country:'Denmark'}]">
+	<ul>
+	  <li ng-repeat="x	in names">
+	    {{ x.name + ', ' + x.country }}
+	  </li>
+	</ul>
+</div>
+----------------------------------------------------------------
+<style>
+	table tr:nth-child(odd) { background-color: #f1f1f1;}
+	table tr:nth-child(even) { background-color: #ffffff;}
+</style>
+<table>
+  <tr ng-repeat="x in names">
+  	<td>{{ $index+1 }}</td>
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Country }}</td>
+  </tr>
+</table>
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+ng_if:
+----------------
+<table>
+<tr ng-repeat="x in names">
+<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Name }}</td>
+<td ng-if="$even">{{ x.Name }}</td>
+<td ng-if="$odd" style="background-color:#f1f1f1">{{ x.Country }}</td>
+<td ng-if="$even">{{ x.Country }}</td>
+</tr>
+</table>
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+ng-init: //不常用
+----------------
+--ng-init="quantity=1;cost=5"  //数字
+--ng-init="person={firstName:'John',lastName:'Doe'}  //对象
+--ng-init="points=[1,15,19,2,40]"  //数组
+----------------------------------------------------------------
+<div ng-app="" ng-init="firstName='John';lastName='Doe'">
+	<p>姓名： {{ firstName + " " + lastName }}</p>
+</div>
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+ng-show: //提示信息会在ng-show属性返回true时显示
+----------------
+<form ng-app="" name="myForm">
+    Email:<input type="email" name="myAddress" ng-model="text">
+    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+</form>
+----------------------------------------------------------------
+<p ng-show="hour > 12">我是可见的。</p>
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+ng-hide:
+----------------
+<p ng-hide="true">我是不可见的。</p>
+<p ng-hide="false">我是可见的。</p>
+----------------------------------------------------------------
+<button ng-click="toggle()">>隐藏/显示</button>
+<p ng-hide="myVar">aaa</p>
+js:
+	$scope.myVar = false;
+	$scope.toggle = function() {
+	    $scope.myVar = !$scope.myVar;
+	};
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+ng-disabled：
+----------------
+<button ng-disabled：="mySwitch">点我!</button>
+<input type="checkbox" ng-model="mySwitch">按钮
+{{ mySwitch }}
+//如果 mySwitch 为true, 按钮将不可用；为false, 按钮则可用
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+ng-include：
+----------------
+<div ng-include="'myUsers_List.htm'"></div>
+<div ng-include="'myUsers_Form.htm'"></div>
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+表达式：
+----------------
+--AngularJS 表达式把数据绑定到 HTML，这与 ng-bind 指令有异曲同工之妙
+实例 {{ 5 + 5 }} 或 {{ firstName + " " + lastName }}
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+自定义指令：
+----------------
+命名试用驼峰法；html使用它时需以‘-’分隔；
+<myDir></myDir>  //元素名中使用指令
+<div myDir></div>  //属性中使用指令
+<div class="myDir"></div>  //类名中使用指令
+<!-- 自定义指令：myDir --><div></div>  //注释中使用指令
+----------------------------------------------------------------
+restrict 通过指定的方式来调用指令[匹配模式]:
+----------------
+E 只限元素名使用
+A 只限属性使用
+C 只限类名使用
+M 只限注释使用
+restrict 默认值为 EA, 即可以通过元素名和属性名来调用指令。
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+路由：
+----------------
+$route.when().when
+-------------------------------------------------------------------------------------------------------
+
+
+过滤器：
+----------------
+currency	格式化数字为货币格式。
+filter	    从数组项中选择一个子集。
+lowercase	格式化字符串为小写。
+orderBy	    根据某个表达式排列数组。
+uppercase	格式化字符串为大写。
+----------------------------------------------------------------
+{{ lastName | uppercase }}
+{{ (quantity * price) | currency }}
+{{ (x.name | uppercase) + ', ' + x.country }}
+ng-repeat="x in names | orderBy:'country'"  //加到指令中
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+表单：
+----------------
+$dirty	    表单有填写记录
+$valid	    字段内容合法的
+$invalid	字段内容是非法的
+$pristine	表单没有填写记录
+----------------------------------------------------------------
+<span style="color:red" ng-show="myForm.user.$dirty && myForm.user.$invalid">
+<span ng-show="myForm.user.$error.required">用户名是必须的。</span>
+<span ng-show="myForm.email.$error.email">非法的邮箱。</span>
+<input type="submit" ng-disabled="myForm.user.$dirty && myForm.user.$invalid || myForm.email.$dirty && myForm.email.$invalid">
+----------------------------------------------------------------
+<div ng-app="myApp" ng-controller="formCtrl">
+  <form novalidate>
+    First Name:<input type="text" ng-model="user.firstName"><br>
+    Last Name:<input type="text" ng-model="user.lastName">
+    <button ng-click="reset()">RESET</button>
+  </form>
+  <p>form = {{user}}</p>
+  <p>master = {{master}}</p>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('formCtrl', function($scope) {
+    $scope.master = {firstName: "John", lastName: "Doe"};
+    $scope.reset = function() {
+        $scope.user = angular.copy($scope.master);
+    };
+    $scope.reset();
+});
+</script>
+----------------------------------------------------------------
+//novalidate 属性在应用中不是必须的，但是你需要在 AngularJS 表单中使用，用于重写标准的 HTML5 验证。
+//novalidate 属性是在 HTML5 中新增的。禁用了使用浏览器的默认验证。
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+全局 API:
+----------------
+全局 API 函数使用 angular 对象进行访问
+angular.lowercase()	转换字符串为小写
+angular.uppercase()	转换字符串为大写
+angular.isString()	判断给定的对象是否为字符串，如果是返回 true。
+angular.isNumber()	判断给定的对象是否为数字，如果是返回 true。
+----------------------------------------------------------------
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+$scope.x = angular.lowercase($scope.x1);
+});
+</script>
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+实例html:
+----------------
+<div ng-app="myApp">
+	<!--自动-->
+	<div>
+        Your name: <input type="text" ng-model="yourname" placeholder="World">
+        <hr>
+        Hello {{yourname || 'World'}}!
+    </div>
+    <!--表单-->
+    <div ng-controller="userCtrl">
+    	<input type="text" ng-model="user.name">
+    	<input type="checkbox" ng-model='user.autoLogin'></input>
+    	<button ng-click="getData">获取数据</button>
+    </div>
+    <!--类名-->
+    <style>.gb_red{ background:red;} .gb_green{ background:green;}</style>
+    <div ng-controller="cssCtrl">
+    	<p class="bg-{{color}}">测试背景色</p>
+        <button ng-click="setGreen()"></button>
+    </div>
+    <!--动画-->
+    <style>
+    	.page1.ng-enter{ background-color: red;}
+    	.page1.ng-leave{ background-color: green;}
+    </style>
+    <div ng-controller="animateCtrl">
+    	<div class="page1" style="width:100%; height:100%;"></div>
+    </div>
+    <!--自定义指令-->
+    <my-dir></my-dir>
+</div>
+
+----------------------------------------------------------------
+
+实例js:
+----------------
+<script>
+var Module_1=angular.Module_1('myApp',[]);
+//表单
+Module_1.controller('userCtrl',['$scope',function($scope){
+	$scope.user={
+		name:"angular",
+		autoLogin:ture
+	}
+	$scope.getData=function(){
+		alert($scope.user);
+	}
+}]);
+//类名
+Module_1.controller("cssCtrl",['$scope',function($scope){
+	$scope.color="red";
+	$scope.setGreen=function(){
+		$scope.color="green";
+	}
+}]);
+//自定义指令
+Module_1.directive("myDir",function(){
+	return{
+		restrict:'E',
+		template:'<div>Hi everyone!</div>',
+		//template:$templateCache.get("aaa.html"),
+		replace:true
+	}
+});
+//路由
+Module_1.config(function($routeProvider){
+	$routeProvider.when('/hello',{
+		templateUrl:'tpls/hello.html',
+		controller:'HelloCtrl'	
+	}).when('/list',{
+		templateUrl:'tpls/list.html',
+		controller:'ListCtrl'	
+	}).otherwise({
+		redirectTo:'/hello'	
+	})
+});
+//$http
+Module_1.controller('httpCtrl', function($scope, $http) {
+    $http.get("file/Customers_JSON.php")
+    .success(function(response) {$scope.names = response.records;});
+});
+</script>
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+
+补充:
+-------------------
+angular.module 函数来创建模块
+---项目比较大时，可把应用模块的定义程序放一个js，控制器放另一个js;
+
+
+-------------------------------------------------------------------------------------------------------
+
+
+
+其他：
+----------------
+跨域 HTTP 请求 ？
+
+
+
+</xmp>
+
+
+
+</body>
+</html>

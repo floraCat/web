@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>南铺北店</title>
+    <script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+</head>
+<body style=" padding:30px; height:2000px;">
+
+
+<xmp>
+zepto的gitHub:https://github.com/madrobby/zepto
+zepto手册:http://www.wenshuai.cn/Manual/Zepto/
+--------------------------------------------------------------------------------
+一般下载的都是最简版，还需要按需添加对应功能的模块
+
+
+zepto与JQuery的不同之处如下：//参考网址http://blog.csdn.net/kongjiea/article/details/42522305
+--------------------------------------------------------------------------------
+1. Zepto对象不能自定义事件
+--------------------------------------------------------------------------------
+2. Zepto 的选择器表达式: [name=value]  中value 必须用 双引号 "  or 单引号 ' 括起来
+		--例如执行：$('[data-userid=123123123]') //结果：Error: SyntaxError: DOM Exception 12
+		--解决办法： $('[data-userid="123123123"]') or $("[data-userid='123123123']")
+
+	2-1.zepto的选择器没有办法选出 $("div[name!='abc']") 的元素
+
+	2-2.zepto获取select元素的选中option不能用类似jq的方法$('option[selected]'),因为selected属性不是css的标准属性
+    --应该使用$('option').not(function(){ return !this.selected })
+    --比如：jq:$this.find('option[selected]').attr('data-v') * 1
+    --zepto:$this.find('option').not(function() {return !this.selected}).attr('data-v') * 1
+    --但是获取有select中含有disabled属性的元素可以用 $this.find("option:not(:disabled)") 因为disabled是标准属性
+    --参考网址：https://github.com/madrobby/zepto/issues/503
+
+	2-3.zepto在操作dom的selected和checked属性时尽量使用prop方法
+--------------------------------------------------------------------------------
+3.Zepto 是根据标准浏览器写的，所以对于节点尺寸的方法只提供 width() 和 height()，省去了 innerWidth(), innerHeight(),outerWidth(),outerHeight()
+  --Zepto.js: 由盒模型（ box-sizing ）决定
+  --jQery: 忽略盒模型，始终返回内容区域的宽/高（不包含 padding 、 border ）解决方式就是使用 .css('width') 而不是 .width() 。
+
+	3-1.边框三角形宽高的获取
+	--假设用下面的 HTML 和 CSS 画了一个小三角形：
+	--[html] view plaincopyprint?在CODE上查看代码片派生到我的代码片
+	<div class="caret"></div>   
+	.caret {  
+	  width: 0;  
+	  height: 0;  
+	  border-width: 0 20px 20px;  
+	  border-color: transparent transparent blue;   
+	  border-style: none dotted solid;  
+	}  
+	--jQuery 使用 .width() 和 .css('width') 都返回 ，高度也一样；
+	--Zepto 使用 .width() 返回 ，使用 .css('width') 返回 0px 。
+	--所以，这种场景，jQuery 使用 .outerWidth() / .outerHeight() ；Zepto 使用 .width() / .height() 。
+	
+	3-2.offset()
+	--Zepto.js: 返回 top 、 left 、 width 、 height
+	--jQuery: 返回 width 、 height
+	
+	3-3.隐藏元素
+	--Zepto.js: 无法获取宽高；
+	--jQuery: 可以获取。
+--------------------------------------------------------------------------------
+4.Zepto 的each 方法只能遍历数组，不能遍历JSON对象
+--------------------------------------------------------------------------------
+5.Zepto 的animate方法参数说明 ：详情http://blog.csdn.net/kongjiea/article/details/38534435
+--------------------------------------------------------------------------------
+6.zepto的jsonp callback函数名无法自定义
+--------------------------------------------------------------------------------
+7.DOM 操作区别
+--jq代码：
+--[html] view plaincopyprint?在CODE上查看代码片派生到我的代码片
+(function($) {  
+  $(function() {  
+    var $list = $('<ul><li>jQuery 插入</li></ul>', {  
+      id: 'insert-by-jquery'  
+    });  
+    $list.appendTo($('body'));  
+  });  
+})(window.jQuery);  
+--jQuery 操作 ul 上的 id 不会被添加。
+--zepto代码：
+--[html] view plaincopyprint?在CODE上查看代码片派生到我的代码片
+Zepto(function($) {    
+  var $list = $('<ul><li>Zepto 插入</li></ul>', {  
+    id: 'insert-by-zepto'  
+  });  
+  $list.appendTo($('body'));  
+});  
+--Zepto 可以在 ul 上添加 id 。
+--------------------------------------------------------------------------------
+8.事件触发区别
+--jq代码：
+--[html] view plaincopyprint?在CODE上查看代码片派生到我的代码片
+(function($) {  
+  $(function() {      
+    $script = $('<script />', {  
+      src: 'http://cdn.amazeui.org/amazeui/1.0.1/js/amazeui.min.js',  
+      id: 'ui-jquery'  
+    });  
+  
+    $script.appendTo($('body'));  
+  
+    $script.on('load', function() {  
+      console.log('jQ script loaded');  
+    });  
+  });  
+})(window.jQuery);  
+--使用 jQuery 时 load 事件的处理函数 不会 执行
+--zepto代码：
+--[html] view plaincopyprint?在CODE上查看代码片派生到我的代码片
+Zepto(function($) {    
+  $script = $('<script />', {  
+    src: 'http://cdn.amazeui.org/amazeui/1.0.1/js/amazeui.js',  
+    id: 'ui-zepto'  
+  });  
+  
+  $script.appendTo($('body'));  
+  
+  $script.on('load', function() {  
+    console.log('zepto script loaded');  
+  });  
+});  
+--使用 Zepto 时 load 事件的处理函数 会 执行。
+</xmp>
+
+
+<br>
+-------------------------------------------------------------------
+<br>
+
+
+<xmp>
+zepto.js各模块对应作用：
+------------------------
+---ajax.js XMLHttpRequest 和 JSONP 功能
+---assets.js 实验性功能，从DOM中移除Image时清理iOS内存
+---callbacks.js deferred.js的依赖模块
+---data.js 数据存储 data() 功能
+---deferred.js 延迟对象 $.Deferred
+---detect.js 操作系统、浏览器探测，识别os browser
+---event.js 事件模块，on()  off() 
+---form.js form表单功能，序列化表单数据，提交表单等
+---fx.js css3动画功能
+---fx_method.js 动画扩展功能
+---gesture.js ‘pinch’手势功能
+---ie.js 兼容WP8 IE10+
+---ios3.js 兼容iOS3
+---selector.js 实验性功能，扩展css3选择器，如：$('div:first') and el.is(':visible').
+---stack.js 提供 andSelf 和 end() 链方法
+---touch.js 触摸事件
+---zepto.js 核心功能模块
+
+官方默认已有模块：zepto event ajax form ie
+其他可选添加模块：detect fx fx_methods assets data deferred callbacks selector touch gesture stack ios3
+-------------------------------------------------------------------
+
+node定制zepto模块:
+------------------------
+安装好node.js;
+
+再到github上下载zepto的源码包，地址为：
+https://github.com/madrobby/zepto
+
+
+windows下cmd窗口将路径切换到zepto源码包路径，然后执行以下命令：
+$ npm install
+
+要定制zepto模块，Linux下命令为：
+$ MODULES="touch data fx detect" npm run-script dist
+
+windows下要先修改zepto源码下的make文件的第42行，
+modules = (env['MODULES'] || 'zepto event ajax form ie').split(' ')
+直接在ie 后面加上你要增加的模块，如：
+modules = (env['MODULES'] || 'zepto event ajax form ie touch data fx detect').split(' ')
+再执行命令：
+$ npm run-script dist
+
+成功的话，在zepto的dist目录下就生成了三个zepto文件。
+
+-------------------------------------------------------------------
+
+jQuery 精简版 jQuip
+
+jQuip 是目的是将 jQuery 项目拆分成各个小模块，根据需要包含相应的 JS 模块，以减小浏览器加载 JS 的大小。
+核心文件 jquip.js 只有 4.28KB (最小化和gzip压缩过) 只有 jQuery 的 13%。
+该核心库已经包含 jQuery 中最常用的功能，其他的功能可通过插件方式引入。
+在 IE7 以及之前版本的 IE 上速度提升 7~8 倍。
+
+-------------------------------------------------------------------
+
+jQuery Builder：Jquery 库的精简之道  //个人定制属于自己的专属模块集合的jQuery
+
+官网：http://projects.jga.me/jquery-builder/
+Github 地址：https://github.com/jgallen23/jquery-builder
+
+-------------------------------------------------------------------
+
+zepto核心源码分析:http://www.cnblogs.com/yexiaochai/p/3868133.html
+
+</xmp>
+
+
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>js操作iframe</title>
+</head>
+<body>
+
+
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+
+* 基本结构：
+——————————————————————————————————
+
+--PC端：
+---------------------
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="copyright" content="LeederEducation">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<title>力德教育</title>
+	<link href="css/common.css" rel="stylesheet">
+	<script src="js/aaa.js"></script> 
+	<script><!--
+	...
+	--></script> 
+</head>
+<body>
+...
+</body> 
+</html> 
+
+
+
+--移动端：
+---------------------
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta name="copyright" content="LeederEducation">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<title>标题</title>
+	<link rel="stylesheet" href="css/aaa.css" /> 
+	<script src="js/aaa.js"></script> 
+	<script><!--
+	...
+	--></script> 
+</head>
+<body>
+...
+</body> 
+</html> 
+
+
+
+
+
+
+* 格式：
+——————————————————————————————————
+
+	--用两个空格代替tab键实现缩进（这是唯一能保证在所有环境下获得一致展现的方法）
+
+	--尽量避免使用实体，如&mdash;及&rdquo;
+
+	--css代码不建议写在html里;如外调style文件请在head中引入；
+
+	--js代码不建议写在模块中间，要么写在head，要么写在body后面；一般情况都写在外调的js文件中；如外调js文件，其引入位置参看如下：
+
+		如要兼容ie低版本浏览器，推荐：
+		-------------------------
+		<html>
+		  <head>
+		    <link rel="stylesheet" href="main.css">
+		  </head>
+		  <body>
+		    <!-- body goes here -->		 
+		    <script src="main.js" async></script>
+		  </body>
+		</html>
+
+		如主要兼容现代浏览器，推荐：
+		-------------------------
+		<html>
+		  <head>
+		    <link rel="stylesheet" href="main.css">
+		    <script src="main.js" async></script>
+		  </head>
+		  <body>
+		    <!-- body goes here -->
+		  </body>
+		</html>
+
+
+
+
+
+
+
+
+
+
+
+* 标签：
+——————————————————————————————————
+
+--页面title不可缺少
+
+--不能省略可选的结束标签，如：</li>,</body>；
+
+--不建议使用table来布局
+
+--在一段完整的文字中请尽量不要使用<br>来人工干预分段
+
+
+
+
+
+
+
+
+* 属性：
+——————————————————————————————————
+
+--标签属性值使用双引号，不要使用单引号
+
+--ID属性在一个页面内是唯一的
+
+--外调文件一般不需要声明type，如：
+
+		//script不用加属性type="text/javascript"
+		<script src="js/base.js"></script>
+
+		//style不用加属性type="text/style"
+		<link rel="stylesheet" href="css/base.css" />
+
+--一般情况下不使用内置style，如不推荐：<p style="color:#ddd">ppp</p>
+
+--合理设置链接的target属性，如：target='_blank' or target='_self'
+
+--input的标题及控件用label包裹，加上属性for且与input的id值一致，确保点击标题时对应input被选中或获得焦点，如：
+		<label for="name">姓名：<input type="text" id="name" /></label>
+
+
+
+
+
+
+* 注释：
+——————————————————————————————————
+		--每个较大模块都应该注释其栏目名称或相关说明，格式如下：
+		<!--@ 新闻中心 -->//按此加上@，以方便栏目检索
+		
+		--一些整站通用的模块如头部/底部/侧栏等为了更好地区分开来，需要用一对对应的注释包裹起来，统一格式如下：
+		<!--@ 头部 -->
+		<div class="pageHead">
+			...
+		</div>
+		<!--@ /头部 -->
+		--全套太深或代码太多容易分不清对应的结束符，应在容易混淆的结束符后添加注释如下：
+		<div class="main">
+		...
+		</div><!-- /main -->//不需加@
+
+
+
+
+
+* 优化：
+——————————————————————————————————
+		--h1 ~ h6 （每个页面有且只有一个h1,而h2~h6按层级使用）
+		--img标签需要加alt属性 (装饰性的图片或图标不加alt)，如：<img src="图片.gif" alt="给图片提示">
+		--a链接需要加title属性，如：<a href="#" Title="给链接文字提示">文字</a>
+		--页面元信息name为keywords/description等在发布前应添加合适内容
+		--非首页轮播大图片外的图片大小尽量限定在 70K 左右
+
+
+
+
+
+
+
+* 常用的class命名参考：
+——————————————————————————————————
+
+头：header
+内容：content/container
+尾：footer
+导航：nav
+侧栏：sidebar
+栏目：column
+页面外围控制整体佈局宽度：wrapper
+左右中：left right center
+登录条：loginbar
+标志：logo
+广告：banner
+页面主体：main
+热点：hot
+新闻：news
+下载：download
+子导航：subnav
+菜单：menu
+子菜单：submenu
+搜索：search
+友情链接：friendlink
+页脚：footer
+版权：copyright
+滚动：scroll
+内容：content
+标签：tags
+文章列表：list
+提示信息：msg
+小技巧：tips
+栏目标题：title
+加入：joinus
+指南：guide
+服务：service
+注册：regsiter
+状态：status
+投票：vote
+合作伙伴：partner
+
+1)页面结构
+---------------------
+容器: container
+页头：header
+内容：content/container
+页面主体：main
+页尾：footer
+导航：nav
+侧栏：sidebar
+栏目：column
+页面外围控制整体佈局宽度：wrapper
+左右中：left right center
+
+(2)导航
+---------------------
+导航：nav
+主导航：mainnav
+子导航：subnav
+顶导航：topnav
+边导航：sidebar
+左导航：leftsidebar
+右导航：rightsidebar
+菜单：menu
+子菜单：submenu
+标题: title
+摘要: summary
+
+(3)功能
+---------------------
+标志：logo
+广告：banner
+登陆：login
+登录条：loginbar
+注册：register
+搜索：search
+功能区：shop
+标题：title
+加入：joinus
+状态：status
+按钮：btn
+滚动：scroll
+标籤页：tab
+文章列表：list
+提示信息：msg
+当前的: current
+小技巧：tips
+图标: icon
+注释：note
+指南：guild
+服务：service
+热点：hot
+新闻：news
+下载：download
+投票：vote
+合作伙伴：partner
+友情链接：link
+版权：copyright
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+未确定：
+-----------------------------
+
+--disabled,select等不用赋值 （推荐<input type="text" disabled>，不推荐<input type="text" disabled="disabled">）
+--checked、disabled、readonly、selected ??
+
+* IE兼容模式
+	--<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	（IE 支持通过特定的 <meta> 标签来确定绘制当前页面所应该采用的 IE 版本。除非有强烈的特殊需求，否则最好是设置为 edge mode，从而通知 IE 采用其所支持的最新的模式。）
+
+* 语义化：
+
+		--根据标签被创造出来时的初始意义来使用它
+		--http://www.jianshu.com/p/8d291d823cc0
+
+--属性声明顺序：
+		-- class
+		-- id
+		-- data-*
+		-- alt
+		-- title
+		-- src
+		//<img class="" id="" data-role="" alt="" src="">
+
+
+
+
+
+
+
+删：
+------------------------
+因为在不同系统的编辑工具对tab解析不一样，windows下的tab键是占四个空格的位置，而在linux下会变成占八个空格的位置[除非你 自己设定了tab键所占的位置长度],
+
+很多浏览器会将含有这些词的作为广告拦截： ad、ads、adv、banner、sponsor、gg、guangg、guanggao等 页面中尽量避免采用以上词汇来命名
+
+1. 网站中的链接路径全部采用相对路径，一般链接到某一目录下的缺省文件的链接路径不必写全名，如我们不必这样：<a href=”aboutus/index.htm”> 而应该这样：<a href=”aboutus/”>，所有内页指向首页的链接写成<a href=”/”>
+
+2. 在浏览器里，当我们点击空链接时，它会自动将当前页面重置到首端，从而影响用户正常的阅读内容，我们用代码“javascript:void(null)”代替原来的“#”标记
+
+尽可能的使用背景颜色替换大块同色图片
+
+--除用到脚本的地方，尽量避免使用ID
+
+-- include
+asp标准写法 <!--#include file="inc/index_top.asp" -->
+jsp 标准写法 <%@ include file="../inc/index_top..jsp" %>
+
+	(http://www.css88.com/archives/5364)
+脚本引用写在 body 结束标签之前，并带上 async 属性。这虽然在老旧浏览器中不会异步加载脚本，但它只阻塞了 body 结束标签之前的 DOM 解析，这就大大降低了其阻塞影响。而在现代浏览器中，脚本将在 DOM 解析器发现 body 尾部的 script 标签才进行加载，此时加载属于异步加载，不会阻塞 CSSOM（但其执行仍发生在 CSSOM 之后）。
+
+</xmp>
+
+</body>
+</html>

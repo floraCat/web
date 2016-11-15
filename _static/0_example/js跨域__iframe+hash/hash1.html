@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js中的跨域</title>
+</head>
+<body>
+hash1:
+<!-- 要从异域的hash2传数据到hash1：
+* hash1通过iframe调入hash2，在hash2网址后加哈希值
+* 在hash2内同过iframe调入与hash1同域的hash3，把哈希值加到hash3网址后面
+* 在hash3内把哈希值传回给hash1（同源策略） -->
+
+<iframe id="iframe1" src="hash2.html#key=val"></iframe><!--假设hash2是与hash1不同域名下的文件-->
+
+<script>
+setTimeout(function(){
+	alert(window.location.hash);
+},300);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+/*****reset*****/
+body,input,select,textarea{ font:12px/24px "微软雅黑",arial,Tahoma,sans-serif; color:#666; }
+body,h1,h2,h3,h4,h5,p,ol,ul,li,dl,dt,dd,input,pre{ padding:0; margin:0;}
+ul,ol,li{ list-style-type:none;}
+img,input,iframe{ border:none;}
+input{ outline:none;}
+*,input{ background-repeat:no-repeat;}
+ul,li,ol,dl,dt,dd,p,div,h1,h2,h3,h4,h5,h6,a,form{ overflow:hidden;}
+img{ width:100%; height:100%; _width:100%; _height:100%;}
+i,b{ display:block; font-style:normal; font-weight:inherit;}
+s{ text-decoration:none; font-family:"宋体";}
+em{ font-style:normal;}
+h1{ font:bold 16px/45px 微软雅黑;}
+h3,h4{ font:bold 14px/30px 微软雅黑;}
+h5{ font-weight:normal; font-size:12px;}
+a{ text-decoration:none; color:#333;}
+
+
+/*****global*****/
+.fl{ float:left;}
+.fr{ float:right;}
+.lt,.lt_,.Lt,.Left,.Left0{ float:left;}
+.cen,.cen_,.Cen,.Center{ float:left;}
+.rt,.rt_,.Rt,.Right,.Right0{ float:right;}
+h1.logo{ height:auto;}
+h1.logo img{ width:auto; height:auto;}
+.v{ overflow:visible;}
+.wrap{ width:1000px; margin:0 auto;}
+.clear{ clear:both;}
+
+
+
+/*****zs*****/
+a:hover{ color:#889d49;}
+.zo3{ outline-color:#dceab4!important;}
+.zd{ background-color:#889d49!important;}
+.zd2{ background-color:#c5d695!important;}
+.zb2,.zb2A a,.zb2Input input,.zb2Input textarea,.zb2Btn .btn,.zbTd td{ border-color:#c5d695!important;}
+	.thisclass, .thisclass a,.pageAH a:hover {
+	color: #F2A384!important;
+	border-color: #F2A384!important;
+	background-color:#fff9ee!important;
+	}
+.zd4,.zd4Btn .btn{ background-color:#f1f7de;}
+.zs{ color:#889d49;}
+.zb{ border-color:#889d49!important;}
+.zb3,.zb3Input input{ border-color:#dceab4!important;}
+.zd3,.zd3A a{ background-color:#dceab4;}
+.zd4{ background-color:#ecf3d5;}
+.cd3,.cd3AH a:hover{ background-color:#fff9ee!important;}
+.cs{ color:#F2A384!important;}
+.cb2, .cb2A a{ border-color:#F1DCB9!important;}
+
+
+
+/*******css3********/
+.yj,.yjA a{ border-radius:5px; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px;}
+.shadowRB_A a{ box-shadow:1px 1px 2px #889d49; -webkit-box-shadow:1px 1px 2px #889d49; -moz-box-shadow:1px 1px 2px #889d49;}
+.shadowRB_A2{ box-shadow:1px 1px 2px #F2A384!important; -webkit-box-shadow:1px 1px 2px #F2A384!important; -moz-box-shadow:1px 1px 2px #F2A384!important;}
+
+
+/*******backpic*******/
+.img4{ background:url(imgs/img4.png) repeat-x;}
+.admin_top .img4{ background:url(imgs/img4.png) repeat-x 0 35px;}
+.bg3{ background-image:url(imgs/bg3.jpg); width:558px; height:48px;}
+.img9{ background:url(imgs/img9.jpg) no-repeat right;}
+.img8{ background:url(imgs/img8.png) repeat-x;}
+.bg_left{ background-image:url(imgs/bg_left.png); background-position:right; background-repeat:repeat-y; background-color:#ecf3d5;}
+
+
+.hidden{ display:none;}

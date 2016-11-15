@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<body>
+
+<style>
+	.ttl{ border-color:#deeace!important; background-color:#ecf1e7; height:35px; line-height:35px; padding:0 15px 0 10px; font-size:15px; border-top:1px solid; color:#333; text-shadow:1px 1px 1px #fff; background-image:url(style/imgs/icon/same/icon145_1.png); background-size:13px; background-position:8px 11px; margin:15px 0 10px 0; color:#CC0000; font-weight:bold;}
+</style>
+
+
+
+
+<div class="ttl">h1~h6:</div>
+
+	<h1>h1</h1>
+	<h2>h2</h2>
+	<h3>h3</h3>
+	<h4>h4</h4>
+	<h5>h5</h5>
+	<h6>h6</h6>
+
+
+
+
+<div class="ttl">ol - ul - li - dl - dt - dd:</div>
+
+	<ol>
+		<li>olli1</li>
+		<li>olli2</li>
+	</ol>
+	<ul>
+		<li>ulli1</li>
+		<li>ulli2</li>
+	</ul>
+	<dl>
+		<dt>dt</dt>
+		<dd>dd</dd>
+	</dl>
+
+
+
+
+<div class="ttl">b - big - strong - small - s - u - del - strike - i - em - span - ins - cite - code - address：</div>
+
+	<b>bbb</b>
+	<big>big</big>
+	<strong>strong</strong>
+	<small>small</small>
+	<s>sss</s>
+	<u>uuu</u>
+	<del>del</del>
+	<strike>strike</strike>
+	<i>iii</i>
+	<em>em</em>
+	<span>span</span>
+	<span>ins</span>
+	<cite>cite</cite>
+	<code>code</code>
+	<address>address</address>
+
+
+
+
+<div class="ttl">abbr - acronym - bdo - center - sub - sup - q - blockquote - pre：</div>
+
+	<abbr title="abbraviation">abbr</abbr>
+	<acronym title="ACRONYM">acronym</acronym>
+	<bdo dir="rtl">bdo</bdo>
+	<center>center</center>
+	sub<sub>sub</sub>
+	sup<sup>sup</sup>
+	<q>qqq</q>
+	<blockquote>blockquote</blockquote>
+	<pre>
+	pre 
+		pre
+			pre
+	</pre>
+
+
+
+
+<div class="ttl">a - img - map - area - iframe - frame :</div>
+
+	<a href="#" target="_self"><img src="" alt="img_alt" width="200px" height="200px"/></a>
+	
+	<img src="" width="200px" height="200px" usemap="#map" alt="map_alt" />
+	<map id="map" name="map"><area shape="circle" coords="0,0,100" href="#" alt="map_area" /></map>
+	
+	<iframe width="200" height="200" name="iframeName" scrolling="yes" frameborder="1" src="#"></iframe>
+	
+	--- frameset_1
+	<frameset cols = "25%,25%,*">
+		  <noframes>
+			  <b^ody>Your browser does not handle frames!</b^ody>
+		  </noframes>
+		  <frame src="frame/a.html" />
+		  <frame src="frame/b.html" />
+		  <frame src="frame/c.html" />
+	</frameset>
+	
+	--- frameset_2	
+	<frameset rows="50%,50%">
+		<frame src="frame/a.html">
+		<frameset cols="25%,75%">
+			<frame src="frame/b.html">
+			<frame src="frame/c.html">
+		</frameset>
+	</frameset>
+		
+	<br/>------------------------------------------------------------------------------------------<br/>
+	<pre>
+	a ----
+		target:_blank / _parent / _self / _top
+		link="#0000FF" //设定一般文字连结颜色 
+		alink="#FF0000" //设定刚按下时文字连结颜色 
+		vlink="#0000FF" //设定连结后（被按过）的颜色
+		
+	map ---
+		img的usemap值为map的#id
+		圆形 -- shape="circ" 或 "circle" + coords="x,y,z" //x 和 y 定义了圆心的位置（"0,0" 是图像左上角的坐标），r 是以像素为单位的圆形半径  
+		多边形 -- shape="poly" 或 "polygon" + coords="x1,y1,x2,y2,x3,y3,..." //每一对 "x,y" 坐标都定义了多边形的一个顶点（"0,0" 是图像左上角的坐标）。定义三角形至少需要三组坐标；高纬多边形则需要更多数量的顶点
+		矩形 -- shape="rect" 或 "rectangle" + coords="x1,y1,x2,y2" //第一个坐标是矩形的一个角的顶点坐标，另一对坐标是对角的顶点坐标，"0,0" 是图像左上角的坐标。请注意，定义矩形实际上是定义带有四个顶点的多边形的一种简化方法
+		
+	frame ---- 
+		cols -- 列   
+		rows -- 行	
+		src: -- 规定在框架中显示的文档的 URL
+		name: -- 规定框架的名称
+		frameborder: -- (1 or 0)  规定是否显示框架周围的边框
+		scrolling： -- (yes/no/auto) 规定是否在 iframe 中显示滚动条
+		marginheight: -- 定义框架的上方和下方的边距
+		marginwidth: -- 定义框架的左侧和右侧的边距
+		noresize: -- (noresize) 规定无法调整框架的大小
+		longdesc: -- 规定一个包含有关框架内容的长描述的页面
+		
+	example ----
+		如leftFrame的链接要在rightFrame显示---给rightFrame加上id=right,再给leftFrame加上target=right
+		父窗口js获取子窗口的html元素：
+		$(window.frames["view_list"].document).find(".className")
+		父窗口js刷新子窗口：
+		window.frames["view_list"].document.location.reload();
+	</pre>
+	
+	
+
+
+
+
+<div class="ttl">table - thead - tbody - tfoot - tr - th - td - rowspan - colspan:</div>
+
+	<table width="100" cellpadding="3" cellspacing="0" border="1" align="center">
+		<tr>
+			<th rowspan="2">th</th>
+			<td>td1</td>
+			<td>td2</td>
+		</tr>
+		<tr>
+			<td>td1</td>
+			<td>td2</td>
+		</tr>
+	</table>
+	<br/>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Month</th><th>Savings</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>January</td><td>$100</td>
+			</tr>
+			<tr>
+				<td>February</td><td>$80</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2">Sum:$180</td>
+			</tr>
+		</tfoot>
+	</table>
+	<br/>------------------------------------------------------------------------------------------<br/>
+	<pre>
+	属性：
+		width -- 宽度
+		border -- 边框的宽度
+		cellpadding -- 单元边沿与其内容之间的空白
+		cellspacing -- 单元格之间的空白（cellspacing为0，内外border合在了一起）
+		summary -- 摘要
+		rules -- (none/groups/rows/cols/all)内侧边框的那个部分可见
+		frame -- (void/above/below/hsides/lhs/rhs/vsides/box/border)外侧边框的哪个部分可见
+		align -- 相对周围元素的对齐方式 （用css代替）
+		bgcolor -- 背景颜色 （用css代替）
+	样式：
+		border-collapse -- 设置表格的边框是否被合并为一个单一的边框，还是象在标准的 HTML 中那样分开显示
+		border-spacing -- 设置相邻单元格的边框间的距离（仅用于“边框分离”模式）
+		empty-cell -- (hide/show)
+		table-layout -- (auto/fixed)
+		caption-side -- toop/bottom/left/right
+		
+
+	
+	colspan -- 规定单元格可横跨的列数（合并多少列）
+	rowspan -- 规定单元格可横跨的行数（合并多少行）
+
+	thead标签定义表格的表头。该标签用于组合 HTML 表格的表头内容。
+	thead 元素应该与 tbody 和 tfoot 元素结合起来使用。
+	tbody 元素用于对 HTML 表格中的主体内容进行分组，而 tfoot 元素用于对 HTML 表格中的表注（页脚）内容进行分组。
+	注释：如果您使用 thead、tfoot 以及 tbody 元素，您就必须使用全部的元素。它们的出现次序是：thead、tfoot、tbody，这样浏览器就可以在收到所有数据前呈现页脚了。您必须在 table 元素内部使用这些标签。
+
+	</pre>
+	
+
+
+
+<div class="ttl">table - caption - col - colgroup:</div>
+
+	<table width="50%" border="1">
+		<caption>CAPTION-col</caption>
+		<col align="left" />
+		<col align="right" />
+		<col align="center" />
+		<tr>
+			<td>TD1-l</td>
+			<td>TD2-r</td>
+			<td>TD3-c</td>
+		</tr>
+	</table>
+	<br/>
+	<table width="50%" border="1">
+		<caption>CAPTION-colgroup</caption>
+		<colgroup span="2" align="right"></colgroup>
+		<tr>
+			<td>TD1-r</td>
+			<td>TD2-r</td>
+			<td>TD3</td>
+		</tr>
+	</table>
+	<br/>------------------------------------------------------------------------------------------<br/>
+	<pre>
+	--貌似大部分浏览器都不支持col和colgroup了
+	
+	colgroup -- 
+		align -- 在列组合中内容的水平对齐方式
+		char -- 根据哪个字符来对齐组中的内容
+		charoff -- 第一个对齐字符的偏移量
+		span -- 列组应该横跨的列数
+		valign -- (top/middle/bottom/baseline) 在列组合中内容的垂直对齐方式
+		width -- 组合的宽度
+	
+	colspan是横向合并；rowspan是纵向合并
+	</pre>
+	
+
+
+</body>
+</html>

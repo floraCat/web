@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0042)http://www.jq-school.com/tool/17/demo.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ie6 fixed兼容</title>
+<script type="text/javascript" src="../js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="../js/plus/jquery.pos-fixed.js"></script>
+<style>
+.test{position:fixed;left:20px;top:150px;display:block;height:100px; width:100px; border:1px #CCC solid;background-color:#000;}
+</style>
+</head>
+<body style="height:1200px;">
+
+<p>
+用到的插件：jquery.pos-fixed.js;<br>
+作用：Jquery完美解决IE6解决Fixed兼容插件;<br>
+******************************************************<br>
+测试后说明：<br>
+--同时要有id&class且要相同?<br>
+--样式设置要在head内? 且是class不能是id?<br>
+--toFixed()选择器不限id&class;
+</p>
+
+<div id="test" class="test"></div>
+
+<script type="text/javascript">
+$('.test').toFixed();
+</script>
+
+
+</body>
+</html>

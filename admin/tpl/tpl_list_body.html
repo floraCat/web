@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title> 
+<link href="css/base.css" rel="stylesheet" type="text/css" /> 
+<link href="css/layout.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/self.js"></script>
+</head>
+<body>
+
+	
+<!--列表-->	
+
+	<div class="List">
+	
+		<ol class="zd4">
+			<li style="width:40px;">序号</li>
+			<{section name=hd start=1 loop=$Field_list_name}>
+			<li style="width:<{$Field_list_width[hd]}>px;"><{$Field_list_name[hd]}></li>
+			<{/section}>
+			<li style="width:80px;">操作</li>
+		</ol>
+		
+		<{section name=list loop=$rsList}>
+		<ul>
+		<form action="?col=<{$col}>&mod=mod_quick<{if $smarty.get.type}>&type=<{$smarty.get.type}><{/if}>" method="post" enctype="multipart/form-data">
+			<{section name=list2 loop=$Field_list}>
+			<li><input style="width:<{$Field_list_width[list2]}>px" type="text" name="<{$Field_list[list2]}>0" value="<{$rsList[list][list2]}>" readonly="readonly" /></li>
+			<{/section}>
+			<{if $col=='imgs'}>
+			<li class="img_down"><img style="width:24px; height:24px;" src="<{$rsList[list][7]}>"/></li>
+			<{/if}>
+			<li class="last" style="width:80px;">
+				<input type="hidden" name="act" value="modify" />
+				<input type="hidden" name="id" value="<{$rsList[list][0]}>" />
+				<input class="mod_quick" type="button" value="快速修改" />
+				<a class="mod_default" href="manage.php?act=edit&col=<{$smarty.get.col}>&id=<{$rsList[list][0]}>" target="_parent">默认修改</a>
+				<input class="btn_save" type="submit" value="保存" style="display:none;" />
+			</li>
+		</form>
+				<input class="listDel" type="submit" value="删除" onclick="javascript:if(confirm('确定删除吗?')){location.href='manage.php?col=<{$col}>&act=del&delid=<{$rsList[list][0]}>&pageid=<{$smarty.get.pageid}>'}else{return;}" />
+		</ul>
+		<{/section}>
+	
+	<script>
+	$(document).ready(function(){
+		$(".mod_quick").click(function(){ //List点击‘修改’
+			$(this).parents("form").find("input").removeAttr("readonly");
+			$(this).parents("form").addClass("Input");
+			$(this).hide();
+			$(this).siblings(".btn_save").show();
+		});
+		
+		$(".List .img_down").click(function(){
+			var url_old=$(this).children("img").attr("src");
+			var submitdata={
+				url_old:url_old
+			}
+			$.post('_img_download.php',submitdata,
+				function(data){
+					alert("图片已下载！");
+				}
+			);
+		});
+	});
+	</script>
+	
+	</div><!--List end-->
+	
+	
+	
+<!--页码-->
+
+	<div class="pagelist">
+		<div class="page101 pageAH fl">
+			<{$pagehtml}>
+		</div><!--page101 end-->
+		<input type="hidden" name="rs_keyword" class="rs_keyword" value="<{$keyword}>" />
+		<span class="kw fr"></span>
+	</div><!--pagelist end-->
+	
+
+</body>
+</html>

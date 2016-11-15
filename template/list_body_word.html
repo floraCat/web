@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>内页</title>
+<link rel="stylesheet" type="text/css" href="sys_resource/css/base.css" />
+<link rel="stylesheet" type="text/css" href="sys_resource/css/layout.css" />
+<script type="text/javascript" src="sys_resource/js/jquery-1.10.2.js"></script>
+</head>
+
+<body class="List_word">
+<input type="hidden" name="col" value="<{$smarty.get.col}>" />
+
+<style>
+.List_word{ padding:20px 0;}
+.List_word .list{ margin-top:20px;}
+.List_word .list li{ float:left; margin:5px; position:relative; overflow:visible;}
+.List_word .list li a{ display:block; height:25px; font:bold 14px/25px 微软雅黑; border:#ddd 1px solid; padding:15px 20px 0; cursor:pointer;}
+.list li a:hover,.list li a.on{ background-color:#FFFF99;}
+.List_word .list li p{ position:absolute; top:0; left:0; padding:0 3px; white-space:nowrap; background-color:#f5f5f5;}
+</style>
+<div class="wrap">
+	<div class="list">
+	<{section name=list loop=$rsList}>
+	<!--ondblclick="javascript:window.location.href='index.php?col=<{$smarty.get.col}>&id=<{$rsList[list].id}>'"-->
+		<li><a id="<{$rsList[list].id}>" href="index.php?col=<{$smarty.get.col}>&id=<{$rsList[list].id}>" target="_blank"><{$rsList[list].title}></a><p><{$rsList[list].pin}></p></li>
+	<{/section}>
+	</div><!--list end-->
+</div>
+
+<script>
+$(document).ready(function(){
+	$(".list li a").click(function(){
+		$(".list li a").removeClass("on");
+		$(this).addClass("on");
+	});
+});
+</script>
+
+
+<!--分页 start-->
+<div class="pagelist">
+	<div class="page101 pageAH fl">
+	<{$pagehtml}>
+	</div>
+</div><!--pagelist end-->
+<!--分页 end-->
+
+
+</body>
+</html>

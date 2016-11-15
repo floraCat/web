@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>继承</title>
+</head>
+<body>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+	继承：
+	------------------------------------
+
+
+
+
+
+	//父类[基类/超类] (下面通用部分)
+	------------------------------------
+	var Animal = function(){
+	  this.name = 'animal';
+	}
+	Animal.prototype.say = function(){
+	  console.log('Animal here');
+	}
+
+
+	***************
+	***继承方法:***
+	***************
+
+		# 原型链继承：
+		------------------------------------
+		var Dog = function(){}
+		Dog.prototype = new Animal();
+		Dog.prototype.name = 'dog';
+		//实例
+		var doge = new Dog();
+		console.log(doge.name)  //'dog';
+		doge.say()  //'Animal here';
+		————————————————————————————————————
+			*注：原型链赋值给子类prototype等同于重写，后面不能再重写，否则被覆盖从而无法实现继承
+			*注：原型链赋值之后才能添加或覆盖方法
+			*弊：没法把子类的属性赋值到父类
+			*弊：子类prototype中的对象(如'["red","blue"]')赋值时为引用关系，两端共享一个引用地址，实例可以修改原型内的属性
+
+
+
+		# 构造继承（借用方法）：
+		------------------------------------
+		var Dog = function(){
+		    Animal.call(this);
+		    this.name = 'dog';
+		}
+		//实例
+		var doge = new Dog();
+		console.log(doge.name) //'dog';
+		doge.say() //error;
+		————————————————————————————————————
+			*弊：只能继承属性，不能继承prototype内的方法
+
+
+
+		# 实例继承：
+		------------------------------------
+		var Dog = function(){ 
+		    var dog = new Animal();
+		    dog.name = 'dog';
+		    return dog;
+		}
+		//实例
+		var doge = new Dog();
+		console.log(doge.name)  //'dog';
+		doge.say()  //'Animal here';
+		console.log(doge instanceof Animal)  // true
+		console.log(doge instanceof Dog)  // false
+
+
+
+		# 拷贝继承（暴力继承）：
+		------------------------------------
+		var Dog = function(){ 
+		    var animal = new Animal();
+		    for(var attr in animal){
+		        this[attr] = animal[attr];
+		    }
+		    this.name = 'dog';
+		}
+		//实例
+		var doge = new Dog();
+		console.log(doge.name) //'dog';
+		doge.say() //'Animal here';
+		console.log(doge instanceof Animal) // false
+		console.log(doge instanceof Dog) // true
+
+
+
+		# 组合继承：
+		------------------------------------
+		var Dog = function(){ 
+		  Animal.call(this, arguments);
+		  this.name = 'dog';
+		}
+		Dog.prototype = new Animal();
+		//实例
+		var doge = new Dog();
+		console.log(doge.name) //'dog';
+		doge.say() //'Animal here';
+		console.log(doge instanceof Dog) // true
+		console.log(doge instanceof Animal) // true
+		————————————————————————————————————
+			*注：原型链继承+借用继承，完美实现继承
+
+
+
+		# Object.create()实现继承：
+		------------------------------------
+		var Child = Object.create(Animal, {
+		    name: { value: "Benjamin"},
+		    url : { value: "http://www.baidu.com"}
+	    });
+	    var SubChild = Object.create(Child, {
+		    name: {value: "zuojj"},
+		    sex : {value: "male"}
+	    })
+
+
+</xmp>
+
+</body>
+</html>

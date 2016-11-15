@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$smarty.get.col}></title>
+<link rel="stylesheet" type="text/css" href="sys_resource/css/base.css" />
+<link rel="stylesheet" type="text/css" href="sys_resource/css/layout.css" />
+<script type="text/javascript" src="sys_resource/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="sys_resource/js/sort.js"></script>
+<script type="text/javascript" src="sys_resource/js/mod.js"></script>
+</head>
+
+<body class="List">
+<input type="hidden" name="col" value="<{$smarty.get.col}>" />
+
+
+<div class="Tabs">
+
+<!--排序组 start-->
+
+	<div class="Sort cd3 cb2A">
+
+		<div class="return fl"><a>还原<br/>默认</a></div>
+		<div class="switch_sort_mod fr"><a href="#">切<br/>换</a></div>
+
+		<div class="main fl">
+
+			<div class="top">
+			
+					<ol class="top_lt fl">
+	
+								<li class="btn" id="grade">
+									<span>按等级排序：</span>
+									<a data-role="1">高</a>
+									<a data-role="0">中</a>
+									<a data-role="-1">低</a>
+								</li>
+								<li class="btn" id="label">
+									<span>按标识排序：</span>
+									<a data-role="a">a</a>
+									<a data-role="b">b</a>
+									<a data-role="c">c</a>
+									<a data-role="">无</a>
+								</li>
+								<li class="btn" id="mark">
+									<span>按标注排序：</span>
+									<a data-role="1">有</a>
+									<a data-role="0">没有</a>
+								</li>
+						
+					</ol><!--top_lt end-->
+			
+					<ol class="top_rt fr">
+					
+							<div class="search">
+									<div class="cats">
+										<span>选范围</span>
+										<ul>
+											<a href="javascript:;" data-role="title">标题</a>
+											<a href="javascript:;" data-role="description">描述</a>
+											<a href="javascript:;" data-role="content">正文</a>
+										</ul>
+										<a class="key" href="javascript:;"><s>></s></a>
+									</div>
+									<div class="keyword"><input type="text" id="" name="" /></div>
+									<div class="btn"><a class="submit">></a></div>
+							</div><!--search end-->
+
+							<script>
+							$(document).ready(function(){
+								$(".Sort .search .key").click(function(){
+									$(this).siblings("ul").toggle();
+								});
+								$(".Sort .search ul a").click(function(){
+									var cat=$(this).text();
+									$(this).parent().siblings("span").text(cat);
+									$(this).parent().hide();
+									var name=$(this).attr("data-role");
+									$(this).parents(".search").find(".keyword input").attr("name",""+name+"");
+									$(this).parents(".search").find(".keyword input").attr("id",""+name+"");
+								});
+							});
+							</script>
+
+					
+					</ol><!--top_rt end-->
+			
+			</div><!--top end-->
+			
+			<div class="btm">
+			
+					<ol class="btm_lt fl">
+	
+					</ol><!--btm_lt end-->
+				                
+					<ol class="btm_rt fr">
+					
+							<div class="btn" id="sortway">
+								<a class="fl" data-role="title">按首字母排序</a>
+								<a class="fl" data-role="id">按录入时间排序</a>
+								<a class="fl" data-role="update_time">按更新时间排序</a>
+								<a class="fl" data-role="rand()">随机排序</a>
+							</div><!--sortway-->
+							
+					</ol><!--btm_rt end-->
+	
+			</div><!--btm end-->
+			
+		</div><!--main end-->
+
+
+
+
+		<!--自定义排序 start-->
+		<div class="sort_self">
+		
+	<!--type-->
+			<{if $Field_.type}>
+				<div class="switch_sortkey" id="type">
+					<span><label class="fl">类型</label><b>></b></span>
+					<{if $sort_type}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=type loop=$sort_type}>
+								<a data-role="<{$sort_type[type]}>"><{$sort_type[type]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+
+	<!--type2-->
+			<{if $smarty.get.col=="mode" || $smarty.get.col=="refer" || $smarty.get.col=="automode"}>
+				<div class="switch_sortkey" id="type">
+					<span><label class="fl">手机端</label><b>></b></span>
+					<{if $sort_type2}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=type2 loop=$sort_type2}>
+								<a data-role="<{$sort_type2[type2]}>"><{$sort_type2[type2]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+
+	<!--feature-->
+			<{if $Field_.feature}>
+				<div class="switch_sortkey" id="feature">
+					<span><label class="fl">特点</label><b>></b></span>
+					<{if $sort_feature}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=feature loop=$sort_feature}>
+								<a data-role="<{$sort_feature[feature]}>"><{$sort_feature[feature]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+			
+	<!--style-->
+			<{if $Field_.style}>
+				<div class="switch_sortkey" id="style">
+					<span><label class="fl">风格</label><b>></b></span>
+					<{if $sort_style}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=style loop=$sort_style}>
+								<a data-role="<{$sort_style[style]}>"><{$sort_style[style]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+
+	<!--keywords-->
+			<{if $Field_.keywords}>
+				<div class="switch_sortkey" id="keywords">
+					<span><label class="fl">关键字</label><b>></b></span>
+					<{if $sort_keywords}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=keywords loop=$sort_keywords}>
+								<a data-role="<{$sort_keywords[keywords]}>"><{$sort_keywords[keywords]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+			
+	<!--color-->
+			<{if $Field_.color}>
+				<div class="switch_sortkey" id="color">
+					<span><label class="fl">色调</label><b>></b></span>
+					<{if $sort_color}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=color loop=$sort_color}>
+								<a data-role="<{$sort_color[color]}>"><{$sort_color[color]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+			
+	<!--format-->
+			<{if $Field_.format}>
+				<div class="switch_sortkey" id="format">
+					<span><label class="fl">格式</label><b>></b></span>
+					<{if $sort_format}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=format loop=$sort_format}>
+								<a data-role="<{$sort_format[format]}>"><{$sort_format[format]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+			
+	<!--attr-->
+			<{if $Field_.attr}>
+				<div class="switch_sortkey" id="attr">
+					<span><label class="fl">属性</label><b>></b></span>
+					<{if $sort_attr}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=attr loop=$sort_attr}>
+								<a data-role="<{$sort_attr[attr]}>"><{$sort_attr[attr]}></a>
+							<{/section}>
+							<{if $col=="points"}>
+								<a data-role="unknow">未确定</a>
+							<{/if}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+
+			<{if $col=="mode"}>
+				<div class="switch_sortkey" id="attr">
+					<span><label class="fl">基本结构</label><b>></b></span>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<ol style="overflow:hidden; border-bottom:#FFFFCC 3px solid;">
+							<a data-role="P_top" href="_mode.php?db=mode&ttl=t110&tpl=pc" target="_blank">P_top</a>
+							<a data-role="P_search" href="_mode.php?db=mode&ttl=search110&tpl=pc" target="_blank">P_search</a>
+							<a data-role="P_nav" href="_mode.php?db=mode&ttl=n110&tpl=pc" target="_blank">P_nav</a>
+							<a data-role="P_navside" href="_mode.php?db=mode&ttl=ns110&tpl=pc" target="_blank">P_navside</a>
+							<a data-role="P_navside2" href="_mode.php?db=mode&ttl=ns111&tpl=pc" target="_blank">P_navside2</a>
+							<a data-role="P_focus" href="_mode.php?db=mode&ttl=focus110&tpl=pc" target="_blank">P_focus</a>
+							<a data-role="P_focus" href="_mode.php?db=mode&ttl=focus111&tpl=pc" target="_blank">P_focus2</a>
+							<a data-role="P_listp" href="_mode.php?db=mode&ttl=listp110&tpl=pc" target="_blank">P_listp</a>
+							<a data-role="P_listw" href="_mode.php?db=mode&ttl=listw110&tpl=pc" target="_blank">P_listw</a>
+							<a data-role="P_select" href="_mode.php?db=mode&ttl=select110&tpl=pc" target="_blank">P_select</a>
+							<a></a>
+							<a></a>
+							</ol>
+							<ol>
+							<a data-role="M_head" href="_mode.php?db=mode&ttl=h1100&tpl=m" target="_blank">M_head</a>
+							<a data-role="M_search" href="_mode.php?db=mode&ttl=search1100&tpl=m" target="_blank">M_search</a>
+							<a data-role="M_nav" href="_mode.php?db=mode&ttl=n1100&tpl=m" target="_blank">M_nav</a>
+							<a data-role="M_focus" href="_mode.php?db=mode&ttl=focus1100&tpl=m" target="_blank">M_focus</a>
+							<a data-role="M_listp" href="_mode.php?db=mode&ttl=lp1100&tpl=m" target="_blank">M_listp</a>
+							<a></a>
+							</ol>
+							
+<!--							
+							<a data-role="M_index" href="_mode.php?db=mode&ttl=i1100&tpl=m" target="_blank">M_index</a>
+							<a data-role="M_foot" href="_mode.php?db=mode&ttl=f1100&tpl=m" target="_blank">M_foot</a>
+							<a data-role="M_sort" href="_mode.php?db=mode&ttl=sort1100&tpl=m" target="_blank">M_sort</a>
+							<a data-role="M_listw" href="_mode.php?db=mode&ttl=lw1100&tpl=m" target="_blank">M_listw</a>
+							<a data-role="M_aw" href="_mode.php?db=mode&ttl=aw1100&tpl=m" target="_blank">M_aw</a>
+							<a data-role="M_ap" href="_mode.php?db=mode&ttl=ap1100&tpl=m" target="_blank">M_ap</a>
+							<a data-role="M_tab" href="_mode.php?db=mode&ttl=tab1100&tpl=m" target="_blank">M_tab</a>
+							<a data-role="M_other" href="_mode.php?db=mode&ttl=other1100&tpl=m" target="_blank">M_other</a>
+							
+-->							
+						</ul>
+					</div>
+				</div>
+			<{/if}>
+
+
+		</div><!--self_sort end-->
+		
+		
+		<!--自定义排序 end-->
+
+		<style>.listType a.on{ color:#FF0004;}</style>
+        <div class="listType btn" style=" position:absolute; top:43px; left:420px;">
+        	<a style="border:#c5d695 1px solid!important; padding:0 5px; background:#f1f7de;" href="javascript:;"  data-role="M">手机端</a>
+        	<a style="border:#c5d695 1px solid!important; padding:0 5px; background:#f1f7de;" href="javascript:;"  data-role="P">PC端</a>
+        </div>
+
+		
+	</div><!--Tabs end-->
+	
+<!--排序组 end-->
+	
+	
+	
+	
+	
+	
+<!--修改组 start-->
+
+	<div class="Mod cd3 cb2A">
+
+		<div class="return fl"><a>还原<br/>默认</a></div>
+		<div class="switch_sort_mod fr"><a href="javascript:;">切<br/>换</a></div>
+			
+		<div class="main fl">
+			
+			<div class="top">
+			
+					<ol class="top_lt fl">
+	
+								<li class="btn" id="grade">
+									<span>转换等级为：</span>
+									<a data-role="1">高</a>
+									<a data-role="0">中</a>
+									<a data-role="-1">低</a>
+								</li>
+								<li class="btn" id="label">
+									<span>转换标识为：</span>
+									<a data-role="a">a</a>
+									<a data-role="b">b</a>
+									<a data-role="c">c</a>
+									<a data-role="">无</a>
+								</li>
+						
+					</ol><!--top_lt end-->
+					
+			</div><!--top end-->
+			
+			<div class="btm">
+			
+					<ol class="btm_lt fl">
+								<a class="mark_mod fl">修改标注</a>
+					</ol><!--btm_lt end-->
+				
+					<ol class="btm_rt fr">
+					
+							<div class="btn" id="sortway">
+								<a class="del fl">删除选中条目</a>
+							</div><!--sortway-->
+							
+					</ol><!--btm_rt end-->
+	
+			</div><!--btm end-->
+			
+		<{if $smarty.get.col=="imgs"}>
+			<style>
+				.Mod .btn_more{ position:absolute; right:0; top:5px; height:68px;}
+				.Mod .btn_more a{ float:right; margin-left:5px; width:20px; padding:5px; height:58px; line-height:19px; border:1px solid;}
+			</style>
+			<div class="btn_more">
+				<a class="icon_switch" href="javascript:;">图标键</a>
+				<a class="img_down" href="javascript:;" style="background-color:#FFFFCC;">下载图</a>
+			</div>
+		<{/if}>
+			
+		</div><!--main end-->
+
+	</div><!--Mod end-->
+	
+	
+<!--修改组 end-->
+
+
+</div><!--Tabs end-->
+	
+
+
+
+
+<!--列表主体-->	
+<div class="wrap">
+	<iframe name="tpl_list_body" id="tpl_list_body" src="index.php?act=list&col=<{$smarty.get.col}>&block=list" width="100%" height="<{$iHeight}>"></iframe>
+</div>
+
+
+<style>
+.goTop2{ position:fixed; right:0; bottom:0; width:35px; height:35px;}
+.goTop2 img{ width:100%; height:100%; background:#333;}
+</style>
+<a class="goTop2" href="javascript:;"><img src="sys_resource/css/imgs/goTop.png" /></a>
+<script>
+$(function(){
+	$(".goTop2").click(function(){
+		$("html,body").animate({scrollTop:0},100);	
+	});
+});
+</script>
+
+</body>
+</html>

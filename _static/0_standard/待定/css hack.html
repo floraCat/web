@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js操作iframe</title>
+</head>
+<body>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+
+
+--使用 Firefox 作为平台, 只要代码写得够标准, 其实要 Hack 的地方不会很多的, IE 以外的浏览器几乎都不会有问题, 所以可以暂时忽略,
+
+--建议尺寸前面的数值0省掉，如.5em, 可以节约一个字符.
+
+
+
+
+
+1, IE条件注释法，微软官方推荐的hack方式
+
+只在IE下生效
+<!--[if IE]>
+这段文字只在IE浏览器上显示
+<![endif]-->
+
+只在IE6下生效
+<!--[if IE 6]>
+这段文字只在IE6浏览器上显示
+<![endif]-->
+
+只在IE6以上版本生效
+<!--[if gt IE 6]>
+这段文字只在IE6以上版本IE浏览器上显示
+<![endif]-->
+
+只在IE7上不生效
+<!--[if ! IE 7]>
+这段文字在非IE7浏览器上显示
+<![endif]-->
+
+非IE浏览器生效
+<!--[if !IE]><!-->
+这段文字只在非IE浏览器上显示
+<!--<![endif]-->
+
+
+
+
+
+2.综合一下常用的CSS Hack代码 
+
+CSS
+
+.csshack{
+    background:blue;
+    background:blue\9; /*all ie*/
+    background:blue\0/; /*ie8-ie9*/
+    background/*\**/: blue\9; /* ie7-ie8*/
+    *background:blue;/* or #background: blue */ /*ie6-ie7*/    
+    +background:blue; /*ie7*/
+    _background:blue; /*ie6*/
+}
+:root .csshack{
+    background:blue; /*大于等于ie9*/
+}
+/* IE9, IE10 */
+@media screen and (min-width:0\0) {
+    .csshack { color: red}
+}
+/* IE 10+ */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+   #veintiun { color: red; }
+}
+/* saf3+, chrome1+ */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+ #diez  { color: red  }
+}
+
+/* iPhone / mobile webkit */
+@media screen and (max-device-width: 480px) {
+ #veintiseis { color: red  }
+}
+/* Firefox only. 1+ */
+#veinticuatro,  x:-moz-any-link  { color: red }
+
+/* Firefox 3.0+ */
+#veinticinco,  x:-moz-any-link, x:default  { color: red  }
+
+/* FF 3.5+ */
+body:not(:-moz-handler-blocked) #cuarenta { color: red; }
+
+
+
+
+
+
+HTML
+
+/* @media hacks */
+
+/* IE6/7 only (via Keith Clarke) */
+@media screen\9 { }
+
+/* IE6/7/8 (via Keith Clarke) */
+@media \0screen\,screen\9 {}
+
+/* IE8 (via Keith Clarke) */
+@media \0screen { }
+
+/* IE8/9/10 */
+@media screen\0 { }
+
+/* IE9/10 */
+@media screen and (min-width:0\0) {
+    body { background: yellow; }
+} 
+
+
+
+4.button重置css样式兼容ie6,ie7
+
+button在IE6、IE7下的兼容性，需要充值css为overflow:visible
+
+5.让IE6支持max-width,min-width
+
+.sector{max-width:500px; _width:expression((documentElement.clientWidth>500)?"500px":"auto");
+
+min-width:300px; _width:expression((documentElement.clientWidth<300)?"300px":"auto");}
+6.IE6下某些情况line-height无效
+
+当在一个容器里文字和img、input、textarea、select、object等元素相连的时候，对这个容器设置的line-height数值会失效； 同时以上元素的行高可能×2。
+受影响的浏览器： Microsoft Internet Explorer 5.01 / Windows Microsoft Internet Explorer 5.5 / Windows Microsoft Internet Explorer 6
+
+解决办法：
+对和文字相连接的img、input、textarea、select、object等元素加以属性：
+{margin: (所属line-height-自身img,input,select,object高度)/2px 0;vertical-align:middle;}
+
+
+
+
+
+
+
+
+区别IE6,IE7,IE8,FF。
+1. IE都能识别* ; 标准浏览器(如FF)不能识别*；
+
+2. IE6能识别*，但不能识别 !important; IE6在样式前面加_
+
+3. IE7能识别*，也能识别!important;
+
+4. IE8能识别\ 9 例如：background:red \9;
+
+5. firefox不能识别*，但能识别!important;
+
+ 
+
+1．IE6和firefox的区别：
+background:orange;*background:blue;
+意思就是火狐浏览器的背景颜色是橙色,而IE浏览器的背景色是蓝色.
+
+2. IE6和IE7的区别：
+background:green !important;background:blue;
+意思指的是:IE7的背景颜色是绿色,IE6的背景颜色是蓝色
+
+3. IE7和FF的区别：
+background:orange; *background:green;
+意思指的是:火狐浏览器的背景颜色是橙色,而IE7的背景颜色是绿色
+
+4. FF，IE7，IE6的区别：
+background:orange;
+*background:green !important;
+*background:blue;
+意思是火狐浏览器的的背景橙色,IE7浏览器的背景颜色是绿色,而IE6浏览器的颜色是蓝色.
+
+IE6不认 !important,也不认 *+html.所以 IE6只能是 blue.
+IE7认 !important,也认 *+html,优先度: (*+html + !important) > !important > +html. IE7可以是 red, blue和 green,但 green的优先度最高.
+Firefox和其他浏览器都认 !important. !important优先, Firefox可以是 red和 blue,但 red优先度高.上述的优先符号均是 CSS3标准允许的,其他浏览器也还有其他的 Hack方法,但我迄今还没遇到过 Firefox正常, IE以外的其他浏览器不正常的情况,所以无可分享.只要代码规范,相信这种情况的发生应该是很罕见 (JavaScript除外).
+
+
+
+
+</xmp>
+
+</body>
+</html>

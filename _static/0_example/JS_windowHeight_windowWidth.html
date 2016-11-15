@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.0 Transitional//EN” > 
+<!--<!doctype html>-->
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>windowHeight & windowWidth & wholeHeight & wholeWidth</title>
+</head>
+<script src="/000/web/js/jquery-1.10.2.js"></script>
+<body style=" margin:35px; font-size:13px; line-height:21px; height:2000px;">
+<style>p{ margin:0;}</style>
+
+
+
+<p>DOCTYPE HTML  --  body高设置为2000</p>
+--------------------------------------------------------<br><br>
+<a onClick="alert(windowHeight());">获取视图高度</a><br><br>
+<a onClick="alert(windowWidth());">获取视图宽度</a><br><br>
+<a onClick="alert(wholeHeight());">获取整个正文高度</a><br><br>
+<a onClick="alert(wholeWidth());">获取整个正文宽度</a><br><br>
+--------------------------------------------------------<br><br>
+
+
+
+<xmp style="font-family:微软雅黑;">
+function windowHeight(){
+    if (self.innerHeight) { // all except Explorer    
+        windowHeight = self.innerHeight;
+    } else {
+        if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode    
+            windowHeight = document.documentElement.clientHeight;
+        } else {
+            if (document.body) { // other Explorers    
+                windowHeight = document.body.clientHeight;
+            }
+        }
+    } 
+	return windowHeight;  
+}
+
+--------------------------------------------------------
+
+function windowWidth(){
+    if (self.innerWidth) { // all except Explorer    
+        if (document.documentElement.clientWidth) {
+            windowWidth = document.documentElement.clientWidth;
+        } else {
+            windowWidth = self.innerWidth;
+        }
+    } else {
+        if (document.documentElement && document.documentElement.clientWidth) { // Explorer 6 Strict Mode    
+            windowWidth = document.documentElement.clientWidth;
+        } else {
+            if (document.body) { // other Explorers    
+                windowWidth = document.body.clientWidth;
+            }
+        }
+    }       
+	return windowWidth;  
+}
+
+--------------------------------------------------------
+
+function wholeWidth(){
+    if (window.innerWidth && window.scrollMaxX) {
+        xScroll = window.innerWidth + window.scrollMaxX;
+    } else {
+        if (document.body.scrollWidth > document.body.offsetWidth) { // all but Explorer Mac    
+            xScroll = document.body.scrollWidth;
+        } else { // Explorer Mac...would also work in Explorer 6 Strict, Mozilla and Safari    
+            xScroll = document.body.offsetWidth;
+        }
+    }
+	return xScroll;  
+}
+
+--------------------------------------------------------
+
+function wholeHeight(){
+    if (window.innerHeight && window.scrollMaxY) {
+        yScroll = window.innerHeight + window.scrollMaxY;
+    } else {
+        if (document.body.scrollHeight > document.body.offsetHeight) { // all but Explorer Mac    
+            yScroll = document.body.scrollHeight;
+        } else { // Explorer Mac...would also work in Explorer 6 Strict, Mozilla and Safari    
+            yScroll = document.body.offsetHeight;
+        }
+    }
+	return yScroll;  
+}
+
+</xmp>
+
+
+
+<script>
+
+function windowHeight(){
+    if (self.innerHeight) { // all except Explorer    
+        windowHeight = self.innerHeight;
+    } else {
+        if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode    
+            windowHeight = document.documentElement.clientHeight;
+        } else {
+            if (document.body) { // other Explorers    
+                windowHeight = document.body.clientHeight;
+            }
+        }
+    } 
+	return windowHeight;  
+}
+
+
+
+
+function windowWidth(){
+    if (self.innerWidth) { // all except Explorer    
+        if (document.documentElement.clientWidth) {
+            windowWidth = document.documentElement.clientWidth;
+        } else {
+            windowWidth = self.innerWidth;
+        }
+    } else {
+        if (document.documentElement && document.documentElement.clientWidth) { // Explorer 6 Strict Mode    
+            windowWidth = document.documentElement.clientWidth;
+        } else {
+            if (document.body) { // other Explorers    
+                windowWidth = document.body.clientWidth;
+            }
+        }
+    }       
+	return windowWidth;  
+}
+
+
+
+function wholeWidth(){
+    if (window.innerWidth && window.scrollMaxX) {
+        xScroll = window.innerWidth + window.scrollMaxX;
+    } else {
+        if (document.body.scrollWidth > document.body.offsetWidth) { // all but Explorer Mac    
+            xScroll = document.body.scrollWidth;
+        } else { // Explorer Mac...would also work in Explorer 6 Strict, Mozilla and Safari    
+            xScroll = document.body.offsetWidth;
+        }
+    }
+	return xScroll;  
+}
+
+
+function wholeHeight(){
+    if (window.innerHeight && window.scrollMaxY) {
+        yScroll = window.innerHeight + window.scrollMaxY;
+    } else {
+        if (document.body.scrollHeight > document.body.offsetHeight) { // all but Explorer Mac    
+            yScroll = document.body.scrollHeight;
+        } else { // Explorer Mac...would also work in Explorer 6 Strict, Mozilla and Safari    
+            yScroll = document.body.offsetHeight;
+        }
+    }
+	return yScroll;  
+}
+
+</script>
+
+</body>
+</html>

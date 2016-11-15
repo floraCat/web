@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>南铺北店</title>
+</head>
+<body>
+
+<script type="text/eee">
+var xmlhttp = false;
+try {
+  xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+} catch (e) {
+  try {
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  } catch (e2) {
+    xmlhttp = false;
+  }
+}
+if (!xmlhttp & typeof XMLHttpRequest != 'undefined') {
+  xmlhttp = new XMLHttpRequest();
+}
+xmlhttp.onreadystatechange=function(){
+    if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		alert(xmlhttp.responseText);
+        //document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+    }
+}
+xmlhttp22.open("GET","ajax_test.php",true);
+xmlhttp22.send();
+</script>
+
+
+
+
+
+<script>
+var xhr=null;
+if(window.XMLHttpRequest){
+	xhr=new XMLHttpRequest();	
+}else if(window.ActiveXObject){
+	try{
+		xhr=new ActiveXObject('Msxml2.XMLHTTP');	
+	}catch(e){
+		try{
+			xhr=new ActiveXObject('Microsoft.XMLHTTP');	
+		}catch(e){}
+	}
+}
+xhr.onreadystatechange=function(){
+    if (xhr.readyState==4 && xhr.status==200){
+		alert(xhr.responseText);
+    }
+}
+xhr.open("GET","ajax_test.php",true);
+xhr.send();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Test Tap</title>
+</head>
+<body>
+-----------------------------------------------------------------------tap-----------------
+<style>
+	.btn2{
+		width: 150px;
+		height: 60px;
+		line-height: 60px;
+
+		background-color: #EA424F;
+		color: #fff;
+		font-size: 20px;
+		text-align: center;
+		display: inline-block;
+		margin-bottom: 10px;
+	}
+	.bg2-green{
+		background-color: #78C576;
+	}
+
+	.show_time_click2{
+		display: inline-block;
+		font-size: 25px;
+		margin-left: 10px;
+	}
+	.mod{
+		position: absolute;
+		width: 100%;
+		height: 200px;
+		background: rgba(61, 61, 61, 0.71);
+		color: #fff;
+		top: 10px;
+		left: 0;
+		text-align: center;
+		font-size: 25px;
+		line-height: 200px;
+		font-weight: bold;
+	}
+
+</style>
+<p>注意：该Demo在移动设备上才能看出差别</p>
+<div class="line">
+	<div class="btn2" id="clickBtn2">click me 2</div>
+	<div class="show_time_click2" id="clickTime2">0</div>
+</div>
+
+<div class="line">
+	<div class="btn2 bg2-green" id="tapBtn2">tap me 2</div>
+	<div class="show_time_click2" id="tapTime2">0</div>
+</div>
+
+<div class="mod" id="mod">点我消失2</div>
+
+<script src="../../js/zepto.js"></script>
+<script type="text/javascript">
+	
+	var clickBtn2 = document.querySelector('#clickBtn2'),
+		tapBtn2 = document.querySelector('#tapBtn2'),
+		clickTime2 = document.querySelector('#clickTime2'),
+		tapTime2 = document.querySelector('#tapTime2'),
+		mod =  document.querySelector('#mod');
+
+	var start2 = 0,end2 = 0;
+	clickBtn2.addEventListener('touchstart',function(){
+		start2 = new Date();
+	});
+	tapBtn2.addEventListener('touchstart',function(){
+		start2 = new Date();
+	});
+
+	clickBtn2.addEventListener('click',function(){
+		end2 = new Date();
+		clickTime2.innerHTML = (end2-start2)+'ms';
+	});
+	$('#tapBtn2').on('tap',function(){
+		end2 = new Date();
+		tapTime2.innerHTML = (end2-start2)+'ms';
+	})
+	$('#mod').on('tap',function(){
+		$(this).hide();
+	})
+</script>
+
+
+<br><br>
+------------------------------------------------------------------------------touch----------
+<br><br>
+
+<style>
+	.btn{
+		width: 150px;
+		height: 60px;
+		line-height: 60px;
+
+		background-color: #EA424F;
+		color: #fff;
+		font-size: 20px;
+		text-align: center;
+		display: inline-block;
+		margin-bottom: 10px;
+	}
+	.bg-green{
+		background-color: #78C576;
+	}
+
+	.show_time_click{
+		display: inline-block;
+		font-size: 25px;
+		margin-left: 10px;
+	}
+
+</style>
+<p>注意：该Demo在移动设备上才能看出差别</p>
+<div class="line">
+	<div class="btn" id="clickBtn">click me</div>
+	<div class="show_time_click" id="clickTime">0</div>
+</div>
+
+<div class="line">
+	<div class="btn bg-green" id="tapBtn">tap me</div>
+	<div class="show_time_click" id="tapTime">0</div>
+</div>
+
+<script src="../../js/zepto.js"></script>
+<script type="text/javascript">
+	
+	var clickBtn = document.querySelector('#clickBtn'),
+		tapBtn = document.querySelector('#tapBtn'),
+		clickTime = document.querySelector('#clickTime'),
+		tapTime = document.querySelector('#tapTime');
+
+	var start = 0,end = 0;
+	clickBtn.addEventListener('touchstart',function(){
+		start = new Date();
+	});
+	tapBtn.addEventListener('touchstart',function(){
+		start = new Date();
+	});
+
+	clickBtn.addEventListener('click',function(){
+		end = new Date();
+		clickTime.innerHTML = (end-start)+'ms';
+	});
+	$('#tapBtn').on('tap',function(){
+		end = new Date();
+		tapTime.innerHTML = (end-start)+'ms';
+	})
+</script>
+
+
+<br><br>
+------------------------------------------------------------------------------tapbug----------
+<br><br>
+
+<style>
+	.touchpad{
+		width: 100%;
+		height: 200px;
+		font-size: 40px;
+		text-align: center;
+		line-height: 200px;
+		background: rgba(0,0,0,0.5);
+		position: relative;
+		color: #ddd;
+	}
+
+	.ball{
+		display: none;
+		position: absolute;
+		width: 25px;
+		height: 25px;
+		border-radius: 15px;
+		background-color: #7AE6FF;
+		top: 0;
+		left: 0;
+	}
+
+</style>
+<p id="desc" style="height:30px;"></p>
+<div id="touchPad" class="touchpad">触摸板</div>
+<div id="ball" class="ball"></div>
+
+<!--<script src="../js/zepto.js"></script>-->
+<script type="text/javascript">
+	var touchpad = document.querySelector('#touchPad'),
+		ball = document.querySelector('#ball'),
+		desc = document.querySelector('#desc');
+
+	//简单的touch事件（废弃）
+	var touchHandler = function(e){
+		var type = e.type;
+
+
+		//注意touchend的touches和targetTouches为空，只偶有changeTouches获取上次一的touchTlist
+		if(type != 'touchend'){
+			var pos = {
+				x : e.touches[0].clientX,
+				y : e.touches[0].clientY
+			}
+
+			ball.style.left = pos.x + 'px';
+			ball.style.top = pos.y + 'px';
+			desc.innerHTML = e.type + '(clienX:'+pos.x+', clientY:'+ pos.y+')';
+		}else{
+			desc.innerHTML = e.type ;
+		}
+		
+		switch(type){
+			case 'touchstart':
+				ball.style.display = 'block'; 
+				break;
+			case 'touchmove': 
+				//android的4.4,4.0的bug：只触发touchstart，和一次的touchmove，touchend不触发
+				//加入evnt.preventDefault
+				event.preventDefault();
+				break;
+			case 'touchend': 
+				ball.style.display = 'none';
+				break;
+		}
+	}
+
+	touchpad.addEventListener('touchstart',touchHandler);
+	touchpad.addEventListener('touchmove', touchHandler);
+	touchpad.addEventListener('touchend', touchHandler);
+
+
+</script>
+
+
+<br><br>
+------------------------------------------------------------------------------touch_swipe----------
+<br><br>
+
+
+<style>
+	.touchpad2{
+		width: 100%;
+		height: 200px;
+		font-size: 40px;
+		text-align: center;
+		line-height: 200px;
+		background: rgba(0,0,0,0.5);
+		position: relative;
+		color: #ddd;
+	}
+
+	.ball2{
+		display: none;
+		position: absolute;
+		width: 25px;
+		height: 25px;
+		border-radius: 15px;
+		background-color: #7AE6FF;
+		top: 0;
+		left: 0;
+	}
+
+</style>
+<p id="desc2"></p>
+<div id="touchPad2" class="touchpad2">触摸板</div>
+<div id="ball2" class="ball2"></div>
+
+<!--<script src="../js/zepto.js"></script>-->
+<script type="text/javascript">
+	var touchpad2 = document.querySelector('#touchPad2'),
+		ball2 = document.querySelector('#ball2'),
+		desc2 = document.querySelector('#desc2');
+
+
+	//获取touch的点(兼容mouse事件)
+	var getTouchPos = function(e){
+        var touches = e.touches;
+        if(touches && touches[0]) {
+            return { x : touches[0].clientX ,
+            		 y : touches[0].clientY };
+        }
+        return { x : e.clientX , y: e.clientY };
+    }
+
+    //计算两点之间距离
+    var getDist = function(p1 , p2){
+        if(!p1 || !p2) return 0;
+        return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+    }
+    //计算两点之间所成角度
+    var getAngle = function(p1 , p2){
+        var r = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+        var a = r * 180 / Math.PI;
+        return a;
+    };
+     //获取swipe的方向
+    var getSwipeDirection = function(p2,p1){
+        var dx = p2.x - p1.x;
+        var dy = -p2.y + p1.y;    
+        var angle = Math.atan2(dy , dx) * 180 / Math.PI;
+
+        if(angle < 45 && angle > -45) return "right";
+        if(angle >= 45 && angle < 135) return "top";
+        if(angle >= 135 || angle < -135) return "left";
+        if(angle >= -135 && angle <= -45) return "bottom";
+
+    }
+
+
+	var startEvtHandler = function(e){
+		var pos = getTouchPos(e);
+		ball2.style.left = pos.x + 'px';
+		ball2.style.top = pos.y + 'px';
+		ball2.style.display = 'block';
+
+		var touches = e.touches; 
+        if( !touches || touches.length == 1 ){ //touches为空，代表鼠标点击
+            point_start = getTouchPos(e);
+            time_start = Date.now();
+        }
+	}
+
+	var moveEvtHandler = function(e){
+		var pos = getTouchPos(e);
+		ball2.style.left = pos.x + 'px';
+		ball2.style.top = pos.y + 'px';
+
+
+		point_end = getTouchPos(e);
+		e.preventDefault();
+	}
+
+	//touchend的touches和targetTouches没有对象，只有changeTouches才有
+	var endEvtHandler = function(e){
+		ball2.style.display = 'none';
+
+		var time_end = Date.now();
+
+		//距离和时间都符合
+        if(getDist(point_start,point_end) > SWIPE_DISTANCE && time_start- time_end < SWIPE_TIME){
+           
+           var dir = getSwipeDirection(point_end,point_start);
+           touchPad2.innerHTML = 'swipe'+dir;
+        }
+	}
+
+   
+    var SWIPE_DISTANCE = 30;  //移动30px之后才认为swipe事件
+    var SWIPE_TIME = 500;     //swipe最大经历时间
+    var point_start,
+    	point_end,
+    	time_start,
+    	time_end;
+
+    //判断是PC或者移动设备
+	var startEvt, moveEvt, endEvt;
+	if("ontouchstart" in window){
+        startEvt="touchstart";
+        moveEvt="touchmove";
+        endEvt="touchend";
+    }else{
+        startEvt="mousedown";
+        moveEvt="mousemove";
+        endEvt="mouseup";            
+    }
+
+	touchpad2.addEventListener(startEvt, startEvtHandler);
+	touchpad2.addEventListener(moveEvt, moveEvtHandler);
+	touchpad2.addEventListener(endEvt, endEvtHandler);
+
+
+
+</script>
+
+</body>
+</html>

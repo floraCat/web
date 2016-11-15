@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js操作iframe</title>
+</head>
+<body>
+
+<xmp style=" font-family:黑体; font-size:10px; font-style:italic; color:#aaa;">参考网址：http://www.igooda.cn/jzjl/20150322837.html</xmp>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+	监听事件(注意事项)：
+	------------------------------------
+	* 当同一个对象使用同一事件触发多个方法时，后一个方法会把前一个方法覆盖掉，而用事件监听则不会有覆盖的现象，每个绑定的事件都会被执行。
+	* 事件监听会有一个冒泡的问题，停止冒泡的方法：event.stopPropagation();
+	* 可使用事件委托(事件代理)利用冒泡的原理来提升性能
+
+
+	事件兼容问题：
+	------------------------------------
+	获取事件对象： IE用window.event || 其他用event
+	取消事件默认操作： IE用'事件对象.returnValue=false', || 其他用'事件对象.preventDefault()'
+	获取事件源： IE用'事件对象.srcElement' || 其他用'事件对象.target'
+
+
+
+
+		***JS-监听事件:***
+		******************
+
+		js添加监听事件：
+		------------------------------------
+			document.getElementById("AAA").addEventListener("mousemove", myFunction);
+			document.getElementById("AAA").attachEvent("mousemove", myFunction); //IE8及以下版本
+
+
+		js移除监听事件：
+		------------------------------------
+			document.getElementById("AAA").removeEventListener("mousemove", myFunction);			  
+			document.getElementById("AAA").detachEvent("mousemove", myFunction); //IE8及以下版本
+
+
+		js取消事件的默认操作：
+		------------------------------------
+		event.preventDefault();
+		兼容方法：
+			function cancelHandler(event){
+				var event=event||window.event;
+				if(event.preventDefault) event.preventDefault(); //标准
+				if(event.returnValue) event.returnValue=false; //IE
+				return false;
+			}	
+
+
+
+
+		***JQ-监听事件:***
+		*****************
+
+		bind():
+		------------------------------------
+		$("button").bind("click",function(){...});
+		//绑定多个事件
+		$("button").bind({
+			mouseover:function(){$("body").css("background-color","red");},  
+			mouseout:function(){$("body").css("background-color","black");}  
+		});	
+
+
+		delegate():
+		------------------------------------
+		//事件代理：通过监听父级节点来实现监听子节点的功能
+		$("ul").delegate("li","click",function(){
+		　　$(this).toggle();
+		});
+
+
+		live():
+		------------------------------------
+		$("ul li").live("click",function(){
+		　　$(this).toggle();
+		});
+
+
+		//以上三种方法(bind/delegate/live)在jQuery1.8之后都不推荐使用，官方在1.9时已经取消使用live()方法了，所以建议都使用on()方法。
+
+
+		on():
+		------------------------------------
+		on:function(types,selector,data,fn){...};
+
+		$("li").on("click",function(){//常规绑定
+		　　$(this).toggle();
+		});
+		$("ul").on("click","li",function(){//事件委托 （有指定selector）
+		　　$(this).toggle();
+		});
+		//多个事件绑定一个函数：
+		$("button").on("mouseover mouseout",function(){ 
+			$(this).toggleClass("aa");
+		});
+		//多个事件绑定不同函数
+		$("button").on({ 
+			mouseover:function(){$("body").css("background-color","red");},  
+			mouseout:function(){$("body").css("background-color","black");}  
+		});
+		//off()移除on()所绑定的事件：
+		$("button").click(function(){
+			$("ul li").off("click");
+		});
+
+
+		监听事件传递数据
+		------------------------------------
+		$(function(){
+		  $("p").on("click", {msg: "You just clicked me!"}, function(event){
+		  		alert(event.data.msg);
+		  })
+		});
+
+
+		one():
+		------------------------------------
+		//事件只操作一次
+		$("ul li").one("click",function(){
+		　　$(this).hide();
+		});
+
+
+		trigger():
+		------------------------------------
+		//触发被选元素的指定事件类型
+		$(function(){
+		　　$("input").select(function(){
+		　　　　$("input").after(" Text marked!");
+		　　});
+		　　$("button").click(function(){
+		　　　　$("input").trigger("select");
+		　　});
+		});
+
+
+		自定义监听事件
+		------------------------------------
+		$(function(){
+		  $("p").on("myOwnEvent", function(event, showName){
+		    $(this).text(showName + "! What a beautiful name!").show();
+		  });
+		  $("button").click(function(){
+		    $("p").trigger("myOwnEvent",["Anja"]);
+		  });
+		});
+
+</xmp>
+
+</body>
+</html>

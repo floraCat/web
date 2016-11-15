@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js中的跨域</title>
+</head>
+<body>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+	跨域：
+	------------------------------------
+	js为了安全的同源策略，不同域名不能进行数据交互
+
+
+
+	无跨域问题：
+	------------------------------------
+	www.a.com/a.js
+	www.a.com/c/b.js
+
+
+
+	有跨域问题：
+	------------------------------------
+	www.a.com
+	b.a.com
+	——————————————
+	www.a.com
+	www.b.com
+
+	ajax : XMLHttpRequest(); 不能跨域
+
+
+
+
+	解决跨域方法：
+	------------------------------------
+	1.document.domain='a.com';(子域跟主域都设置)
+
+	2.服务器代理：XMLHttpRequest代理文件(增大服务器压力)
+
+	3.script标签src：jsonp形式 = json + padding(内填充) 把json填充在一个盒子里 (只能单域操作)
+
+	4.location.hash  （通过iframe，可以双域操作，但会暴露数据）
+
+	5.window.name (不会暴露数据，比较安全)
+
+	6.flash
+
+	7.html5 postMessage
+
+
+	
+	
+
+	—————————————————————————————————————————————————————————— 3 ——
+	//jsonp数据跨域传输：
+	function box(json){
+		alert(json.name); //aaa
+	}
+	<script type="text/javascript" src="jsonp.js"></script>
+	jsonp.js内代码如下：
+		box({name:'aaa'});
+	——————————————————————————————————————————————————————————   ——
+	//动态生成script标签：
+	function createJs(sUrl){
+		var oScript=document.createElement('script');
+		oScript.type='text/javascript';
+		oScript.src=sUrl;
+		document.getElementsByTagname('head')[0].appendChild(oScript);
+	}
+	createJs('jsonp.js?callback=box');
+ 	—————————————————————————————————————————————————————————— 4 ——
+	//用iframe把哈希值从异域的hash2传数据到hash1：
+	* hash1通过iframe调入异域hash2，在hash2网址后加哈希值
+	* 在hash2内通过iframe调入与hash1同域的hash3，把哈希值加到hash3网址后面
+	* 在hash3内把哈希值传回给hash1（同源策略）
+	—————————————————————————————————————————————————————————— 5 ——
+	//把异域name2的window.name数据传到name1:
+	* name1通过iframe调入异域name2
+	* name2通过iframe调入与name1同域的name3,且所设置的window.name数据与name3共享
+	* name1可获取name3的window.name（同源策略）
+</xmp>
+
+</body>
+</html>

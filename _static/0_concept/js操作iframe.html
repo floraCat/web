@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js操作iframe</title>
+</head>
+<body>
+<xmp style=" font-family:黑体; font-size:10px; font-style:italic; color:#aaa;">来源：妙味课堂->JS原创视频教程-知识点类-1->操作iframe,http://www.miaov.com/2013/miaovideo/miaovideo.html</xmp>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+	window操作iframe内的元素：
+	------------------------------------
+	oIframe.contentWindow.document.getElementById(""); 
+	oIframe.contentDocument.getElementById(""); //与上等同，但ie6,ie7不支持
+
+
+	iframe操作window内的元素：
+	------------------------------------
+	window.parent.getElementById(""); //iframe的上一级window
+	window.top.getElementById(""); //iframe的最顶层window
+
+
+	iframe的onload事件：
+	------------------------------------
+	oIframe.onload=function(){} //oIframe加载完再执行
+	而ie下只能用绑定形式：oIframe.attachEvent("onload",function(){});
+
+
+	防钓鱼实例：
+	------------------------------------
+	if(window!=window.top){
+		window.top.location.href=window.location.href;
+	}
+	//如果此window不是最顶层的，让最顶层的直接访问此window的网址
+
+
+	多个iframe切换实例：
+	------------------------------------
+	function changeHeight(){
+		setTimeout(function(){ //延迟100ms执行，以便在oIframe切换网址之后执行
+			oIframe.height=oIframe.contentWindow.document.body.offsetHeight();
+		},100);
+		
+	}
+	oButton[0].click(function(){
+		oIframe.src="iframe0.html";
+		changeHeight();
+	});
+	oButton[1].click(function(){
+		oIframe.src="iframe1.html";
+		changeHeight();
+	});
+
+
+	其他：
+	------------------------------------
+	//谷歌浏览器由于安全限制，需要服务器环境下才支持window与iframe之间的操作方法	
+
+</xmp>
+
+</body>
+</html>

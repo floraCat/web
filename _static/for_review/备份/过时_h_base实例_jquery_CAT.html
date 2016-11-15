@@ -1,0 +1,381 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>手机端h_base.js实例</title>
+    <link type="text/css" rel="stylesheet" href="../../css/h_resetM.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/m/h_global.css" />
+    <script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../../js/m/h_base_jq_CAT.js"></script>
+    <script type="text/javascript" src="../../js/m/h_dialog_jq.js"></script>
+</head>
+<body style=" text-indent:20px;">
+
+<script>
+$(function(){
+	//alert(333);	
+});
+</script>
+<br>
+!--H_tabs / 切换卡--<br>
+-----------------------------
+<style>
+.h_keys li.on{ color:#FF0509;}
+.h_div{ display:none;}
+</style>
+<div class="mTabs re z999">
+    <div class="h_keys">
+        <li>key_1</li>
+        <li>key_2</li>
+    </div>
+    <div class="h_divs">
+        <div class="h_div">div_1</div>
+        <div class="h_div">div_2</div>
+    </div>
+</div>
+<script>
+$(function(){
+	$(".mTabs").H_tabs("click");
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--H_toggle / 显隐层[情况一:同级]--<br>
+-----------------------------
+<style>
+.h_key.on{ color:#FF0004;}
+.h_toggle{ display:none;}
+</style>
+<div class="mToggle re z999">
+    <a class="h_key">key_a</a>
+    <div class="h_toggle">toggle_a</div>
+</div>
+<script>
+$(function(){
+	$(".mToggle").H_toggle();	
+});
+</script>
+<br>
+!--H_toggle / 显隐层[情况二：同级多个]--<br>
+-----------------------------
+<style>
+.h_key.on{ color:#FF0004;}
+.h_toggle{ display:none;}
+</style>
+<div class="mToggle2 re z999">
+	<li>
+        <a class="h_key">key_a</a>
+        <div class="h_toggle">toggle_a</div>
+    </li>
+	<li>
+        <a class="h_key">key_b</a>
+        <div class="h_toggle">toggle_b</div>
+    </li>
+</div>
+<script>
+$(function(){
+	$(".mToggle2").H_toggle();	
+});
+</script>
+<br>
+!--H_toggle / 显隐层[情况三：h_key&h_div不同级且多个]--<br>
+-----------------------------
+<div class="mToggle3 re z999">
+	<li>
+        <a class="h_key">key_aa</a>
+        <ol>
+            <div class="h_toggle">toggle_aa</div>
+        </ol>
+    </li>
+	<li>
+        <a class="h_key">key_bb</a>
+        <ol>
+            <div class="h_toggle">toggle_bb</div>
+        </ol>
+    </li>
+</div>
+<script>
+$(function(){
+	$(".mToggle3").H_toggle("li");	
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--H_middle / 上下居中--<br>
+-----------------------------
+<style>
+.window{ left:50%; margin-left:-100px; width:200px; padding:20px; background-color:#eee; border:#ddd 1px solid;}
+</style>
+<a class="mMiddle" href="javascript:;">点击</a>
+<div class="window fixed z999 hide" id="win_mMiddle">上下居中弹窗</div>
+<script>
+$(function(){
+	$(".mMiddle").click(function(){
+		$("#win_mMiddle").H_middle();
+		$("#win_mMiddle").show();
+	});	
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--H_middleM / 上下居中+隐藏模式 [情况一：默认_无参数]--<br>
+-----------------------------
+<a class="mMiddleM" href="javascript:;">点击</a>
+<div class="window fixed z999 hide" id="win_mMiddleM">上下居中+隐藏模式 弹窗1<br><a class="h_quit">点击取消</a></div>
+<script>
+$(function(){
+	$(".mMiddleM").click(function(){
+		$("#win_mMiddleM").H_middleM();
+	});	
+});
+</script>
+<br><br>
+!--H_middleM / 上下居中+隐藏模式 [情况二：hide=hideM+hideS]--<br>
+-----------------------------
+<a class="mMiddleM2" href="javascript:;">点击</a>
+<div class="window fixed z999 hide" id="win_mMiddleM2">上下居中+隐藏模式 弹窗2</div>
+<script>
+$(function(){
+	$(".mMiddleM2").click(function(){
+		$("#win_mMiddleM2").H_middleM({subHeight:100,hideWay:'hide'});
+	});	
+});
+</script>
+<br><br>
+!--H_middleM / 上下居中+隐藏模式 [情况三：hideM + remove移除而非隐藏]--<br>
+-----------------------------
+<a class="mMiddleM3" href="javascript:;">点击</a>
+<div class="window fixed z999 hide" id="win_mMiddleM3">上下居中+隐藏模式 弹窗3</div>
+<script>
+$(function(){
+	$(".mMiddleM3").click(function(){
+		$("#win_mMiddleM3").H_middleM({hideWay:'hideM',act:'remove'});
+	});	
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--H_hideM / 隐藏对象_[点击覆盖层或关闭键]--<br>
+-----------------------------
+<a class="mHideM" href="javascript:;">点击为测试准备环境</a>
+<div class="window fixed z999 hide" style="top:100px;" id="win_mHideM">隐藏对象_[点击覆盖层或关闭键]<a class="h_quit red">关闭键</a></div>
+<script>
+$(function(){
+	$(".mHideM").delegate("","click",function(){
+		$("#win_mHideM").show();
+		$.CAT.addMask("bgBlk");
+		$("#win_mHideM").H_hideM();	
+	});
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--H_hideS / 隐藏对象_[滚动时]--<br>
+-----------------------------
+<a class="mHideS" href="javascript:;">点击为测试准备环境</a>
+<div class="window fixed z999 hide" style="top:100px;" id="win_mHideS">隐藏对象_[滚动时]</div>
+<script>
+$(function(){
+	$(".mHideS").delegate("","click",function(){
+		$("#win_mHideS").show();
+		$.CAT.addMask("col3");
+		$("#win_mHideS").H_hideS();	
+	});
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+******************************************************************************************
+<br><br><br><br><br><br>
+
+
+
+!--$.CAT.addMask() / 添加覆盖层--<br>
+-----------------------------
+<a class="mAddMask">点击添加覆盖层</a>
+<p class="HclrMask z999 re zs" onClick="$('#h_mask').remove();">添加覆盖层后点击此行字隐藏覆盖层</p>
+<script>
+$(function(){
+	$(".mAddMask").click(function(){
+		$.CAT.addMask("bgBlk");
+	});
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--$.CAT.pageHeight() / 屏幕高度--<br>
+-----------------------------
+<div class="mPHeight">点击alert此屏幕高度</div>
+<script>
+$(".mPHeight").click(function(){
+	alert($.CAT.pageHeight());	
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--$.CAT.pageWidth() / 屏幕宽度_(手机端最大640,最小320)--<br>
+-----------------------------
+<div class="mPWidth">点击alert此屏幕宽度</div>
+<script>
+$(".mPWidth").click(function(){
+	alert($.CAT.pageWidth());	
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--$.CAT.pageScroll() / 滚动距离--<br>
+-----------------------------
+<div class="mPScroll">滚动后点击alert滚动距离</div>
+<script>
+$(".mPScroll").click(function(){
+	alert($.CAT.pageScroll());	
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--$.CAT.pageLock() / 锁屏_(限手机滑动)--<br>
+-----------------------------
+<a class="mPLock">点击锁屏</a>
+<a class="mPUnlock fixed zs z99 hide" style=" top:100px; left:50%;">$.CAT.pageUnlock() / 点击解锁</a>
+<script>
+$(function(){
+	$(".mPLock").click(function(){
+		$.CAT.pageLock();	
+		$(".mPUnlock").show();
+	});
+	$(".mPUnlock").click(function(){
+		$.CAT.pageUnlock();	
+		$(".mPUnlock").hide();
+	});
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--$.CAT.cleanUp() / 清除 mask & lock & setTime--<br>
+-----------------------------
+<a class="mAdd">点击为测试准备环境</a>
+<a class="mClrUp fixed zs z999 hide" style=" top:100px; left:50%;">点击清除 <b class="h_time">100</b></a>
+<script>
+$(function(){
+	var setT;
+	$(".mAdd").click(function(){
+		$.CAT.pageLock();	
+		$.CAT.addMask("col3");
+		$(".mClrUp").show();
+		$(".mClrUp").H_setHide(3000);
+	});
+	$(".mClrUp").click(function(){
+		$.CAT.cleanUp();	
+		$(".mClrUp").hide();
+	});
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--H_setHide / 限时隐藏--<br>
+<style>
+.window{ left:50%; top:100px; margin-left:-100px; width:200px; padding:20px; background-color:#eee; border:#ddd 1px solid;}
+</style>
+<a class="key_setT_1">setT_1</a><br>
+<a class="key_setT_2">setT_2</a><br>
+<a class="key_clearT_a re z999 zs">clearTimeout_a</a><br>
+<div class="window fixed z999 hide" id="win_setT_1">消失倒计时：<span class="h_time"></span></div>
+<div class="window fixed z999 hide" style="top:300px;" id="win_setT_2">消失倒计时<span class="h_time"></span></div>
+<script>
+$(function(){
+	$(".key_setT_1").click(function(){
+		$("#win_setT_1").H_setHide(30000);	
+		$("#win_setT_1").H_middleM({hideWay:"hideM"});
+	});
+	$(".key_setT_2").click(function(){
+		$("#win_setT_2").H_middleM({hideWay:"hideM"});
+		$("#win_setT_2").H_setHide(30000);	
+	});
+	$(".key_clearT_a").click(function(){
+		$.fn.H_clearSet();
+	});
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+
+!--H_gotop / 返回顶部--<br>
+<a class="mGotop red z999" style="position:fixed; bottom:30px; right:50px;">点击返回顶部</a>
+<script>
+$(function(){
+	$(".mGotop").H_gotop();
+	
+	
+	
+});
+</script>
+
+
+</body>
+</html>

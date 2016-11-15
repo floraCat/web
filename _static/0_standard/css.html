@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js操作iframe</title>
+</head>
+<body>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+
+
+
+
+* 属性声明顺序：
+——————————————————————————————————
+
+---------------------------------最前面-----
+-- content:''
+
+---------------------------------定位-----
+-- z-index    
+-- position
+-- top / bottom / left / right
+
+---------------------------------盒模型-----
+-- display
+-- float
+	-- clear
+-- overflow     
+-- width
+-- height
+-- padding
+-- margin
+
+---------------------------------排版-----
+-- font-family
+-- font-size
+-- font-weight
+-- line-height
+-- text-aligh
+-- text-indent
+-- text-decoration
+	-- white-space
+-- color
+
+---------------------------------视觉-----
+-- border
+-- outline
+	-- visibility
+-- background (-color -image -position -size)
+
+---------------------------------css3,需兼容前缀的-----
+-- boxS 
+-- e-
+-- yj
+-- opa
+-- sd
+-- sdIn
+-- sdTxt
+
+---------------------------------杂项-----
+
+
+
+
+
+
+
+* 要求：
+——————————————————————————————————
+--样式都用class设置，慎用id
+--值为0时后面不加单位；
+--颜色值都用小写
+--一行设置一个属性
+--属性值用单引号，而不是双引号 （推荐：content:'aaa';）
+--每个样式属性后加 ";"
+--尽量用缩写；（使用缩写属性对于代码效率和可读性是有很有用的）
+--注释所属栏目或模块标题，跟html对应模块标题一致; 多个模块名用'&'分隔
+--相同或类似的模块尽量把代码整合重用起来
+--css慎用expression表达式
+
+
+
+
+
+
+
+
+* z-index:
+——————————————————————————————————
+	--默认的层叠数：
+				--fixed顶部(90)
+				--覆盖层h_mask(99)
+				--弹窗(990)
+	--不能超过9999；
+ --除了以上模块以外的需要设置z-index，只能在11~88之间的数值中选择；
+
+
+
+
+
+
+* css命名：
+——————————————————————————————————
+		--不要用有唯一指定性的类名，转用能反应其目的和用途的名称，如下例：
+
+		不推荐：
+		-----------
+		.fw_800{ font-weight:800;}
+		.red{ color:red;}
+
+		推荐：
+		-----------
+		.heavy{ font-weight:800;}
+		.important{ color:red;}
+
+
+
+
+
+
+* 样式表文件命名：
+——————————————————————————————————
+基本共用 base.css
+主要的 master.css
+模块 module.css
+布局、版面 layout.css
+主题 themes.css
+专栏 columns.css
+文字 font.css
+表单 forms.css
+补丁 mend.css
+打印 print.css
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+未确定：
+----------------------
+--书写代码前, 考虑并提高样式重复使用率
+--样式表中中文字体名, 请务必转码成unicode码, 以避免编码错误时乱码;
+
+说明：出于有可能乱码而导致字体解析错误的原因，font-family中用到中文字体时，建议优先使用unicode码方式，英文别名方式为备选方案
+禁止使用中文方式
+
+font-family:'\5FAE\8F6F\96C5\9ED1';	/*推荐*/
+font-family:'Microsoft Yahei';	/*备选*/
+
+
+
+
+
+
+
+删：
+-----------------------
+--重用性？？
+每模块样式之间明确隔开，
+
+
+* 前缀：
+
+		--必须以每模块的最外层class作为前缀，以防内部通用的class与其他冲突
+		（缩写的不允许直接定义样式，如：.title,.hd,.bd,.body.必须用上级节点进行限定,如：.recommend-mod .title）
+<div class="mod recommend-mod">
+  <div class="hd recommend-title">Tilte </div>
+  <div class="bd recommend-body">contents</div>
+  <div class="ft recommend-footer">footer </div>
+</div>
+
+
+
+* 属性定义顺序：
+
+css属性书写顺序, 建议遵循: 布局定位属性–>自身属性–>文本属性–>其他属性. 此条可根据自身习惯书写, 但尽量保证同类属性写在一起. 属性列举: 布局定位属性主要包括: display & list-style & position（相应的 top,right,bottom,left） ＆ float & clear ＆ visibility ＆ overflow； 自身属性主要包括: width & height & margin & padding & border & background; 文本属性主要包括：color & font & text-decoration & text-align & vertical-align & white- space & 其他 & content; 我所列出的这些属性只是最常用到的, 并不代表全部;
+
+
+--冒号后空一个格
+
+</xmp>
+
+</body>
+</html>

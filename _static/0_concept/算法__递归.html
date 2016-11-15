@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>递归算法</title>
+</head>
+<body>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+	递归算法：
+	------------------------------------
+	* 函数调用函数自身，执行递的动作
+	* 最后一次判断一个终止条件，可以执行归的动作
+
+
+	实例：
+	------------------------------------
+	function test(n){
+		if(n==1){return 1;}
+		return n*test(n-1);
+	}
+	alert(test(4)); //24 ->1*2*3*4
+	
+</xmp>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+/*****reset*****/
+body,input,button,select,textarea{ font:~'@{base-font-size}/24px "Microsoft Yahei",arial,Tahoma,sans-serif'; color:#333;}
+body,h1,h2,h3,h4,h5,h6,p,ul,li,ol,dl,dt,dd,form,input,button,textarea{ padding:0; margin:0; background-repeat:no-repeat;}
+ul,ol,li{ list-style-type:none;}
+img,iframe{ border:0;}
+input,button,select,textarea{ outline:none; border:#ddd 1px solid;}
+input,button,textarea{ background:transparent; -webkit-appearance:none; -moz-appearance:none; appearance:none;}
+table{ border-collapse:collapse; border-spacing:0;}
+a{ text-decoration:none; color:#333;}
+h1,h2,h3,h4,h5,h6{ font-size:14px; font-weight:normal;}
+mark{ font-weight:bold; background:transparent;}
+i,em{ font-style:normal;} 
+i{ display:block;}
+html,body{ position:relative; /*overflow-x:hidden; _overflow-x:inherit;*/}
+
+em,mark{ color:@red;}
+s{ color:@light;}
+.base(@x) when (@x="m"){//手机端
+	@import "h-mode_m.less";
+	@base-font-size:13px;
+	a:hover{ color:@zs;}
+	.aHov{
+		&:hover{ color:inherit;}
+	}
+	img{ display:block; width:100%;}
+	body{ .-M320-;}
+}
+.base(@x) when (@x="pc"){//PC端
+	//@import "h-mode_pc.less";
+	@base-font-size:12px;
+	a:hover{ color:@zs;}
+	.aHov{
+		&:hover{ color:inherit;}
+	}
+	img{ vertical-align:top;}
+	a img:hover{ opacity:.8;}
+}
+

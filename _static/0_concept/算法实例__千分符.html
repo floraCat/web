@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>千分符</title>
+</head>
+<body>
+
+
+5,123,548,954
+
+<script>
+function splitStr(str){
+	var remain=str.length%3;
+	str1=str.substr(0,remain);
+	str_new=str.substr(remain);
+	var group=0;
+	var arr=[];
+	for(var i=0;i < str_new.length;i++){
+		if(i%3==0){
+			group++;
+			arr[group]='';
+			arr[group]+=str_new[i];
+		}else{
+			arr[group]+=str_new[i];
+		}
+	}
+	str2=arr.join(",").substr(1);
+	str3=str1+","+str2;
+	return str3;
+}
+//alert( splitStr('5123548954') );
+</script>
+
+
+
+<!--正则方法-->
+<script>
+function splitStr2(str){
+	var reg=/(?=(\d{3})+$)/g;
+	return str.replace(reg,",");
+}
+alert( splitStr2('5123548954') );
+</script>
+
+
+</body>
+</html>

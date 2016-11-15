@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>html5</title>
+    <script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+</head>
+<body style="border:15px #CEFCCB solid; padding:25px; margin:35px; font-size:13px; line-height:21px;">
+<style>p{ margin:0;}</style>
+
+<div style=" width:400px; height:400px; background:#eee; position:relative;">400*400
+
+    <div id="outBox" style=" overflow:scroll; background:#fff; 
+    position:absolute; top:50px; left:50px; 
+    width:200px; height:200px;
+    padding:20px; 
+    border:#333 10px solid; 
+    margin:30px;">
+        
+        <div id="inBox" style=" width:500px; height:500px; background:#FFC8C9;">inBox</div>
+        
+    </div>
+    
+</div>
+
+
+
+
+
+<div style=" position:absolute; top:550px; left:50px;">
+	<p>outBox ( top:50 - left:50 - width:200 - height:200 - border:10 - padding:20 - margin:30 )</p>
+	<p>inBox ( width:500 - height:500 )</p>
+	<p>body ( border:15 - padding:25 - margin:35 )</p>
+</div>
+
+<!--Top-->
+<div style=" position:absolute; top:650px; left:100px;">
+    <a href="javascript:;" onClick="out_clientTop();">outBox.clientTop</a><br>
+    <a href="javascript:;" onClick="out_top();">outBox.style.top</a><br>
+    <a href="javascript:;" onClick="out_scrollTop();">outBox.scrollTop</a><br>
+    <a href="javascript:;" onClick="out_offsetTop();">outBox.offsetTop</a><br>
+    <br>
+    <a href="javascript:;" onClick="in_clientTop();">inBox.clientTop</a><br>
+    <a href="javascript:;" onClick="in_top();">inBox.style.top</a><br>
+    <a href="javascript:;" onClick="in_scrollTop();">inBox.scrollTop</a><br>
+    <a href="javascript:;" onClick="in_offsetTop();">inBox.offsetTop</a><br>
+    <br>
+    <a href="javascript:;" onClick="body_clientTop();">body.clientTop</a><br>
+    <a href="javascript:;" onClick="body_top();">body.style.top</a><br>
+    <a href="javascript:;" onClick="body_scrollTop();">body.scrollTop</a><br>
+    <a href="javascript:;" onClick="body_offsetTop();">body.offsetTop</a><br>
+</div>
+
+
+<!--Left-->
+<div style=" position:absolute; top:650px; left:250px;">
+    <a href="javascript:;" onClick="out_clientLeft();">outBox.clientLeft</a><br>
+    <a href="javascript:;" onClick="out_left();">outBox.style.left</a><br>
+    <a href="javascript:;" onClick="out_scrollLeft();">outBox.scrollLeft</a><br>
+    <a href="javascript:;" onClick="out_offsetLeft();">outBox.offsetLeft</a><br>
+    <br>
+    <a href="javascript:;" onClick="in_clientLeft();">inBox.clientLeft</a><br>
+    <a href="javascript:;" onClick="in_left();">inBox.style.left</a><br>
+    <a href="javascript:;" onClick="in_scrollLeft();">inBox.scrollLeft</a><br>
+    <a href="javascript:;" onClick="in_offsetLeft();">inBox.offsetLeft</a><br>
+    <br>
+    <a href="javascript:;" onClick="body_clientLeft();">body.clientLeft</a><br>
+    <a href="javascript:;" onClick="body_left();">body.style.left</a><br>
+    <a href="javascript:;" onClick="body_scrollLeft();">body.scrollLeft</a><br>
+    <a href="javascript:;" onClick="body_offsetLeft();">body.offsetLeft</a><br>
+</div>
+
+
+<!--Height-->
+<div style=" position:absolute; top:650px; left:400px;">
+    <a href="javascript:;" onClick="out_clientHeight();">outBox.clientHeight</a><br>
+    <a href="javascript:;" onClick="out_height();">outBox.style.height</a><br>
+    <a href="javascript:;" onClick="out_scrollHeight();">outBox.scrollHeight</a><br>
+    <a href="javascript:;" onClick="out_offsetHeight();">outBox.offsetHeight</a><br>
+    <br>
+    <a href="javascript:;" onClick="in_clientHeight();">inBox.clientHeight</a><br>
+    <a href="javascript:;" onClick="in_height();">inBox.style.height</a><br>
+    <a href="javascript:;" onClick="in_scrollHeight();">inBox.scrollHeight</a><br>
+    <a href="javascript:;" onClick="in_offsetHeight();">inBox.offsetHeight</a><br>
+    <br>
+    <a href="javascript:;" onClick="body_clientHeight();">body.clientHeight</a><br>
+    <a href="javascript:;" onClick="body_height();">body.style.height</a><br>
+    <a href="javascript:;" onClick="body_scrollHeight();">body.scrollHeight</a><br>
+    <a href="javascript:;" onClick="body_offsetHeight();">body.offsetHeight</a><br>
+</div>
+
+
+<!--Width-->
+<div style=" position:absolute; top:650px; left:550px;">
+    <a href="javascript:;" onClick="out_clientWidth();">outBox.clientWidth</a><br>
+    <a href="javascript:;" onClick="out_width();">outBox.style.width</a><br>
+    <a href="javascript:;" onClick="out_scrollWidth();">outBox.scrollWidth</a><br>
+    <a href="javascript:;" onClick="out_offsetWidth();">outBox.offsetWidth</a><br>
+    <br>
+    <a href="javascript:;" onClick="in_clientWidth();">inBox.clientWidth</a><br>
+    <a href="javascript:;" onClick="in_width();">inBox.style.width</a><br>
+    <a href="javascript:;" onClick="in_scrollWidth();">inBox.scrollWidth</a><br>
+    <a href="javascript:;" onClick="in_offsetWidth();">inBox.offsetWidth</a><br>
+    <br>
+    <a href="javascript:;" onClick="body_clientWidth();">body.clientWidth</a><br>
+    <a href="javascript:;" onClick="body_width();">body.style.width</a><br>
+    <a href="javascript:;" onClick="body_scrollWidth();">body.scrollWidth</a><br>
+    <a href="javascript:;" onClick="body_offsetWidth();">body.offsetWidth</a><br>
+</div>
+
+
+<div style=" position:absolute; top:1000px; left:50px;">
+	<p>clientTop = border-top宽</p>
+	<p>scrollTop = 滚动了的高度</p>
+	<p>offsetTop = top + margin-top (相对上一父级)</p>
+	------------------------------------------------------------------------
+	<p>clientLeft = border-left宽</p>
+	<p>scrollLeft = 滚动了的宽度</p>
+	<p>offsetLeft = left + margin-left (相对上一父级)</p>
+	------------------------------------------------------------------------
+	<p>clientHeight = 高度 + padding上下 (不包含border,且减掉滚动轴宽)</p>
+	<p>scrollHeight = 总滚动高度 (包含padding,包括被隐藏的)</p>
+	<p>offsetHeight = 高度 + padding上下 + border上下</p>
+	<br>
+	<br>
+</div>
+
+
+<!--js_Top-->
+<script>
+function out_clientTop(){ alert(document.getElementById("outBox").clientTop);}
+function out_top(){ alert(document.getElementById("outBox").style.top);}
+function out_scrollTop(){ alert(document.getElementById("outBox").scrollTop);}
+function out_offsetTop(){ alert(document.getElementById("outBox").offsetTop);}
+
+function in_clientTop(){ alert(document.getElementById("inBox").clientTop);}
+function in_top(){ alert(document.getElementById("inBox").style.top);}
+function in_scrollTop(){ alert(document.getElementById("inBox").scrollTop);}
+function in_offsetTop(){ alert(document.getElementById("inBox").offsetTop);}
+
+function body_clientTop(){ alert(document.body.clientTop);}
+function body_top(){ alert(document.body.style.top);}
+function body_scrollTop(){ alert(document.body.scrollTop);}
+function body_offsetTop(){ alert(document.body.offsetTop);}
+</script>
+
+
+<!--js_Left-->
+<script>
+function out_clientLeft(){ alert(document.getElementById("outBox").clientLeft);}
+function out_left(){ alert(document.getElementById("outBox").style.left);}
+function out_scrollLeft(){ alert(document.getElementById("outBox").scrollLeft);}
+function out_offsetLeft(){ alert(document.getElementById("outBox").offsetLeft);}
+
+function in_clientLeft(){ alert(document.getElementById("inBox").clientLeft);}
+function in_left(){ alert(document.getElementById("inBox").style.left);}
+function in_scrollLeft(){ alert(document.getElementById("inBox").scrollLeft);}
+function in_offsetLeft(){ alert(document.getElementById("inBox").offsetLeft);}
+
+function body_clientLeft(){ alert(document.body.clientLeft);}
+function body_left(){ alert(document.body.style.left);}
+function body_scrollLeft(){ alert(document.body.scrollLeft);}
+function body_offsetLeft(){ alert(document.body.offsetLeft);}
+</script>
+
+
+<!--js_Height-->
+<script>
+function out_clientHeight(){ alert(document.getElementById("outBox").clientHeight);}
+function out_height(){ alert(document.getElementById("outBox").style.height);}
+function out_scrollHeight(){ alert(document.getElementById("outBox").scrollHeight);}
+function out_offsetHeight(){ alert(document.getElementById("outBox").offsetHeight);}
+
+function in_clientHeight(){ alert(document.getElementById("inBox").clientHeight);}
+function in_height(){ alert(document.getElementById("inBox").style.height);}
+function in_scrollHeight(){ alert(document.getElementById("inBox").scrollHeight);}
+function in_offsetHeight(){ alert(document.getElementById("inBox").offsetHeight);}
+
+function body_clientHeight(){ alert(document.body.clientHeight);}
+function body_height(){ alert(document.body.style.height);}
+function body_scrollHeight(){ alert(document.body.scrollHeight);}
+function body_offsetHeight(){ alert(document.body.offsetHeight);}
+</script>
+
+
+<!--js_Width-->
+<script>
+function out_clientWidth(){ alert(document.getElementById("outBox").clientWidth);}
+function out_width(){ alert(document.getElementById("outBox").style.width);}
+function out_scrollWidth(){ alert(document.getElementById("outBox").scrollWidth);}
+function out_offsetWidth(){ alert(document.getElementById("outBox").offsetWidth);}
+
+function in_clientWidth(){ alert(document.getElementById("inBox").clientWidth);}
+function in_width(){ alert(document.getElementById("inBox").style.width);}
+function in_scrollWidth(){ alert(document.getElementById("inBox").scrollWidth);}
+function in_offsetWidth(){ alert(document.getElementById("inBox").offsetWidth);}
+
+function body_clientWidth(){ alert(document.body.clientWidth);}
+function body_width(){ alert(document.body.style.width);}
+function body_scrollWidth(){ alert(document.body.scrollWidth);}
+function body_offsetWidth(){ alert(document.body.offsetWidth);}
+</script>
+
+
+
+<script>
+$(function(){
+	alert(document.getElementById("outBox").offsetTop);	
+	alert($("#outBox").offset().top);
+});
+</script>
+
+</body>
+</html>

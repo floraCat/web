@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+    <link type="text/css" rel="stylesheet" href="../../css/m/h_reset.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/m/h_global.css" />
+<script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<style>
+xmp{ font-family:微软雅黑; color:#37569C; background:#F6FFF7; padding:0 10px;}
+</style>
+
+<xmp style="font-weight:bold; font-size:16px;">!--break:--</xmp>
+<xmp>     break：立即退出最内层的循环或switch语句；</xmp>
+<a id="break" href="javascript:;">点击测试break</a>
+<xmp>$(function(){
+	$("#break").click(function(){
+		for(i=0;i<5;i++){
+			alert(i);
+			break;
+		}	
+        alert(111);
+	});
+});
+</xmp>
+<script>
+$(function(){
+	$("#break").click(function(){
+		for(i=0;i<5;i++){
+			alert(i);
+			break;
+		}	
+        alert(111);
+	});
+});
+</script>
+
+---------------------------------------------------------
+
+<xmp style="font-weight:bold; font-size:16px;">!--continue:--</xmp>
+<xmp>     continue：不是退出循环，而是转而执行下一次循环；</xmp>
+<a id="continue" href="javascript:;">点击测试continue</a>
+<xmp>$(function(){
+	$("#continue").click(function(){
+		for(i=0;i<5;i++){
+			if(i==1)continue;
+			alert(i);
+		}	
+        alert(222);
+	});
+});
+</xmp>
+<script>
+$(function(){
+	$("#continue").click(function(){
+		for(i=0;i<5;i++){
+			if(i==1)continue;
+			alert(i);
+		}	
+        alert(222);
+	});
+});
+</script>
+
+---------------------------------------------------------
+
+<xmp style="font-weight:bold; font-size:16px;">!--return:--</xmp>
+<xmp>     return：指定函数调用的返回值；函数终止执行；</xmp>
+<a id="return" href="javascript:;">点击测试return</a>
+<xmp>$(function(){
+	$("#return").click(function(){
+		for(i=0;i<5;i++){
+			alert(i);
+			return;
+		}	
+        alert(333);
+	});
+});
+</xmp>
+<script>
+$(function(){
+	$("#return").click(function(){
+		for(i=0;i<5;i++){
+			alert(i);
+			return;
+		}	
+        alert(333);
+	});
+});
+</script>
+
+---------------------------------------------------------
+
+<xmp style="font-weight:bold; font-size:16px;">!--标签语句:--</xmp>
+<xmp>     标签语句：通过给一个语句加标签，就可以给这个语句起一个名字，
+     这样在程序的任何地方都可以使用这个名字来引用它，可以标记任何语句，
+     但是被标记的语句通常是那些循环语句，即while、do/while、for和for/in语句，
+     通常给循环命名，就可以使用break语句和continue语句来退出循环或者循环的某一次迭代。</xmp>
+<a id="label" href="javascript:;">点击测试</a>
+<xmp>$(function(){
+	$("#label").click(function(){
+	  outerloop: 
+	   for (var i = 0; i < 10; i++) 
+	   { 
+		 innerloop:  
+		 for (var j = 0; j < 10; j++) 
+		  { 
+			if (j > 3) 
+			{ 
+			  break; 
+			} 
+			if (i == 2) 
+			{ 
+			  break innerloop; 
+			} 
+			if (i == 4) 
+			{ 
+			  break outerloop; 
+			} 
+			alert("i=" + i + " j=" + j + "<br>"); 
+		  } 
+	   } 
+	});	
+});
+</xmp>
+<script type="text/javascript"> 
+$(function(){
+	$("#label").click(function(){
+	  outerloop: 
+	   for (var i = 0; i < 10; i++) 
+	   { 
+		 innerloop:  
+		 for (var j = 0; j < 10; j++) 
+		  { 
+			if (j > 3) 
+			{ 
+			  break; 
+			} 
+			if (i == 2) 
+			{ 
+			  break innerloop; 
+			} 
+			if (i == 4) 
+			{ 
+			  break outerloop; 
+			} 
+			alert("i=" + i + " j=" + j + "<br>"); 
+		  } 
+	   } 
+	});	
+});
+</script>
+
+
+
+<xmp>
+*********
+控制语句
+*********
+
+条件语句：if -- else if -- switch
+———————————————————————————————————————————
+循环语句：while -- do/while -- for -- for/in
+———————————————————————————————————————————
+跳转语句： 标签语句 -- break -- continue -- return -- throw -- try/catch/finally
+
+</xmp>
+
+
+
+</body>
+</html>

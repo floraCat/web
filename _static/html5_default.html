@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+<body>
+
+<style>
+	.ttl{ border-color:#deeace!important; background-color:#ecf1e7; height:35px; line-height:35px; padding:0 15px 0 10px; font-size:15px; border-top:1px solid; color:#333; text-shadow:1px 1px 1px #fff; background-image:url(style/imgs/icon/same/icon145_1.png); background-size:13px; background-position:8px 11px; margin:15px 0 10px 0; color:#CC0000; font-weight:bold;}
+</style>
+
+
+
+
+<div class="ttl">html5:</div>
+
+
+<article>--article--</article>
+<br>------------------------------------------<br>
+<aside>--aside--</aside>
+<br>------------------------------------------<br>
+<bdi>--bdi--</bdi>
+<br>------------------------------------------<br>
+<canvas>--canvas--</canvas>  <xmp><canvas></xmp>
+<br>------------------------------------------<br>
+<menu>
+	<command onclick="alert('command--没有浏览器支持')">Click Me! (--command--只有IE9支持，位于--menu--元素内，这样command才可见)</command>
+</menu>
+<br>------------------------------------------<br>
+<menu type="toolbar">
+	<menu label="File">
+		<button type="button" onclick="file_new()">--menu--内的--menu--11</button>
+		<button type="button" onclick="file_open()">--menu--内的--menu--12</button>
+	</menu>
+	<menu label="Edit">
+		<button type="button" onclick="edit_cut()">--menu--内的--menu--21</button>
+		<button type="button" onclick="edit_copy()">--menu--内的--menu--21</button>
+	</menu>
+</menu>
+<br>------------------------------------------<br>
+<details>
+	<summary>--details--内的--summary--</summary>
+	<p>--details--内的p</p>
+</details>
+<br>------------------------------------------<br>
+<xmp>--datalist--</xmp>
+<input id="myCar" list="cars" />
+<datalist id="cars">
+  <option value="--datalist--内的option_1">
+  <option value="--datalist--内的option_2">
+</datalist>
+<br>------------------------------------------<br>
+<dialog open>--dialog--这是打开的对话窗口</dialog>
+<br>------------------------------------------<br>
+<embed src="helloworld.swf" />  <xmp><embed></xmp>
+<br>------------------------------------------<br>
+<figure>
+  <figcaption>--figure--内的--figcaption--</figcaption>
+  <img src="shanghai_lupu_bridge.jpg" width="350" height="234" />
+</figure>
+<br>------------------------------------------<br>
+<footer>
+  <p>--footer--内的p</p>
+</footer>
+<br>------------------------------------------<br>
+<header>
+<h1>--header--内的h1</h1>
+</header>
+<br>------------------------------------------<br>
+<form action="demo_keygen.asp" method="get">
+Username: <input type="text" name="usr_name" />
+Encryption(--keygen--): <keygen name="security" />
+<input type="submit" />
+</form>
+<br>------------------------------------------<br>
+<mark>--mark--</mark>
+<br>------------------------------------------<br>
+<meter value="3" min="0" max="10">十分之三</meter>  <xmp>--meter--1</xmp>
+<br>------------------------------------------<br>
+<meter value="0.6">60%</meter>   <xmp>--meter--2</xmp>
+<br>------------------------------------------<br>
+<nav>
+	<a href="#">--nav--内的a_1</a>
+	<a href="#">--nav--内的a_2</a>
+</nav>
+<br>------------------------------------------<br>
+<xmp>--output--</xmp>
+<form oninput="x.value=parseInt(a.value)+parseInt(b.value)">0
+   <input type="range" id="a" value="50">100
+   +<input type="number" id="b" value="50">
+   =<output name="x" for="a b"></output>
+</form>
+<br>------------------------------------------<br>
+<progress value="22" max="100"></progress>    <xmp>--progress--</xmp>
+<br>------------------------------------------<br>
+<xmp>--ruby/rt/rp--</xmp>
+<ruby>
+漢 <rt><rp>(</rp>ㄏㄢˋ<rp>)</rp></rt>
+</ruby>
+<br>------------------------------------------<br>
+<section>
+  <p>--section--内的p</p>
+</section>
+<br>------------------------------------------<br>
+<xmp>--time--</xmp>
+<time>9:00</time>
+<time datetime="2008-02-14">情人节</time>
+<br>------------------------------------------<br>
+<wbr>--wbr--<wbr>
+<br>------------------------------------------<br>
+<xmp>--audio--内的--source--</xmp>
+<audio controls>
+   <source src="horse.ogg" type="audio/ogg">
+   <source src="horse.mp3" type="audio/mpeg">
+ Your browser does not support the audio element.
+</audio> 
+<br>------------------------------------------<br>
+<xmp>--video--内的--track--</xmp>
+<video width="320" height="240" controls="controls">
+  <source src="forrest_gump.mp4" type="video/mp4" />
+  <source src="forrest_gump.ogg" type="video/ogg" />
+  <track kind="subtitles" src="subs_chi.srt" srclang="zh" label="Chinese">
+  <track kind="subtitles" src="subs_eng.srt" srclang="en" label="English">
+您的浏览器不支持 video 标签。
+</video>
+
+</body>
+</html>

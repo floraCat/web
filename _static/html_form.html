@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>form显示效果</title>
+</head>
+<body>
+
+<style>
+	.ttl{ border-color:#deeace!important; background-color:#ecf1e7; height:35px; line-height:35px; padding:0 15px 0 10px; font-size:15px; border-top:1px solid; color:#333; text-shadow:1px 1px 1px #fff; background-image:url(style/imgs/icon/same/icon145_1.png); background-size:13px; background-position:8px 11px; margin:15px 0 10px 0; color:#CC0000; font-weight:bold;}
+</style>
+
+
+
+<div class="ttl">fieldset - legend - form - input - label - select - optgroup - textarea:</div>
+	<fieldset>
+		<legend>legend</legend>
+		<form action="">
+			<label>labelname:
+				<input type="text" name="name" />
+			</label>
+			<br/>
+			<label>labelpassword:
+				<input type="password" name="password" />
+			</label>
+			<br/>				
+			<label>radio:
+				<input type="radio" name="radio"/>
+			</label>
+			<br/>
+			<label>checkbox:
+				<input type="checkbox" />
+			</label>
+			<br/>
+			<label>file:
+				<input type="file" name="file" />
+			</label>
+			<br/>
+			<label>reset:
+				<input type="reset" name="reset" value="reset" />
+			</label>
+			<br/>
+			<label>submit:
+				<input type="submit" name="submit" value="submit" />
+			</label>
+			<br/>
+			<label>hidden:
+				<input type="hidden" name="hidden" />
+			</label>
+			<br/>				
+			<select>
+				<optgroup label="optgroup">
+				<option>option</option>
+				</optgroup>
+			</select>
+			<br/>
+			<t^extarea cols="6" rows="4">textarea</t^extarea>
+		</form>
+	</fieldset>
+
+
+
+<div class="ttl">form & input:</div>
+
+<form name="form" action="abc.php" method="post" target="_self" enctype="multipart/form-data"> 
+
+	<input type="hidden"  id="hiddenField"  name="hiddenField"  value="hiddenvalue" />
+	<input type="text" id="username" name="username" value="uservalue" size="10" maxlength="25" />
+	<input type="password" id="pass" name="pass" value="12345" size="15" maxlength="25" />
+
+	　　<label for="male">男</label>
+	<input type="radio" value="1" id="male" name="sex" checked="checked" />
+	　　<label for="female">女</label>
+	<input type="radio" value="2" id="female" name="sex" />
+	　　<label for="secret">保密</label>
+	<input type="radio" value="3" id="secret" name="sex" disabled="disabled" />
+　　
+		　　<label for="fav1">计算机</label>
+	<input type="checkbox" value="1" id="fav1" name="fav" checked="checked" />
+		　　<label for="fav2">旅游</label>
+	<input type="checkbox" value="2" id="fav2" name="fav" disabled="disabled" />
+		　　<label for="fav3">购物</label>
+	<input type="checkbox" value="3" id="fav3" name="fav" />
+	　　
+		　　<label for="myimage">照片上传</label>
+	<input type="file" id="myimage" name="myimage" size="35" maxlength="255" />
+　　
+	<input type="submit" value="submit" id="submit" name="submit" />
+	<input type="reset" value="reset" id="reset" name="submit" />
+
+</form>
+
+
+
+
+<div class="ttl">select:</div>
+
+	<select size="1" id="select" name="select">
+		<option value="1">很全面,很好</option>
+		<option value="2">一般般吧,还要努力</option>
+		<option value="3">有很多问题,不过还可以</option>
+	</select>
+	<select size="10" multiple="multiple" id="multipleselect" name="multipleselect">
+		<option value="xhtml">XHTML</option>
+		<option value="css" selected="selected">CSS</option>
+		<option value="javascript">JAVASCRIPT</option>
+		<optgroup label="OPTGROUP">
+		<option value="xml">XML</option>
+		<option value="php">PHP</option>
+		<option value="c#">C#</option>
+		<option value="java">JAVA</option>
+		</optgroup>
+		<option value="c++">C++</option>
+		<option value="perl">PERL</option>
+		<option value="jquery">JQUERY</option>
+	</select>
+
+
+
+</body>
+</html>

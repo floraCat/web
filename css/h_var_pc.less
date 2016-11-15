@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+
+/*---颜色---*/
+
+@zs:#e43a3d;
+@-zs:lighten(@zs,15%);
+@zs-:darken(@zs,15%);
+@light:#eee;
+@light-:#aaa;
+@grey:#888;
+@grey-:#555;
+@blk:#333;
+@blk-:#000;
+@red:#e60012;
+@orange:#ff7802;
+
+
+
+/*---变量---*/
+
+/*页面宽*/
+@pageWidth:`document.body.offsetWidth + "px"`;
+.pageWidth{ width:@pageWidth;}
+/*页面高*/
+@pageHeight:`document.body.offsetHeight + "px"`;
+@pageHeight{ height:@pageHeight;}
+
+
+
+/*---常用类---*/
+
+.-w-(@w){ left:50%; width:@w; .boxS; margin-left:-@w/2;}
+.-v-(@h){ top:50%; height:@h; .boxS; margin-top:-@h/2;}
+.hx(@lh,@n){ display:block; overflow:hidden; height:@lh*@n; line-height:@lh;}
+.clr{
+	*display:inline-block;
+	&:after{ content:"."; display:block; height:0; clear:both; visibility:hidden;}
+}
+
+.btn(@h:40px){ display:block; height:@h; line-height:@h; text-align:center; .yj(4px);}
+.input(@h:30px){ width:100%; height:@h; .boxS; padding:3px 5px; line-height:-6+@h;}
+.sel(@h:30px){ width:100%; height:@h; .boxS; padding:0 5px; line-height:@h;}
+.area(@lh:20px,@n:5){ display:block; width:100%; height:@lh*5+8; .boxS; padding:3px 5px; line-height:@lh;}
+
+.z9{ z-index:9;} //
+.z90{ z-index:90;} //
+.z99{ z-index:99;} // 覆盖层
+.z990{ z-index:990;} // 头部 | 底部
+.z999{ z-index:999;} // 弹窗
+
+/*省略号*/
+.e-{ display:block; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; -o-text-overflow:ellipsis;} 
+/*宽高包含内边距和边框*/
+.boxS{ box-sizing:border-box; -o-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+/*透明度*/
+.opa(@opa){ opacity:@opa; -o-opacity:@opa; -moz-opacity:@opa; -webkit-opacity:@opa; @opa-ie:(@opa*100); filter:~"alpha(opacity=@{opa-ie})";}
+/*圆角*/
+.yj(@yj){ border-radius:@yj; -o-border-radius:@yj; -moz-border-radius:@yj; -webkit-border-radius:@yj;}
+/*阴影*/
+.sd(@sd){ box-shadow:@sd; -o-box-shadow:@sd; -moz-box-shadow:@sd; -webkit-box-shadow:@sd;}
+/*内阴影*/
+.sdIn(@sdIn){ box-shadow:@sdIn inset; -o-box-shadow:@sdIn inset; -moz-box-shadow:@sdIn inset; -webkit-box-shadow:@sdIn inset;}
+/*字体阴影*/
+.sdTxt(@sdTxt:1px 1px #e5e5e5){ text-shadow:@sdTxt; -o-text-shadow:@sdTxt; -moz-text-shadow:@sdTxt; -webkit-text-shadow:@sdTxt;}
+
+
+

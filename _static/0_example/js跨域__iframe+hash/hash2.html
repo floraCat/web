@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js中的跨域</title>
+</head>
+<body>
+hash2:
+<!-- 假设此文件为与hash1.html不同域名下的文件
+而此iframe调的hash3是与hash1.html同域名下的文件 -->
+
+<iframe id="iframe2" src="hash3.html"></iframe>
+
+
+<script>
+	var oIframe2=document.getElementById("iframe2");
+	var src_iframe=oIframe2.src+self.location.hash;
+	oIframe2.src=src_iframe; //hash2的哈希值加到hash3里
+</script>
+
+</body>
+</html>

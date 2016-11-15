@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>内页</title>
+<link rel="stylesheet" type="text/css" href="sys_resource/css/base.css" />
+<link rel="stylesheet" type="text/css" href="sys_resource/css/layout.css" />
+<script type="text/javascript" src="sys_resource/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="sys_resource/js/sort.js"></script>
+<script type="text/javascript" src="sys_resource/js/mod.js"></script>
+</head>
+
+<body class="List_body">
+<input type="hidden" name="col" value="<{$smarty.get.col}>" />
+
+<style>
+.List_body .Img{ padding:20px 0;}
+.List_body .Img li{ float:left; width:20%; border:#e5e5e5 2px solid; box-sizing:border-box; width:100px; height:100px; background-color:#f5f5f5; position:relative; overflow:visible;}
+.List_body .Img li a{ display:block; width:96px; height:96px;}
+.List_body .Img li a i{ display:table-cell; width:96px; height:96px; vertical-align:middle; text-align:center;}
+.List_body .Img li a.on{ background-color:#FF9900;}
+.List_body .Img li img{ width:auto;}
+.List_body .mark{ position:absolute; right:0; top:0; width:100%; height:100%; display:none;}
+.List_body .mark .bg{ position:absolute; top:0; left:0; width:100%; height:100%; background-color:#000; opacity:.3; -webkit-opacity:.3;}
+.List_body .mark mark{ width:18px; height:18px; border:2px solid; border-radius:10px; -webkit-border-radius:10px; float:right; margin-left:5px; text-align:center; line-height:18px; color:#fff; font-size:12px; font-weight:bold; position:relative;}
+.List_body .mark .I1{ background-color:#CC0000!important;}
+.List_body .mark .I2{ background-color:#FF6600!important;}
+.List_body .mark .I3{ background-color:#003366!important;}
+.List_body li .info{ position:absolute; top:0; left:0; width:200px; height:150px; padding:2%; z-index:999; display:none;}
+.List_body li .info .bg{ position:absolute; top:0; left:0; width:100%; height:100%; background-color:#000; opacity:.8; -webkit-opacity:.8;}
+.List_body li .info dl{ position:relative; color:#000; height:15px; line-height:15px; color:#fff; white-space:nowrap; overflow:visible;}
+.List_body li .info dl.pic{ margin-left:-50px;}
+.List_body .show_info{ display:block; width:10px; height:10px; position:absolute; right:0; bottom:0; background-color:#CC0000; z-index:999; display:none;}
+</style>
+
+<div class="wrap Img v">
+	<div class="list Btns v">
+	<{section name=list loop=$rsList}>
+		<li>
+			<a id="<{$rsList[list].id}>" href="javascript:;">
+				<i><img src="<{$rsList[list].pic}>" /></i>
+				<div class="mark">
+					<b class="bg"></b>
+					<{if $rsList[list].mark}><mark class="I1">#</mark><{/if}>
+					<{if $rsList[list].label}><mark class="I2"><{$rsList[list].label}></mark><{/if}>
+					<{if $rsList[list].grade}><mark class="I3"><{$rsList[list].grade}></mark><{/if}>
+				</div>
+			</a>
+			<i class="show_info"></i>
+			<div class="info">
+			<b class="bg"></b>
+				<dl>类型：<{$rsList[list].type}></dl>
+				<dl>特点：<{$rsList[list].feature}></dl>
+				<dl>风格：<{$rsList[list].style}></dl>
+				<dl>色调：<{$rsList[list].color}></dl>
+				<dl>格式：<{$rsList[list].format}></dl>
+				<dl class="pic"><{$rsList[list].pic}></dl>
+				<dl>宽度：<{$rsList[list].width}></dl>
+				<dl>高度：<{$rsList[list].height}></dl>
+				<dl>PS源：<{$rsList[list].original}></dl>
+			</div>
+		</li>
+	<{/section}>
+	</div><!--list end-->
+</div>
+
+<script>
+$(function(){
+	$(".List_body .Img li").hover(function(){
+		$(this).children(".show_info").toggle();
+	});
+	$(".List_body .Img .show_info").click(function(){
+		$(this).siblings(".info").show();
+	});
+	$(".List_body .Img li .info").hover(function(){
+		$(this).show();
+	},function(){
+		$(this).hide();
+	});
+});
+</script>
+
+
+<!--分页 start-->
+<div class="pagelist">
+	<div class="page101 pageAH fl">
+	<{$pagehtml}>
+	</div>
+</div><!--pagelist end-->
+<!--分页 end-->
+
+
+
+</body>
+</html>

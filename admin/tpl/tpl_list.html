@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title> 
+<link href="css/base.css" rel="stylesheet" type="text/css" /> 
+<link href="css/layout.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/sort.js"></script>
+</head>
+<body>
+
+<div class="Main">
+<input type="hidden" name="col" value="<{$smarty.get.col}>" />
+
+
+
+
+<!--增加条目-->	
+	
+	<div class="Add List" style="display:none;">
+	
+		<ol class="zd4">
+			<li style="width:40px;">序号</li>
+			<{section name=hd start=1 loop=$Field_list_name}>
+			<li style="width:<{$Field_list_width[hd]}>px;"><{$Field_list_name[hd]}></li>
+			<{/section}>
+			<li style="width:80px;">操作</li>
+		</ol>
+		
+		<form action="manage.php?col=<{$smarty.get.col}>&add=add_quick" method="post" enctype="multipart/form-data" style="width:100%;">
+		<input type="hidden" name="addLen" value="0" />
+		
+			<ul>
+				<li style="width:40px;">0</li>
+				<{section name=list2 start=1 loop=$Field_list}>
+				<li><input style="width:<{$Field_list_width[list2]}>px" type="text" name="<{$Field_list[list2]}>0" value="" /></li>
+				<{/section}>
+				<li style="width:80px;">
+					<a class="addDel" href="javascript:;">删除</a>
+				</li>
+				<{if $smarty.get.col=="imgs"}>
+				<li class="Li_pic">
+					<input type="hidden" class="pic_on" name="pic_on_0" value="" />
+					<p><span>bg</span><input type="file" name="bg0" /></p>
+					<p><span>icon</span><input type="file" name="icon0" /></p>
+					<p><span>img</span><input type="file" name="img0" /></p>
+					<p><span>other</span><input type="file" name="other0" /></p>
+					<b><input type="text" name="pic_add0" value="" /></b>
+				</li>
+				<{/if}>
+			</ul><!--0-->
+			
+			<ul class="hidden">
+				<li style="width:40px;">1</li>
+				<{section name=list2 start=1 loop=$Field_list}>
+				<li><input style="width:<{$Field_list_width[list2]}>px" type="text" name="<{$Field_list[list2]}>1" value="" /></li>
+				<{/section}>
+				<li style="width:80px;">
+					<a class="addDel" href="javascript:;">删除</a>
+				</li>
+				<{if $smarty.get.col=="imgs"}>
+				<li class="Li_pic">
+					<input type="hidden" class="pic_on" name="pic_on_1" value="" />
+					<p><span>bg</span><input type="file" name="bg1" /></p>
+					<p><span>icon</span><input type="file" name="icon1" /></p>
+					<p><span>img</span><input type="file" name="img1" /></p>
+					<p><span>other</span><input type="file" name="other1" /></p>
+					<b><input type="text" name="pic_add1" value="" /></b>
+				</li>
+				<{/if}>
+			</ul><!--1-->
+
+			<ul class="hidden">
+				<li style="width:40px;">2</li>
+				<{section name=list2 start=1 loop=$Field_list}>
+				<li><input style="width:<{$Field_list_width[list2]}>px" type="text" name="<{$Field_list[list2]}>2" value="" /></li>
+				<{/section}>
+				<li style="width:80px;">
+					<a class="addDel" href="javascript:;">删除</a>
+				</li>
+				<{if $smarty.get.col=="imgs"}>
+				<li class="Li_pic">
+					<input type="hidden" class="pic_on" name="pic_on_2" value="" />
+					<p><span>bg</span><input type="file" name="bg2" /></p>
+					<p><span>icon</span><input type="file" name="icon2" /></p>
+					<p><span>img</span><input type="file" name="img2" /></p>
+					<p><span>other</span><input type="file" name="other2" /></p>
+					<b><input type="text" name="pic_add2" value="" /></b>
+				</li>
+				<{/if}>
+			</ul><!--2-->
+
+			<div class="btns" style="width:100%;">
+				<a class="addBtn zd4 zb2 fl" href="javascript:;">增加条目</a>
+				<input type="hidden" name="act" value="save" />
+				<a class="addSave zd4 zb2 fr" href="javascript:;">保存</a>
+				<{if $smarty.get.col=="mode"}>
+				<a class="save_by_file_for_mode zd4 zb2 fr" href="javascript:;" style="margin-right:5px;">另类保存</a>
+				<{/if}>
+			</div><!--save end-->
+			<script>
+			$(function(){
+				$(".Add .save_by_file_for_mode").click(function(){
+					$(".Add form").attr("action","manage.php?col=mode&add=add_quick&save_mode=save_by_file");
+					$(".Add form").submit();
+				});
+			});
+			</script>
+			
+			
+		</form>
+		
+
+	</div><!--Add end-->
+	
+	<script>
+			$(document).ready(function(){
+			
+				$(".Li_pic p span").click(function(){ //Add点击图片上传按键
+					$(this).siblings("input").click();
+				});
+				
+				$(".Li_pic p").change(function(){
+					pic_on=$(this).find("span").text();
+					$(this).siblings(".pic_on").val(pic_on);
+				});
+
+				//Add_增加条目
+				$(".addBtn").click(function(){
+					$(".Add .hidden:first").removeClass("hidden");
+					var addLen=$("input[name='addLen']").val();
+					var addLen=parseInt(addLen)+1;
+					$("input[name='addLen']").val(addLen);
+				});
+				
+				//Add_删掉条目
+				$(".addDel").click(function(){
+					$(this).parents("ul").remove();
+				});
+				
+				//Add_保存
+				$(".addSave").click(function(){
+					$(".Add .hidden").remove();
+					$(".Add form").submit();
+				});
+				
+				//切换Add部分
+				$(".add_quick").click(function(){
+					$(".Add").toggle();
+				});
+				
+			})/*ready end*/
+			
+	</script>
+
+
+
+
+
+
+
+
+<div class="Tabs">
+
+<!--排序组 start-->
+
+	<div class="Sort cd3 cb2A fl">
+
+		<div class="return fl"><a>还原<br/>默认</a></div>
+		<div class="block_add fr">
+			<a class="add_quick" href="javascript:;">快速添加</a>
+			<a class="add_default" href="manage.php?col=<{$smarty.get.col}>&act=edit">默认添加</a>
+		</div>
+			
+		<div class="main fl">
+		
+			<div class="top">
+			
+					<ol class="top_lt fl">
+	
+								<li class="btn" id="grade">
+									<span>按等级排序：</span>
+									<a data-role="1">高</a>
+									<a data-role="0">中</a>
+									<a data-role="-1">低</a>
+								</li>
+								<li class="btn" id="label">
+									<span>按标识排序：</span>
+									<a data-role="a">a</a>
+									<a data-role="b">b</a>
+									<a data-role="c">c</a>
+									<a data-role="">无</a>
+								</li>
+								<li class="btn" id="mark">
+									<span>按标注排序：</span>
+									<a data-role="1">有</a>
+									<a data-role="0">没有</a>
+								</li>
+						
+					</ol><!--top_lt end-->
+			
+					<ol class="top_rt fr">
+					
+							<div class="search">
+									<div class="cats">
+										<span>选范围</span>
+										<ul>
+											<a href="javascript:;" data-role="title">标题</a>
+											<a href="javascript:;" data-role="description">描述</a>
+											<a href="javascript:;" data-role="content">正文</a>
+										</ul>
+										<a class="key" href="javascript:;"><s>></s></a>
+									</div>
+									<div class="keyword"><input type="text" id="" name="" /></div>
+									<div class="btn"><a class="submit">></a></div>
+							</div><!--search end-->
+							
+							<script>
+							$(document).ready(function(){
+								$(".Sort .search .key").click(function(){
+									$(this).siblings("ul").toggle();
+								});
+								$(".Sort .search ul a").click(function(){
+									var cat=$(this).text();
+									$(this).parent().siblings("span").text(cat);
+									$(this).parent().hide();
+									var name=$(this).attr("data-role");
+									$(this).parents(".search").find(".keyword input").attr("name",""+name+"");
+									$(this).parents(".search").find(".keyword input").attr("id",""+name+"");
+								});
+							});
+							</script>
+					
+					</ol><!--top_rt end-->
+			
+			</div><!--top end-->
+			
+			<div class="btm">
+			
+					<ol class="btm_lt fl">
+	
+					</ol><!--btm_lt end-->
+				
+					<ol class="btm_rt fr">
+					
+							<div class="btn" id="sortway">
+								<a class="fl" data-role="">按首字母排序</a>
+								<a class="fl" data-role="id">按录入时间排序</a>
+								<a class="fl" data-role="update_time">按更新时间排序</a>
+								<a class="fl" data-role="rand()">随机排序</a>
+							</div><!--sortway-->
+							
+					</ol><!--btm_rt end-->
+	
+			</div><!--btm end-->
+			
+		</div><!--main end-->
+
+		<!--自定义排序 start-->
+		<div class="sort_self">
+		
+	<!--type-->
+			<{if $Field_.type}>
+				<div class="switch_sortkey" id="type">
+					<span><label class="fl">类型</label><b>></b></span>
+					<{if $sort_type}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=type loop=$sort_type}>
+								<a data-role="<{$sort_type[type]}>"><{$sort_type[type]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+
+	<!--type2-->
+			<{if $col=="mode"}>
+				<div class="switch_sortkey" id="type">
+					<span><label class="fl">手机端</label><b>></b></span>
+					<{if $sort_type2}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=type2 loop=$sort_type2}>
+								<a data-role="<{$sort_type2[type2]}>"><{$sort_type2[type2]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+
+	<!--feature-->
+			<{if $Field_.feature}>
+				<div class="switch_sortkey" id="feature">
+					<span><label class="fl">特点</label><b>></b></span>
+					<{if $sort_feature}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=feature loop=$sort_feature}>
+								<a data-role="<{$sort_feature[feature]}>"><{$sort_type[feature]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+			
+	<!--style-->
+			<{if $Field_.style}>
+				<div class="switch_sortkey" id="style">
+					<span><label class="fl">风格</label><b>></b></span>
+					<{if $sort_style}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=style loop=$sort_style}>
+								<a data-role="<{$sort_style[style]}>"><{$sort_style[style]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+
+	<!--keywords-->
+			<{if $Field_.keywords}>
+				<div class="switch_sortkey" id="keywords">
+					<span><label class="fl">关键字</label><b>></b></span>
+					<{if $sort_keywords}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=keywords loop=$sort_keywords}>
+								<a data-role="<{$sort_keywords[keywords]}>"><{$sort_keywords[keywords]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+			
+	<!--color-->
+			<{if $Field_.color}>
+				<div class="switch_sortkey" id="color">
+					<span><label class="fl">色调</label><b>></b></span>
+					<{if $sort_color}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=color loop=$sort_color}>
+								<a data-role="<{$sort_color[color]}>"><{$sort_color[color]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+			
+	<!--format-->
+			<{if $Field_.format}>
+				<div class="switch_sortkey" id="format">
+					<span><label class="fl">格式</label><b>></b></span>
+					<{if $sort_format}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=format loop=$sort_format}>
+								<a data-role="<{$sort_format[format]}>"><{$sort_format[format]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+			
+	<!--attr-->
+			<{if $Field_.attr}>
+				<div class="switch_sortkey" id="attr">
+					<span><label class="fl">属性</label><b>></b></span>
+					<{if $sort_attr}>
+					<div class="ul">
+						<ul class="cb2 display_sortkey btn">
+							<{section name=attr loop=$sort_attr}>
+								<a data-role="<{$sort_attr[attr]}>"><{$sort_attr[attr]}></a>
+							<{/section}>
+						</ul>
+					</div>
+					<{/if}>
+				</div>
+			<{/if}>
+
+		</div><!--self_sort end-->
+		<!--自定义排序 end-->
+		
+	</div><!--Sort end-->
+	
+<!--排序组 end-->
+	
+	
+</div><!--Tabs end-->
+	
+	
+<!--列表主体-->	
+	<iframe name="tpl_list_body" id="tpl_list_body" src="manage.php?act=list&col=<{$smarty.get.col}>&block=list" width="1024" height="560" frameborder=0></iframe>
+			
+			
+</div><!--Main end-->
+
+
+</body>
+</html>

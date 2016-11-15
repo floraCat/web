@@ -1,0 +1,157 @@
+@charset "utf-8";
+
+
+/*login*/
+.login{ height:500px;}
+.login .top{ height:43px;}
+.login .con{ width:560px; padding:0 20px; margin:150px auto 0; background-color:#fff; border:1px solid; outline:5px solid;}
+.login .con .hd{ margin-bottom:20px;}
+.login .con .hd h1{ font:bold 16px/48px 微软雅黑; color:#333;}
+.login .con .hd a{ line-height:48px; color:#888;} 
+.login .con .lt{ width:280px; height:120px;}
+.login .con .rt{ width:192px; height:120px; padding:10px 20px 15px 0;}
+	.loginform{ font:normal 12px/30px 微软雅黑;}
+	.loginform .p{ margin-bottom:5px; _float:left;}
+	.loginform input{ width:120px; height:24px; padding:2px; border:1px solid; background-color:#fff; _float:left;}
+	.loginform input[type='button']{ float:right; width:60px; height:30px; text-align:center; color:#fff; margin-top:10px; cursor:pointer;}
+	.loginform label{ float:left; height:30px; line-height:30px;}
+.login_modify{ position:relative;}
+.login_modify .con{ width:260px;}
+.login_modify .mark{ position:absolute; top:80px; left:120px;}
+.login_modify .con .rt{ width:200px; padding:25px 35px 10px 0;}
+
+
+/*admin_top*/
+.t003{ height:74px;}
+.t003_{ height:68px; padding:0 15px;}
+.t003 .lt{ padding:15px 0 0 15px;}
+.t003 .rt{ margin-top:17px; height:100%;}
+.t003 .rt a{ display:block; float:left; padding:0 25px; height:30px; line-height:30px; border:1px dashed; margin-right:3px;}
+
+
+/*admin_left*/
+.ns001a{ width:98%;}
+.ns001a .hd{ height:45px; font:bold 15px/43px 微软雅黑; text-indent:10px; color:#333;}
+.ns001a .hd_{ width:100%; height:28px; border-bottom:#fff 1px solid;}
+.ns001a .hd_ .lt{ height:28px; font:bold 14px/28px 微软雅黑; border-left:3px solid; text-indent:10px;}
+.ns001a ul{ padding:15px 0 15px 5%; width:95%;}
+.ns001a li{ float:left; width:72px; padding:3px 6px; overflow:visible;}
+.ns001a li a{ display:block; width:100%; height:28px; font:normal 13px/28px 微软雅黑; text-align:center; border-top:#fff 1px solid; border-left:#fff 1px solid; color:#444;}
+.ns001a li a:hover{ background-color:#fff9ee; color:#F2A384; font-weight:bold; box-shadow:1px 1px 2px #F2A384!important; -webkit-box-shadow:1px 1px 2px #F2A384!important; -moz-box-shadow:1px 1px 2px #F2A384!important;}
+.ns001a .bold{ font-weight:bold;}
+
+
+/*admin_right*/
+.Main{ /*max-width:1024px;*/ padding:0 0 0 10px; margin:15px auto; overflow:visible;}
+
+
+	.Ttl{ width:99%; text-indent:10px; height:30px; border:1px solid; margin-bottom:15px;}
+
+
+	/*当页增加条目*/
+	.Add{ padding-bottom:5px; margin-bottom:10px; border-bottom:1px #ccc dashed;}
+	.Add ul{ position:relative; background-color:#FFF9EE;}
+	.Add ul input{ background-color:#FFF9EE;}
+	.Li_pic{ position:absolute; top:0; left:272px; width:260px; padding-right:3px; height:26px; margin-top:2px; border-right:none!important; border-bottom:none!important;}
+	.Li_pic p{ float:left; width:42px; height:26px; margin-right:2px; position:relative;}
+	.Li_pic p span{ float:left; width:40px; height:22px; line-height:22px; border:#ddd 1px solid; background-color:#f5f5f5; cursor:pointer;}
+	.Li_pic p input{ position:absolute; left:0; top:0; width:40px; visibility:hidden;}
+	.Li_pic b{ float:right; width:82px; height:22px; line-height:22px; border:#ddd 1px solid;}
+	.Li_pic b input{ width:82px; height:22px; background-color:#fff;}
+	.Add .btns{ padding-top:5px;}
+	.Add .btns a{ display:block; padding:0 30px; height:30px; font:bold 12px/30px 微软雅黑; border:1px solid;}
+
+
+		/*排序组*/
+		.Tabs{ float:left; width:1024px; height:88px; margin:0 auto; font:normal 12px/32px 微软雅黑; margin:15px auto 10px; position:relative;}
+		.Tabs,.Tabs *{ overflow:visible;}
+				.Sort{ border:#fef0d5 4px solid; width:1016px; height:80px; position:relative;}
+				.Tabs a{ display:inline-block; font:bold 14px/30px 微软雅黑; background-color:#fff; text-align:center;}
+				.Tabs .on,.Tabs a:hover{ background-color:#FFFF66; cursor:pointer;}
+				.Tabs .return a{ border:#ddd 1px solid; margin:5px 15px 5px 5px; width:50px; height:52px; line-height:26px; padding:8px 0;}
+				.Tabs .block_add{ width:81px; padding:2px 5px;}
+				.Tabs .block_add a{ border:#ddd 1px solid; margin:3px; width:71px; height:20px; line-height:20px; padding:5px 0; font-weight:normal;}
+				.Tabs .main{ width:853px;}
+				.Tabs .top{ height:35px; padding:5px 5px 0 0;}
+				.Tabs .top_lt li{ float:left; margin-right:10px;}
+				.Tabs .top_lt span{ float:left;}
+				.Tabs .top_lt li a{ float:left; padding:0 8px; min-width:14px; height:30px; border:#ddd 1px solid; margin-right:5px;}
+				.Tabs .search{ height:30px; border:#ddd 1px solid; width:250px; position:relative;}
+				.Tabs .search .cats{ width:69px; height:30px; float:left; border-right:#ddd 1px solid; background-color:#f8f8f8; text-indent:5px; position:relative;}
+				.Tabs .search .cats .key{ position:absolute; right:1px; top:0; width:15px; height:30px; line-height:30px; border-left:1px solid #ddd; text-align:center;}
+				.Tabs .search .cats ul{ position:absolute; top:31px; left:-1px; width:69px; border-left:#ddd 1px solid; border-right:#ddd 1px solid; display:none;}
+				.Tabs .search .cats ul a{ display:block; width:69px; height:24px; border-bottom:#ddd 1px solid; font-size:12px; font-weight:normal; text-align:left;}
+				.Tabs .search .keyword{ float:left; width:149px; border-right:#ddd 1px solid; height:30px;}
+				.Tabs .search .keyword input{ width:143px; height:24px; padding:3px;}
+				.Tabs .search .submit{ float:left; display:block; width:30px; height:30px; font:bold 14px/30px "宋体"; text-align:center;}
+				.Tabs .btm{ height:35px; padding:3px 5px 0 0;}
+				.Tabs .btm a{ float:left; height:30px; border:#ddd 1px solid; padding:0 8px; margin-left:5px; padding:0 10px; font-size:12px;}
+				.Tabs .sort_self{ position:absolute; top:43px; left:72px;}
+				.Tabs .switch_sortkey{ float:left; margin-right:5px; max-width:120px;}
+				.Tabs .switch_sortkey span{ display:block; float:left; padding:0 8px; height:30px; font:bold 12px/30px 微软雅黑; border:#ddd 1px solid; background-color:#fff; cursor:pointer;}
+				.Tabs .switch_sortkey span b{ float:right; font:bold 16px/30px "宋体"; padding-left:8px; margin-left:8px; border-left:#eee 1px solid;}
+				.Tabs .switch_sortkey .ul{ position:relative; float:left;}
+				.Tabs .switch_sortkey ul{ display:none; position:absolute; top:0; left:0; width:243px; border-left:1px solid; border-top:1px solid; z-index:99;}
+				.Tabs .switch_sortkey .alpha{width:246px; border-top:#ddd 1px solid; border-left:#ddd 1px solid;}
+				.Tabs .switch_sortkey .alpha a{ float:left; width:40px; height:40px; border-right:#ddd 1px solid; border-bottom:#ddd 1px solid; font:bold 16px/40px 微软雅黑; border-left:none; border-top:none; padding:0; margin-right:0;}
+				.Tabs .switch_sortkey ul a{ float:left; width:80px; height:30px; border-right:#ddd 1px solid; border-bottom:#ddd 1px solid; font:bold 14px/30px 微软雅黑; border-left:none; border-top:none; padding:0; margin-right:0;}
+
+
+	
+	/*list*/
+	.List{ float:left; width:1024px; color:#888;}
+		.List .no_line{ border:none!important;}
+		.List ol{ float:left; border-top:#c5d695 1px solid; border-left:#c5d695 1px solid;}
+		.List ul{ float:left; width:100%; border-left:#c5d695 1px solid;}
+		.List ul:hover{ background-color:#FF9900;}
+		.List li{ float:left; height:28px; line-height:28px; text-align:center; overflow:hidden; border-right:#c5d695 1px solid; border-bottom:#c5d695 1px solid;}
+		.List ol li{ color:#555;}
+		
+		.List form{ float:left;}
+		.List form input{ text-align:center; height:24px;}
+		.List form.Input{ background-color:#FFF9EE;}
+		.List form.Input input{ text-align:left; background-color:#FFF9EE;}
+		.List ul{ position:relative;}
+		.List ul li.last{ text-align:left; text-indent:10px; position:relative;}
+		.List ul li.last input{ background-color:transparent; cursor:pointer;}
+		.List .listDel{ position:absolute; right:5px; top:2px; width:24px; background-color:transparent; cursor:pointer;}
+		.mod_quick{ position:absolute; top:0; left:2px; height:14px!important; line-height:14px!important;}
+		.mod_quick:hover{ color:#CC0000!important;}
+		.btn_save{ position:absolute; top:0; left:2px; height:14px!important; line-height:14px!important;}
+		.mod_default{ display:block; position:absolute; bottom:0; left:2px; height:14px!important; line-height:14px!important; text-indent:0!important;}
+
+
+
+	/*pagelist*/
+	.pagelist{ width:99%; padding:15px 1% 0 0;}
+	.page101 li{ float:left; color:#aaa; margin-right:5px;}
+	.page101 a{ display:block; padding:4px 10px; border:#c5d695 1px solid; background-color:#f1f7de; color:#666;}
+	.page101 span{ display:block; float:left; padding:4px 10px; border:#ddd 1px solid; color:#bbb;}
+	.page101 a:hover{ background-color:#fff;}
+	.pageinfo{ display:block; line-height:34px;}
+	
+	
+	
+	/*edit*/
+	.editpage{ width:99%; min-height:1000px; border:1px solid; line-height:26px; position:relative;}
+	.editpage li{ padding:7px 0; border-bottom:#c5d695 1px dotted; color:#aaa; _zoom:1;}
+	.editpage li.Pic .Right{ position:relative; height:27px; text-align:center;}
+	.editpage .Li_pic{ left:0;}
+	.editpage .Left{ float:left; width:8%; text-indent:10px; font:normal 14px/26px 微软雅黑; color:#444;}
+	.editpage .Right{ float:left; width:92%;}
+	.editpage .Right em{ font:bold 12px/26px 微软雅黑; color:#333; margin-right:12px;}
+	.editpage .Right .img{ border:1px dashed; margin-right:12px;}
+	.editpage .Right label{ float:left; color:#666;}
+	.editpage .Right .input{ float:left; width:350px; height:22px; line-height:22px; padding:2px; border:1px solid; margin-right:12px; background-color:#fff;}
+	.editpage .Right.short .input{ width:120px;}
+	.editpage .Right.long .input{ width:650px;}
+	.editpage .Right .css_checkbox{ width:30px; margin:2px 10px 2px 0;}
+	.editpage .Right .css_file{ width:180px!important;}
+	.editpage .Right .css_textarea_desc{ float:left; width:80%; padding:0.5%; height:130px; border:1px solid; margin-right:12px;}
+	.editpage .Right .css_textarea_con{ float:left; width:98%; height:300px;}
+	.editpage .Right.long .css_textarea_con{ height:1200px; font-family:Consolas; color:#003399; padding:5px;}
+	.editpage .Right select.select_catid{ width:120px; height:26px; line-height:26px; margin-right:12px;}
+	.editpage .btn input{ width:80px; height:32px; text-align:center; color:#333; float:right; margin:5px 17% 5px 0; padding:0; font:normal 14px/28px 微软雅黑; cursor:pointer;}
+	.editpage .picture{ position:absolute; top:30px; right:30px; width:200px; height:200px; display:table-cell; vertical-align:middle; text-align:center;}
+	.editpage .picture img{ width:auto; height:auto; max-width:200px; max-height:200px; vertical-align:middle;}
+	

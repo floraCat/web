@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+    <link type="text/css" rel="stylesheet" href="../../css/m/h_reset.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/m/h_global.css" />
+<script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+
+<xmp style="font-family:微软雅黑; font-size:13px; line-height:24px;">
+参考网址：http://blog.wangdaodao.com/2015-04-21/hello-gulp.html
+------------------------------------------------------------------
+
+dos根目录转到e盘：
+e: 回车
+
+转到本盘下的目录：
+cd AppServ\www\node\test
+
+最后执行里面的js文件：
+test2.js
+
+(上面两部可以用以下一句代替：AppServ\www\node\test\test2.js回车)
+(如测试根目录，输入node test2.js回车)
+
+------------------------------------------------------------------
+
+gulp安装到全局：
+npm install -g gulp
+再安装到根目录：
+npm install gulp --save-dev
+
+------------------------------------------------------------------
+
+gulp内的模块安装：
+npm install gulp-less gulp-minify-css gulp-uglify gulp-imagemin --save dev
+
+------------------------------------------------------------------
+
+各模块功能：
+[gulp-less:less编译成css]
+[gulp-minify-css:压缩css]
+[gulp-uglify:压缩js]
+[gulp-imagemin:压缩图片]
+
+------------------------------------------------------------------
+
+gulp如不指明文件名默认被执行文件为gulpfile.js，
+如不指明任务名默认被执行名为default的任务；
+
+------------
+
+gulpfile.js内输入以下执行任务脚本:
+
+------------
+
+//加载相应模块
+var gulp = require('gulp'),
+    less = require('gulp-less'),
+    minifycss = require('gulp-minify-css'),
+    uglify = require('gulp-uglify'),
+    imagemin = require('gulp-imagemin');
+
+------------
+
+// less编译
+gulp.task('less', function() {
+    return gulp.src('less/media.less')
+    .pipe(less())
+    .pipe(gulp.dest('less2'))
+});
+
+------------
+
+// css压缩
+gulp.task('css', function() {
+    return gulp.src('css/media.css')
+    .pipe(minifycss())
+    .pipe(gulp.dest('css2'))
+});
+
+------------
+
+// js压缩
+gulp.task('js', function() {
+    return gulp.src('js/h_base.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('js2'))
+});
+
+------------
+
+// img压缩_单个
+gulp.task('img', function() {
+    return gulp.src('imgs/aaa.png')
+    .pipe(imagemin())
+    .pipe(gulp.dest('imgs2'))
+});
+
+------------
+
+// img压缩_整文件夹
+gulp.task('imgs', function() {
+    return gulp.src('images/*.{png,jpg,gif}')
+    .pipe(imagemin())
+    .pipe(gulp.dest('images2'))
+});
+
+------------
+
+gulp.task('default',['task1','task2'],function(){...});
+
+任务执行顺序：task1 > task2 > default
+
+------------
+
+cmd输入 gulp 执行default任务，以上即执行task1 > task2 > default
+
+------------
+
+执行单个任务：
+gulp less
+
+------------------------------------------------------------------
+
+自定义兼容IE的gulpfile.js文件：
+------------
+IE8及以下版本不支持less，为了测试此兼容，在先用js把style截取放到新less文件，
+再执行gulp任务来编译成css，同时copy一个测试html并让其调用css文件；
+---/000/web/_static/for_review/gulpfile备份的gulpfile.js已有实现上述功能的完备代码；
+
+---------------------------------------------------------
+
+关于环境变量：
+------------
+win7-->计算机右击->属性->左栏高级系统设置->高级/环境变量
+--分为“用户变量” & "系统变量";
+--在PATH后面添加对应的路径来添加环境变量；
+
+---------------------------------------------------------
+
+</xmp>
+
+
+
+</body>
+</html>

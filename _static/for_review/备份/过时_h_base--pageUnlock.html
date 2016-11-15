@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+    <link type="text/css" rel="stylesheet" href="../../css/m/h_reset.css" />
+    <link type="text/css" rel="stylesheet" href="../../css/m/h_global.css" />
+<script type="text/javascript" src="../../js/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+
+<br><br>
+
+
+!--锁屏1_(限手机滑动)--<br>
+-----------------------------
+<a class="pLock1">点击锁屏1</a>
+<a class="pUnlock1 fixed zs z99 hide" style=" top:100px; left:50%;">点击解锁1</a>
+<script>
+$(function(){
+	$(".pLock1").click(function(){
+		$.CAT.pageLock1();	
+		$(".pUnlock1").show();
+	});
+	$(".pUnlock1").click(function(){
+		$.CAT.pageUnlock1();	
+		$(".pUnlock1").hide();
+	});
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+!--锁屏2_(限手机滑动)--<br>
+-----------------------------
+<a class="pLock2">点击锁屏2</a>
+<a class="pUnlock2 fixed zs z99 hide" style=" top:100px; left:50%;">点击解锁2</a>
+<script>
+$(function(){
+	$(".pLock2").click(function(){
+		$.CAT.pageLock2();	
+		$(".pUnlock2").show();
+	});
+	$(".pUnlock2").click(function(){
+		$.CAT.pageUnlock2();	
+		$(".pUnlock2").hide();
+	});
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+
+
+!--锁屏3_(限PC滚动)--<br>
+-----------------------------
+<a class="pLock3">点击锁屏3</a>
+<a class="pUnlock3 fixed zs z99 hide" style=" top:100px; left:50%;">点击解锁3</a>
+<script>
+$(function(){
+	$(".pLock3").click(function(){
+		$.CAT.pageLock3();	
+		$(".pUnlock3").show();
+	});
+	$(".pUnlock3").click(function(){
+		$.CAT.pageUnlock3();	
+		$(".pUnlock3").hide();
+	});
+});
+</script>
+
+
+
+<br><br><br><br><br><br>
+
+
+<script>
+//类级别方法
+(function($){
+	$.CAT={
+		//锁屏1
+		pageLock1:function(){
+			$("html").on("touchmove",function(){
+				event.preventDefault();	
+			});
+		},
+		//解锁1
+		pageUnlock1:function(){
+			$("html").off("touchmove");
+		},
+
+
+
+		//锁屏2
+		pageLock2:function(){
+			$("html").addClass("HLock");
+			$("html").delegate("","touchmove",function(){
+				if($("html").hasClass("HLock")){
+					event.preventDefault();	
+				}	
+			});
+		},
+		//解锁2
+		pageUnlock2:function(){
+			$("html").removeClass("HLock");
+		},
+
+
+		//锁屏3_PC
+		pageLock3:function(){
+			var sum_pageH=$.CAT.pageHeight()+$.CAT.pageScroll();
+			$("html,body").height(sum_pageH).css("overflow-y","hidden");
+		},
+		//解锁3_PC
+		pageUnlock3:function(){
+			$("html,body").height("auto").css("overflow-y","auto");
+		},
+
+
+
+
+
+		//屏幕高度
+		pageHeight:function(){
+			var pageHeight = window.innerHeight; 
+			if(typeof pageHeight != "number"){ 
+				if(document.compatMode == "number"){ 
+					pageHeight = document.documentElement.clientHeight; 
+				}else{ 
+					pageHeight = document.body.clientHeight; 
+				} 
+			} 
+			return pageHeight;
+		},//pageHeight_end
+		
+		
+		//滚动距离
+		'pageScroll':function(){
+			var scrollTop=document.documentElement.scrollTop + document.body.scrollTop; 
+			return scrollTop;
+		},//pageScroll_end
+
+
+
+	}
+})(jQuery);
+
+</script>
+
+
+
+
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+
+
+
+
+</body>
+</html>

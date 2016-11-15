@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js操作iframe</title>
+</head>
+<body>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+	--Glup：
+		--less转css
+		--css压缩
+		--js压缩
+		--图片压缩
+
+	
+
+
+
+
+--把部分的功能写成函数调用
+
+	不推荐：
+	-----------
+	$.post(url,submitdata,function(){
+		CAT.xxx=function(){
+			...
+		}
+	});
+	推荐：
+	-----------
+	$.post(url,submitdata,function(){
+		CAT.xxx();
+	});
+	...
+	//一般情况函数定义在文件最后，如特定的单个模块功能可另行新建一个js文件
+	+(function(){
+		CAT.xxx=function(){
+			...
+		}
+	})();
+
+
+
+
+
+删：
+---------------------
+
+	--变动小的图标合并
+	--require.js模块化调用外部文件
+
+
+</xmp>
+
+</body>
+</html>

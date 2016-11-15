@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>作用域</title>
+</head>
+<body>
+
+<xmp style=" font-family:黑体; font-size:10px; font-style:italic; color:#aaa;">来源：妙味课堂->JS原创视频教程-面试题视频->javascript面试题系列3,http://www.miaov.com/2013/miaovideo/miaovideo.html</xmp>
+<xmp style=" font-family:黑体; font-size:10px; font-style:italic; color:#aaa;">来源：http://www.cnblogs.com/lhb25/archive/2011/09/06/javascript-scope-chain.html (作用域链)</xmp>
+
+<xmp style=" font-family:微软雅黑; font-size:14px;">
+
+
+	作用域定义：
+	----------------------------------------------
+	* 作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期
+	* js中变量的作用域有全局作用域和局部作用域两种
+
+
+	作用域特点：
+	----------------------------------------------
+	* 变量在声明它们的函数体以及这个函数体嵌套的任意函数体内都是有定义的
+	* 将变量声明”提前“到函数体顶部，同时变量初始化还在原来位置
+
+
+	遵循原则：
+	----------------------------------------------
+	1.外部找不到内部的作用域，内部可以找到外部的作用域
+	2.不用var定义变量时，会自动在全局中被声明并赋值(即为全局变量；严格来说不是变量，而是全局的对象属性?);
+	3.变量查找遵循就近原则，就近找不到就到外层去找(基于函数声明的时候而非调用的时候？)
+	4.函数的参数与局部变量的优先级等同
+
+
+	其他：
+	----------------------------------------------
+	* 用var声明变量都不可配置的，就是说无法通过delete运算符删除
+	* Js没有块级作用域，可用函数或闭包模拟块级作用域，使得在函数或闭包内的变量为局部的，防止污染全局变量
+
+	* 尽量少用全局变量：函数执行完毕后局部变量就会被销毁（除闭包外），而全局变量会在页面卸载前一直存在占用内存
+
+
+
+	实例：
+	----------------------------------------------
+	<script>
+	    var a=111;
+	    b=999;
+	    function fun(){
+	    	alert(a); //undifine
+	    	var a=222;
+	    	alert(a); //222
+	    	a=333; //局部 覆盖距离它最近的222（如没有222，会覆盖顶级的111）
+	    	delete a; //无效
+	    	alert(a); //333
+	    }
+	    alert(a); //全局的111
+	    alert(b); //全局的999
+	    fun(); 
+	    delete a; //无效
+	    delete b; //被删
+	    alert(a); //全局的111
+	    alert(b); //无输出
+	</script>
+
+
+</xmp>
+
+
+
+<pre style=" font-family:微软雅黑; font-size:14px;">
+
+	作用域链用处：
+	----------------------------------------------
+	保证对执行环境有权访问的所有变量和函数的有序访问
+
+
+
+	[[Scope]]作用域链：
+	----------------------------------------------
+	一个内部属性[[Scope]](仅供JavaScript引擎访问)包含了函数被创建的作用域中对象的集合，
+	这个集合被称为函数的作用域链，它决定了哪些数据能被函数访问。
+
+	function add(num1,num2) {
+	    var sum = num1 + num2;
+	    return sum;
+	}
+	//当一个函数创建后，它的作用域链会被创建此函数的作用域中可访问的数据对象填充
+	<img src="../for_resource/scope/scope_01.jpg" />
+
+
+
+	运行期上下文：
+	----------------------------------------------
+	var total = add(5,10);
+	//执行此函数时会创建一个称为“运行期上下文(execution context)”的内部对象，而它的作用域链初始化为当前运行函数的[[Scope]]所包含的对象
+	//这些值按照它们出现在函数中的顺序被复制到运行期上下文的作用域链中。它们共同组成了一个新的对象，叫“活动对象(activation object)
+	//该对象包含了函数的所有局部变量、命名参数、参数集合以及this，然后此对象会被推入作用域链的前端
+	//当运行期上下文被销毁，活动对象也随之销毁。
+	<img src="../for_resource/scope/scope_02.jpg" />
+
+
+
+	代码优化：
+	----------------------------------------------
+	//从作用域链的结构可以看出，在运行期上下文的作用域链中，标识符所在的位置越深，读写速度就会越慢
+	//全局变量总是存在于运行期上下文作用域链的最末端，因此在标识符解析的时候，查找全局变量是最慢的
+	//所以，在编写代码的时候应尽量少使用全局变量，尽可能使用局部变量
+
+	function changeColor(){
+	    document.getElementById("btnChange").onclick=function(){
+	        document.getElementById("targetCanvas").style.backgroundColor="red";
+	    };
+	}
+	//这个函数引用了两次全局变量document，查找该变量必须遍历整个作用域链，直到最后在全局对象中才能找到。
+
+	function changeColor(){
+	    var doc=document;
+	    doc.getElementById("btnChange").onclick=function(){
+	        doc.getElementById("targetCanvas").style.backgroundColor="red";
+	    };
+	}
+	//先把document存储到局部变量里再使用，提高了性能
+
+
+
+	with改变作用域链
+	----------------------------------------------
+	function initUI(){
+	    with(document){
+	        var bd=body,
+	            links=getElementsByTagName("a"),
+	            i=0,
+	            len=links.length;
+	        while(i < len){
+	            update(links[i++]);
+	        }
+	        getElementById("btnInit").onclick=function(){
+	            doSomething();
+	        };
+	    }
+	}
+	//这里使用with语句来避免多次书写document，看上去更高效，实际上产生了性能问题
+	//一个新的可变对象被创建，它包含了参数指定的对象的所有属性
+	//这个对象将被推入作用域链的头部，这意味着函数的所有局部变量现在处于第二个作用域链对象中，因此访问代价更高了
+	//避免使用with语句，可把其存储在一个局部变量中来提升性能
+	<img src="../for_resource/scope/scope_with.jpg" />
+
+
+
+	try-catch改变作用域链
+	----------------------------------------------
+	try{
+	    doSomething();
+	}catch(ex){
+	    alert(ex.message); //作用域链在此处改变
+	}
+	//当try代码块中发生错误时，执行过程会跳转到catch语句，然后把异常对象推入一个可变对象并置于作用域链的头部
+	//在catch代码块内部，函数的所有局部变量将会被放在第二个作用域链对象中
+
+	try{
+	    doSomething();
+	}catch(ex){
+	    handleError(ex); //委托给处理器方法
+	}
+	//try-catch语句在代码调试和异常处理中非常有用，因此不建议完全避免
+	//优化方法：将错误委托给一个函数处理
+	//handleError方法是catch子句中唯一执行的代码。该函数接收异常对象作为参数，这样你可以更加灵活和统一的处理错误
+	//由于只执行一条语句，且没有局部变量的访问，作用域链的临时改变就不会影响代码性能了
+
+
+	--console.dir(fun()) 可以查看函数的[[Scopes]]
+
+
+</pre>
+
+
+</body>
+</html>

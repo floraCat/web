@@ -1,0 +1,491 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title> 
+<link href="css/base.css" rel="stylesheet" type="text/css" />
+<link href="css/layout.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+	<!--编辑器
+	<link rel="stylesheet" href="../libs/editor/themes/default/default.css" />
+	<script charset="utf-8" src="../libs/editor/kindeditor-min.js"></script>
+	<script charset="utf-8" src="../libs/editor/lang/zh_CN.js"></script>
+	<script language="javascript">
+		KindEditor.ready(function(K) {
+			K.create('textarea[name="content0"]', {
+				autoHeightMode : true,
+				afterCreate : function() {
+					this.loadPlugin('autoheight');
+				}
+			});
+		});
+	</script>
+	-->
+</head>
+<body>
+
+<div class="Main">
+
+
+	<div class="Ttl zb2 zd4 zs">
+		<h3 class="lt"><{$p_ttl}><span class="mark"><{$note.p_ttl}></span></h3>
+	</div><!--ttl003a end-->
+	
+	
+	<div class="con zb2Input">
+		<ul class="editpage zd4 zb2">
+		
+		<form class="editform" action="?col=<{$smarty.get.col}>&<{if $rsedit}>act=modify&id=<{$smarty.get.id}><{else}>act=save<{/if}>"  method="post" enctype="multipart/form-data">
+	<!--id-->			
+			<{if $Field_.id}>
+				<li><div class="Left">id：</div><div class="Right"><input class="input" type="text" readonly="readonly" name="id0" value="<{$rsedit.id}>" /></div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--title-->			
+			<{if $Field_.title}>
+				<li><div class="Left">标题：</div><div class="Right"><input class="input" type="text" name="title0" value="<{$rsedit.title}>" data-role="" /></div><div class="clear"></div></li>
+			<{/if}>
+		
+		
+		<style>
+		.editform,.editform *{ overflow:visible;}
+		.editSelect{ position:relative;}
+		.editSelect .text{ float:left; width:200px; height:24px; border:#ddd 1px solid; background-color:#fff; margin-right:5px;}
+		.editSelect .select{ float:left; width:86px; height:24px; border:#ddd 1px solid; background-color:#fff; text-indent:5px; position:relative;}
+		.editSelect .selected{ display:block; width:60px; height:24px;}
+		.editSelect .select ul{ position:absolute; top:26px; left:0; width:82px; border-left:#ddd 1px solid; border-right:#ddd 1px solid; background-color:#fff; z-index:9999; display:none;}
+		.editSelect .select ul a{ display:block; width:82px; height:24px; border-bottom:#ddd 1px solid;}
+		.editSelect .select .btn{ position:absolute; top:0; right:0; width:24px; height:24px; border-left:#ddd 1px solid; text-align:center; background-color:#f2f2f2;}
+		</style>
+
+	<!--type-->			
+			<{if $Field_.type}>
+				<li><div class="Left">类型：</div><div class="Right">
+					<div class="editSelect">
+						<input type="hidden" name="field" value="type0" />
+						<input type="text" class="text" name="type0" value="<{$rsedit.type}>"/>
+						<div class="select">
+							<span class="selected">请选择</span>
+							<ul>
+						<!--<{section name=type loop=$type}>-->
+								<a href="javascript:;"><{$type[type]}></a>
+						<!--<{/section}>-->
+						<!--{if $type2}-->
+						<!--<{section name=type2 loop=$type2}>-->
+								<a href="javascript:;"><{$type2[type2]}></a>
+						<!--<{/section}>-->
+						<!--{/if}-->
+							</ul>
+							<s class="btn"> > </s>
+						</div>
+					</div><!--editSelect end-->&nbsp;&nbsp;不可自定义
+				</div><div class="clear"></div></li>
+			<{/if}>
+			
+	<!--feature-->			
+			<{if $Field_.feature}>
+				<li><div class="Left">特点：</div><div class="Right">
+					<div class="editSelect">
+						<input type="hidden" name="field" value="feature0" />
+						<input type="text" class="text" name="feature0" value="<{$rsedit.feature}>"/>
+						<div class="select">
+							<span class="selected">请选择</span>
+							<ul>
+						<!--<{section name=feature loop=$feature}>-->
+								<a href="javascript:;"><{$feature[feature]}></a>
+						<!--<{/section}>-->
+							</ul>
+							<s class="btn"> > </s>
+						</div>
+					</div><!--editSelect end-->&nbsp;&nbsp;不可自定义
+				</div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--style-->			
+			<{if $Field_.style}>
+				<li><div class="Left">风格：</div><div class="Right">
+					<div class="editSelect">
+						<input type="hidden" name="field" value="style0" />
+						<input type="text" class="text" name="style0" value="<{$rsedit.style}>"/>
+						<div class="select">
+							<span class="selected">请选择</span>
+							<ul>
+						<!--<{section name=style loop=$style}>-->
+								<a href="javascript:;"><{$style[style]}></a>
+						<!--<{/section}>-->
+							</ul>
+							<s class="btn"> > </s>
+						</div>
+					</div><!--editSelect end-->&nbsp;&nbsp;不可自定义
+				</div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--keywords-->			
+			<{if $Field_.keywords}>
+				<li><div class="Left">关键字：</div><div class="Right">
+					<div class="editSelect">
+						<input type="hidden" name="field" value="keywords0" />
+						<input type="text" class="text" name="keywords0" value="<{$rsedit.keywords}>"/>
+						<div class="select">
+							<span class="selected">请选择</span>
+							<ul>
+						<!--<{section name=keywords loop=$keywords}>-->
+								<a href="javascript:;"><{$keywords[keywords]}></a>
+						<!--<{/section}>-->
+							</ul>
+							<s class="btn"> > </s>
+						</div>
+					</div><!--editSelect end-->&nbsp;&nbsp;可以自定义！！
+				</div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--color-->			
+			<{if $Field_.color}>
+				<li><div class="Left">色调：</div><div class="Right">
+					<div class="editSelect">
+						<input type="hidden" name="field" value="color0" />
+						<input type="text" class="text" name="color0" value="<{$rsedit.color}>"/>
+						<div class="select">
+							<span class="selected">请选择</span>
+							<ul>
+						<!--<{section name=color loop=$color}>-->
+								<a href="javascript:;"><{$color[color]}></a>
+						<!--<{/section}>-->
+							</ul>
+							<s class="btn"> > </s>
+						</div>
+					</div><!--editSelect end-->&nbsp;&nbsp;不可自定义
+				</div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--format-->			
+			<{if $Field_.format}>
+				<li><div class="Left">格式：</div><div class="Right">
+					<div class="editSelect">
+						<input type="hidden" name="field" value="format0" />
+						<input type="text" class="text" name="format0" value="<{$rsedit.format}>"/>
+						<div class="select">
+							<span class="selected">请选择</span>
+							<ul>
+						<!--<{section name=format loop=$format}>-->
+								<a href="javascript:;"><{$format[format]}></a>
+						<!--<{/section}>-->
+							</ul>
+							<s class="btn"> > </s>
+						</div>
+					</div><!--editSelect end-->&nbsp;&nbsp;不可自定义
+				</div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--attr-->			
+			<{if $Field_.attr}>
+				<li><div class="Left">属性：</div><div class="Right">
+					<div class="editSelect">
+						<input type="hidden" name="field" value="attr0" />
+						<input type="text" class="text" name="attr0" value="<{$rsedit.attr}>"/>
+						<div class="select">
+							<span class="selected">请选择</span>
+							<ul>
+						<!--<{section name=attr loop=$attr}>-->
+								<a href="javascript:;"><{$attr[attr]}></a>
+						<!--<{/section}>-->
+							</ul>
+							<s class="btn"> > </s>
+						</div>
+					</div><!--editSelect end-->&nbsp;&nbsp;不可自定义
+				</div><div class="clear"></div></li>
+			<{/if}>
+			
+			<script>
+			$(function(){
+				//选项框下拉
+				$(".editSelect .btn").click(function(){
+					$(this).siblings("ul").toggle();
+				});
+				//选项被选中
+				$(".editSelect ul a").click(function(){
+					var selected=$(this).text();
+					$(this).parent().siblings("span").text(selected);
+					$(this).parent().hide();
+					var field=$(this).parents(".select").siblings("input[name='field']").val();
+					var value=$(this).parents(".select").siblings("input[name='"+field+"']").val();
+					if(value==""){
+						$(this).parents(".select").siblings("input[name='"+field+"']").val(selected);
+					}else{
+						selected=""+value+","+selected+"";
+						$(this).parents(".select").siblings("input[name='"+field+"']").val(selected);
+					}
+				});
+			});
+			</script>
+
+					
+
+
+
+	<!--grade-->			
+			<{if $Field_.grade}>
+				<li><div class="Left">级别：</div><div class="Right short"><input class="input" type="text" name="grade0" value="<{$rsedit.grade}>" data-role="" /></div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--label-->			
+			<{if $Field_.label}>
+				<li><div class="Left">标识：</div><div class="Right short"><input class="input" type="text" name="label0" value="<{$rsedit.label}>" data-role="" /></div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--mark-->			
+			<{if $Field_.mark}>
+				<li><div class="Left">标注：</div><div class="Right short"><input class="input" type="text" name="mark0" value="<{$rsedit.mark}>" data-role="" /></div><div class="clear"></div></li>
+			<{/if}>
+
+
+				<li><div class="btn">
+				<div class="lt" style="padding-left:150px; line-height:42px;">
+					<a class="dw_edit" target="_blank" href="dw_global.php?act=edit&id=<{$rsedit.id}>">dw里编辑</a>
+					<span>点击后手动打开tpl/tpl_edit_global.html编辑</span>
+					<a class="dw_save" href="dw_global.php?act=save&id=<{$rsedit.id}>">dw保存</a>
+				</div>
+				<input type="submit" class="zd2" name="button" id="button" value="提交" />
+				<{if $smarty.get.col=="mode"}>
+					<{if $rsedit}>
+						<input type="submit" class="zd2 save_by_file_for_mode_modify" name="button" id="button" value="另类保存" />
+						<input type="hidden" name="id" value="<{$rsedit.id}>" />
+					<{else}>
+						<input type="submit" class="zd2 save_by_file_for_mode_save" name="button" id="button" value="另类保存" />
+					<{/if}>
+				<{/if}>
+				<{if $smarty.get.col=="bs"}>
+					<{if $rsedit}>
+						<input type="submit" class="zd2 save_by_file_for_bs_modify" name="button" id="button" value="另类保存2" />
+						<input type="hidden" name="id" value="<{$rsedit.id}>" />
+					<{else}>
+						<input type="submit" class="zd2 save_by_file_for_bs_save" name="button" id="button" value="另类保存2" />
+					<{/if}>
+				<{/if}>
+				</div><div class="clear"></div></li>
+
+
+	<!--pic-->			
+			<{if $Field_.pic}>
+			<{if $smarty.get.col=="imgs"}>
+				<li class="Pic"><div class="Left">图片：</div><div class="Right">
+					<div class="Li_pic">
+						<input type="hidden" class="pic_on" name="pic_on_0" value="" />
+						<p><span>bg</span><input type="file" name="bg0" /></p>
+						<p><span>icon</span><input type="file" name="icon0" /></p>
+						<p><span>img</span><input type="file" name="img0" /></p>
+						<p><span>other</span><input type="file" name="other0" /></p>
+						<b><input type="text" name="pic_add0" value="" /></b>
+					</div>
+					<div class="pic0"><{$rsedit.pic}><input type="hidden" name="pic0" value="<{$rsedit.pic}>" /></div>
+				</div><div class="clear"></div><div class="picture"><img src="<{$rsedit.pic}>" /></div></li>
+			<{else}>
+				<li><div class="Left">图片：</div><div class="Right"><input type="file" name="pic_add0" value="<{$rsedit.pic}>" /><div class="pic0"><{$rsedit.pic}><input type="hidden" name="pic0" value="<{$rsedit.pic}>" /></div></div><div class="clear"></div></li>
+			<{/if}>
+			<{/if}>
+
+	<!--width-->			
+			<{if $Field_.width}>
+				<li><div class="Left">宽度：</div><div class="Right short"><input class="input" type="text" name="width0" value="<{$rsedit.width}>" data-role="" /></div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--height-->			
+			<{if $Field_.height}>
+				<li><div class="Left">高度：</div><div class="Right short"><input class="input" type="text" name="height0" value="<{$rsedit.height}>" data-role="" /></div><div class="clear"></div></li>
+			<{/if}>
+
+	<!--source-->			
+			<{if $Field_.source}>
+				<li><div class="Left">ps源文件：</div><div class="Right short"><input class="input" type="text" name="source0" value="<{$rsedit.source}>" data-role="" /></div><div class="clear"></div></li>
+			<{/if}>
+
+<style>
+.editform .original{position:absolute; left:25px; top:45px;}
+.editform .basehtml{ position:absolute; left:25px; top:65px;}
+.Mbody h3{ border-color:#deeace!important; background-color:#ecf1e7; font-weight:normal;}
+.Mdesc{ border-color:#deeace!important; background-color:#ecf1e7;}
+.Mdesc a{ color:#79ae3b;}
+	.Mdesc{ width:666px; margin:0 auto; padding:10px 15px; border:1px solid; font-size:14px; line-height:26px; text-shadow:1px 1px 1px #fff;/*后加*/display:none; margin:0;}
+	.Mdesc p s{ margin-right:8px;/*后加*/ font-family:微软雅黑; color:#444;}
+	.Mdesc a:hover{ padding-left:5px;}
+	.Mbody{ padding:20px 0 0; font-size:14px; line-height:26px; color:#999; /*后加*/width:718px; background-color:#fff; border:#ddd 1px solid; padding:10px; display:none;}
+	.Mbody .section{ margin-bottom:15px;}
+	.Mbody h3{ height:35px; line-height:35px; padding:0 15px 0 28px; font-size:15px; border-top:1px solid; color:#333; text-shadow:1px 1px 1px #fff; background-image:url(../style/imgs/icon/same/icon145_1.png); background-size:13px; background-position:8px 11px;}
+	.Mbody .con{ padding:10px 15px;}
+	.Mbody .code{ width:666px; margin:10px auto; padding:0 10px; border:#eee 1px solid; background-color:#f8f8f8; font-size:12px; line-height:22px; /*overflow-x:scroll;*/}
+	.Mbody .p{ padding:0 10px; background-color:#f8f8f8; border-bottom:#eee 1px dashed; margin-bottom:10px; color:#666;}
+	.Mbody .p s:before{ content:'//'; color:#c5c5c5; padding:0 10px; font-size:10px;}
+</style>
+
+	<!--description-->			
+			<{if $Field_.description}>
+				<li style="position:relative;"><div class="Left">简介：</div><div class="Right"><textarea class="css_textarea_desc" name="description0"><{$rsedit.description}></textarea><div class="switchDiv Mdesc"></div></div><a class="original" href="javascript:;">源代码</a><a class="basehtml basehtml_desc" href="javascript:;">加入代码</a><div class="clear"></div></li>
+			<{/if}>
+			
+	<!--content-->			
+			<{if $Field_.content}>
+				<li style="position:relative;"><div class="Left">详情：</div><div class="Right long"><textarea class="css_textarea_con text_con" name="content0"><{$rsedit.content}></textarea><div class="switchDiv Mbody"></div></div><a class="original" href="javascript:;">源代码</a><a class="basehtml basehtml_con" href="javascript:;">加入代码</a><div class="clear"></div></li>
+			<{/if}>
+			
+			<script>
+			$(function(){
+				//源代码切换
+				var a=0;
+				$(".editform .original").click(function(){
+					if(a==0){
+						var text1=$(this).siblings(".Right").children("textarea").val();
+						$(this).siblings(".Right").children("textarea").val(0).hide();
+						$(this).siblings(".Right").children(".switchDiv").html(text1).show();
+						$(this).text("展示效果 [保存前换回源代码]");
+						a=1;
+					}else{
+						var text2=$(this).siblings(".Right").children(".switchDiv").html();
+						$(this).siblings(".Right").children("textarea").val(text2).show();
+						$(this).siblings(".Right").children(".switchDiv").text(0).hide();
+						$(this).text("源代码");
+						a=0;
+					}
+				});
+				
+				$(".editform .basehtml_con").click(function(){
+					var text=$(this).siblings(".Right").children("textarea").val();
+					var html="<div class='section'><h3></h3><div class='con'></div><div class='code'></div></div>";
+					$(this).siblings(".Right").children("textarea").val(""+text+""+html+"");
+				});
+				$(".editform .basehtml_desc").click(function(){
+					var text=$(this).siblings(".Right").children("textarea").val();
+					var html="<p><s>1.</s><a href='#s1'></a></p>";
+					$(this).siblings(".Right").children("textarea").val(""+text+""+html+"");
+				});
+				
+			});
+			</script>
+
+
+	<!--zs-->			
+			<{if $Field_.zs}>
+				<li><div class="Left">zs：</div><div class="Right"><textarea class="css_textarea_con" name="zs0"><{$rsedit.zs}></textarea></div><div class="clear"></div></li>
+			<{/if}>
+	<!--backpic-->			
+			<{if $Field_.backpic}>
+				<li><div class="Left">backpic：</div><div class="Right"><textarea class="css_textarea_con" name="backpic0"><{$rsedit.backpic}></textarea></div><div class="clear"></div></li>
+			<{/if}>
+	<!--css-->			
+			<{if $Field_.css}>
+				<li><div class="Left">css：</div><div class="Right"><textarea class="css_textarea_con" name="css0"><{$rsedit.css}></textarea></div><div class="clear"></div></li>
+			<{/if}>
+	<!--html-->			
+			<{if $Field_.html}>
+				<li><div class="Left">html：</div><div class="Right"><textarea class="css_textarea_con" name="html0"><{$rsedit.html}></textarea></div><div class="clear"></div></li>
+			<{/if}>
+	<!--dede_tags-->			
+			<{if $Field_.dede_tags}>
+				<li><div class="Left">dede_tags：</div><div class="Right"><textarea class="css_textarea_con" name="dede_tags0"><{$rsedit.dede_tags}></textarea></div><div class="clear"></div></li>
+			<{/if}>
+	<!--script-->			
+			<{if $Field_.script}>
+				<li><div class="Left">script：</div><div class="Right"><textarea class="css_textarea_con" name="script0"><{$rsedit.script}></textarea></div><div class="clear"></div></li>
+			<{/if}>
+
+
+
+	<!--about-->			
+			<{if $Field_.about}>
+				<li><div class="Left">相关例证：</div><div class="Right"><textarea class="css_textarea_con" name="about0"><{$rsedit.about}></textarea></div><div class="clear"></div></li>
+			<{/if}>
+	<!--answer-->			
+			<{if $Field_.answer}>
+				<li><div class="Left">答案：</div><div class="Right"><textarea class="css_textarea_con" name="answer0"><{$rsedit.answer}></textarea></div><div class="clear"></div></li>
+			<{/if}>
+	<!--time-->			
+			<{if $Field_.time}>
+				<li><div class="Left">解决时间：</div><div class="Right"><input class="input" type="text" name="time0" value="<{$rsedit.time}>" data-role="" /></div><div class="clear"></div></li>
+			<{/if}>
+	<!--note-->			
+			<{if $Field_.note}>
+				<li><div class="Left">备注：</div><div class="Right"><textarea class="css_textarea_con" name="note0"><{$rsedit.note}></textarea></div><div class="clear"></div></li>
+			<{/if}>
+
+
+
+			<{if $Field_.PM}>
+				<li><div class="Left">PM：</div><div class="Right"><input class="input" name="PM0" value="<{$rsedit.PM}>"></div><div class="clear"></div></li>
+			<{/if}>
+			<{if $Field_.file}>
+				<li><div class="Left">file：</div><div class="Right"><input class="input" name="file0" value="<{$rsedit.file}>"></div><div class="clear"></div></li>
+			<{/if}>
+			<{if $Field_.page}>
+				<li><div class="Left">page：</div><div class="Right"><input class="input" name="page0" value="<{$rsedit.page}>"></div><div class="clear"></div></li>
+			<{/if}>
+			<{if $Field_.mode}>
+				<li><div class="Left">mode：</div><div class="Right"><input class="input" name="mode0" value="<{$rsedit.mode}>"></div><div class="clear"></div></li>
+			<{/if}>
+			<{if $Field_.zoom}>
+				<li><div class="Left">zoom：</div><div class="Right"><input class="input" name="zoom0" value="<{$rsedit.zoom}>"></div><div class="clear"></div></li>
+			<{/if}>
+
+
+			<{if $Field_.sitename}>
+				<li><div class="Left">sitename：</div><div class="Right"><input class="input" name="sitename0" value="<{$rsedit.sitename}>"></div><div class="clear"></div></li>
+			<{/if}>
+			<{if $Field_.url}>
+				<li><div class="Left">url：</div><div class="Right"><input class="input" name="url0" value="<{$rsedit.url}>"></div><div class="clear"></div></li>
+			<{/if}>
+
+				
+				<li><div class="btn">
+				<input type="submit" class="zd2" name="button" id="button" value="提交" />
+				<{if $smarty.get.col=="mode"}>
+					<{if $rsedit}>
+						<input type="submit" class="zd2 save_by_file_for_mode_modify" name="button" id="button" value="另类保存" />
+						<input type="hidden" name="id" value="<{$rsedit.id}>" />
+					<{else}>
+						<input type="submit" class="zd2 save_by_file_for_mode_save" name="button" id="button" value="另类保存" />
+					<{/if}>
+				<{/if}>
+				</div><div class="clear"></div></li>
+		</form>
+		
+		
+		</ul><!--editpage end-->
+	</div><!--con end-->
+	
+<script>
+$(function(){
+		$(".Li_pic p span").click(function(){ //Add点击图片上传按键
+			$(this).siblings("input").click();
+		});
+		
+		$(".Li_pic p").change(function(){
+			pic_on=$(this).find("span").text();
+			$(this).siblings(".pic_on").val(pic_on);
+			var url=$(this).children("input").val();
+			$(this).parents(".Right").find(".pic0").text(url);
+		});
+				//另类保存_mode
+				$(".editpage .save_by_file_for_mode_save").click(function(){
+					$(".editpage form").attr("action","?col=mode&act=save&save_mode=save_by_file");
+					$(".editpage form").submit();
+				});
+				$(".editpage .save_by_file_for_mode_modify").click(function(){
+					$(".editpage form").attr("action","?col=mode&act=modify&save_mode=save_by_file");
+					$(".editpage form").submit();
+				});
+				//另类保存_bs
+				$(".editpage .save_by_file_for_bs_save").click(function(){
+					$(".editpage form").attr("action","?col=bs&act=save&save_bs=save_by_file");
+					$(".editpage form").submit();
+				});
+				$(".editpage .save_by_file_for_bs_modify").click(function(){
+					$(".editpage form").attr("action","?col=bs&act=modify&save_bs=save_by_file");
+					$(".editpage form").submit();
+				});
+
+});
+</script>
+	
+	
+</div><!--Main end-->
+
+</body>
+</html>
