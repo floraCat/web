@@ -10,9 +10,10 @@
 
 <script>
 function box(json){
-	alert(json.name+"__"+json.time);
+	alert(json.name);
+	//alert(json.name+"__"+json.time);
 }
-var url='jsonp_php.php?callback=box';
+var url='http://192.168.1.13:8088/jsonp_js.js';
 var script=document.createElement('script');
 script.setAttribute('src',url);
 document.getElementsByTagName('head')[0].appendChild(script);

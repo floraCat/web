@@ -9,24 +9,38 @@
 
 
 
+
 <script>
 $(function(){
 	$.ajax({
-		type:'get',
-		async:false,
-		url:'jsonp_php.php?callback=box',
-		dataType:'jsonp',
+		type:'post',
+		//async:false,
+		url:'jsonp_php.php',
+		dataType:'json',
 		//jsonp:'callback',
 		//jsonpCallback:'box',
 		success:function(json){
-			alert(json.name+"__"+json.time);
+			
+			console.log(json);
+
+			// var data = eval("(" + json + ")");
+			// console.log(data);
+
+			//alert(json.name+"__"+json.time);
 		},
 		error:function(){
 			alert('fail');
 		}
 	});
+
+
+
+
+
+
 });
 </script>
+<!-- <script type="text/javascript" src="jsonp_js.js?callback=box"></script> -->
 
 
 

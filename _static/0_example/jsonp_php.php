@@ -1,12 +1,11 @@
 <?php
 
 
-$obj[name]="jsonp_test";
-$obj[time]="16-4-18";
+$obj=array();
+$obj["name"]="jsonp_test中文";
+$obj["time"]="16-4-18";
 
-$aaa=$_GET["callback"];
-echo ($aaa."(".json_encode($obj).")");
-
+echo json_encode($obj);
 
 
 ?>
