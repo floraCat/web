@@ -7,25 +7,18 @@
 <body>
   <h1>My Site</h1>
   <div>
-    Go to <a href="_res1.php">第一页</a>.<a href="_res2.php">第二页</a>
+    Go to <a href="_res1.html">第一页</a>.<a href="_res2.html">第二页</a>
   </div>
   <div id="container"></div>    
 </body>
 <script src="_js/jquery-1.10.2.js"></script>
 <script src="_js/jquery.pjax.js"></script>
 <script type="text/javascript">
-//$(document).pjax('a', '#container')
-$(function(){
-	$(document).pjax({
-		'selector':'a',
-		'container':'#container'
-	})
-});
-	
-// $(document).pjax({
-// 	selector:'a',
-// 	container:'#container'
-// 	//titleSuffix:'php'
-// })
+$(document).pjax('a', '#container',{
+  url:function(){
+    return this.target.href.replace(/.html/,".php");
+    //return preg_replace('/*\/(.*?).html/i',"index.php?page=$1",this.target.href);
+  }
+})
 </script>
 </html>
