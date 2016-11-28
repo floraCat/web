@@ -7,7 +7,7 @@
 <body>
   <h1>My Site</h1>
   <div>
-    Go to <a href="_res1.html">第一页</a>.<a href="_res2.html">第二页</a>
+    Go to <a class="A" href="_res1.html#test2">第一页</a>.<a href="_res2.html">第二页</a>
   </div>
   <div id="container"></div>    
 </body>
@@ -20,5 +20,45 @@ $(document).pjax('a', '#container',{
     //return preg_replace('/*\/(.*?).html/i',"index.php?page=$1",this.target.href);
   }
 })
+
+
+$(document).on("pjax",function(){
+  alert(234635);
+});
+
+
+
+$(document).on("popstate",function(ev,opt1,opt2){
+  //console.log(ev);
+  console.log(opt1); //张三
+  console.log(opt2); //20
+});
+
+//   function fire(type, args, props) {
+//     if (!props) props = {}
+//     //props.relatedTarget = target
+//     var event = $.Event(type, props)
+//     $("#container").trigger(event, args)
+//     return !event.isDefaultPrevented()
+//   }
+
+// fire("popstate", ["张三", 20 ], {"name":"aa"});
+
+var keyEvent=$.Event("popstate",{"name":"aa"});
+
+$(document).trigger(keyEvent,["张三", 20 ]);
+
+
+
+// $(document).trigger(keyEvent,["张三2", 202 ]);
+// $(document).trigger(keyEvent,"extraOpt");
+
+
+//console.log(window);
+
+
+
+
+
 </script>
 </html>
