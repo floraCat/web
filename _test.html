@@ -34,13 +34,13 @@ $(document).on("popstate",function(ev,opt1,opt2){
   console.log(opt2); //20
 });
 
-//   function fire(type, args, props) {
-//     if (!props) props = {}
-//     //props.relatedTarget = target
-//     var event = $.Event(type, props)
-//     $("#container").trigger(event, args)
-//     return !event.isDefaultPrevented()
-//   }
+function fire(type, args, props) {
+  if (!props) props = {}
+  props.relatedTarget = target
+  var event = $.Event(type, props)
+  $("#container").trigger(event, args)
+  return !event.isDefaultPrevented()
+}
 
 // fire("popstate", ["张三", 20 ], {"name":"aa"});
 

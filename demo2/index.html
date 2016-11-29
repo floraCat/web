@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>pjax</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-pjax-version" content="v1">
+</head>
+<body>
+
+
+  <h1>Pjax simple test</h1>
+  <div>
+    Go to <a href="res1.html">第一页</a>.<a href="res2.html">第二页</a>
+  </div>
+
+  <div id="container"></div>  
+
+</body>
+
+<script src="lib/jquery-1.10.2.js"></script>
+<script src="lib/jquery.pjax.js"></script>
+
+<script type="text/javascript">
+  $(document).pjax('a','#container',{
+  	url:function(){
+  		return this.target.href.replace(/(.+\/)*(.+).html/,"index.php?page=$2");
+  	}
+  })
+</script>
+
+</html>
