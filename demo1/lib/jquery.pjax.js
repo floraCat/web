@@ -170,7 +170,7 @@ function handleSubmit(event, container, options) {
 // Returns whatever $.ajax returns.
 function pjax(options) {
   options = $.extend(true, {}, $.ajaxSettings, pjax.defaults, options)
-
+console.log(options);
   if ($.isFunction(options.url)) {
     options.url = options.url()
   }
