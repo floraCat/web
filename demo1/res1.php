@@ -6,7 +6,8 @@ function is_pjax(){
 }  
 
 if(is_pjax()){//如果是pjax请求只返回部分html
-	echo "<div style='background:red;'>第一页(pjax request return part html)</div>";
+	echo "<div style='background:red;'><p id='p1'>p1</p>第一页(pjax request return part html)</div>";
+	//echo '<script src="js.js"></script>';
 }else{//如果不是pjax请求返回整个页面html
 	include("tpl/tpl_1.html");
 }

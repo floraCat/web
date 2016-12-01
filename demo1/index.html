@@ -8,19 +8,99 @@
 
 
   <h1>Pjax simple test</h1>
-  <div>
-    Go to <a href="res1.php">第一页</a>.<a href="res2.php">第二页</a>
+  <!-- <div>
+    Go to <a href="res1.php#test">第一页</a>.<a href="res2.php">第二页</a>
   </div>
 
+
+<input id="input" type="text" autofocus value="aa" />
+
   <div id="container"></div>  
+
+
+
+<div id="div" class="s1">
+<section class ="s1">s1</section><section id="s2">s2</section>
+</div>
+
+<div id="div2"></div> -->
+
+
+
+  <h1>Pjax simple test</h1>
+  <ul>
+    <a href="res1.php">按键一</a>
+    <ol id="ol1">默认显示内容1</ol>
+  </ul>
+  <ul>
+    <a href="res1.php">按键一</a>
+    <ol id="ol2">默认显示内容1</ol>
+  </ul>
+
 
 </body>
 
 <script src="lib/jquery-1.10.2.js"></script>
 <script src="lib/jquery.pjax.js"></script>
 
+
 <script type="text/javascript">
-  $(document).pjax('a','#container')
+	$(document).on("click","a",function(event){
+		var container=$(this).siblings('ol');
+		//var container="ol";
+		//event.preventDefault();
+		//console.log(container);return;
+		$.pjax.click(event,{container:container});
+	});
+</script>
+
+
+<script type="text/javascript">
+  // $(document).pjax('a','#container',{
+  // 	scrollTo:200
+  // });
+
+// $(document).on("click",'a',function(){
+// 	event.preventDefault();
+// 	$.pjax.reload({
+// 		container: "#container",
+// 		url:this.href
+// 	});
+// });
+
+
+// function applyPjax(){
+// 	$.pjax({
+// 		url:"res1.php",
+// 		container:"#container",
+// 		push:true
+// 	});
+// 	//if(typeof(callback)=="function"){callback()}
+// }
+
+// //$("#input").focus();
+// $("#input").on("blur",function(){
+// 	applyPjax();
+// });
+
+
+
+
+//$.pjax.reload('#pjax-container');
+
+
+
+// function findAll(elems, selector) {
+//   //return elems.find(selector).add(elems.filter(selector));
+//   return $("#div2").add($("#div"));
+// }
+// // function findAll(elems, selector) {
+// //   return elems.filter(selector).add(elems.find(selector));
+// // }
+// var html=$(".s1");
+
+// console.log(findAll(html,".s1"));
+
 </script>
 
 </html>

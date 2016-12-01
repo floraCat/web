@@ -22,7 +22,14 @@
 <script src="lib/jquery.pjax.js"></script>
 
 <script type="text/javascript">
-  $(document).pjax('a','#container')
+$(document).on("click",'a',function(event){
+  var container=$("#container");
+  event.preventDefault();
+  $.pjax.reload({
+    container: container,
+    url:this.href
+  }); 
+});
 </script>
 
 </html>
